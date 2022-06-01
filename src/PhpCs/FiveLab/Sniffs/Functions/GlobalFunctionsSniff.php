@@ -32,10 +32,10 @@ class GlobalFunctionsSniff extends AbstractFunctionCallSniff
         $prevTokenPtr = $phpcsFile->findPrevious([T_WHITESPACE], $stackPtr - 1, null, true);
         $prevToken = $tokens[$prevTokenPtr];
 
-        $oopCalls = [T_OBJECT_OPERATOR, T_DOUBLE_COLON];
+        $possiblePrevTokens = [T_OBJECT_OPERATOR, T_DOUBLE_COLON, T_NEW];
 
-        if (\in_array($prevToken['code'], $oopCalls, true)) {
-            // Call to object method or class method. Ignore.
+        if (\in_array($prevToken['code'], $possiblePrevTokens, true)) {
+            // Call to object method or class method or create new instance. Ignore.
             return;
         }
 

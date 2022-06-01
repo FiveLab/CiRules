@@ -11,3 +11,7 @@ $prices = new SomePrices();
 
 $prices->min();
 $prices->max();
+
+
+new Log();
+new Min();
