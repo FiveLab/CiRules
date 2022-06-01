@@ -1,0 +1,53 @@
+{
+    "name": "fivelab/ci-rules",
+    "description": "Custom rules for code style and static analyzer",
+    "keywords": [ "static analyzer", "code style", "satisfy", "specification", "query" ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vitaliy Zhuk",
+            "email": "v.zhuk@fivelab.org"
+        },
+
+        {
+            "name": "FiveLab Team",
+            "email": "dev@fivelab.org",
+            "homepage": "https://fivelab.org"
+        }
+    ],
+
+    "require": {
+        "php": "~7.4 || ~8.0"
+    },
+
+    "require-dev": {
+        "phpunit/phpunit": "~9.5",
+        "phpstan/phpstan": "~1.6.8",
+        "escapestudios/symfony2-coding-standard": "~3.12.0"
+    },
+
+    "suggest": {
+        "escapestudios/symfony2-coding-standard": "For use code style rules",
+        "phpstan/phpstan": "For use static analyzer rules."
+    },
+
+    "autoload": {
+        "psr-4": { "FiveLab\\Component\\CiRules\\": "src/" }
+    },
+
+    "autoload-dev": {
+        "psr-4": { "FiveLab\\Component\\CiRules\\Tests\\": "tests/" }
+    },
+
+    "config": {
+        "bin-dir": "bin"
+    },
+
+    "extra": {
+        "thanks": {
+            "name": "fivelab/ci-rules",
+            "url": "https://github.com/FiveLab/CiRules"
+        }
+    }
+}

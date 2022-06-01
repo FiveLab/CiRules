@@ -1,0 +1,25 @@
+services:
+    -
+        class: \FiveLab\Component\CiRules\PhpStan\ForbiddenNodeTypeRule
+        arguments: [ PhpParser\Node\Expr\Isset_, 'Language construct isset() should not be used.' ]
+        tags: [ phpstan.rules.rule ]
+
+    -
+        class: \FiveLab\Component\CiRules\PhpStan\ForbiddenNodeTypeRule
+        arguments: [ PhpParser\Node\Expr\Empty_, 'Language construct empty() should not be used.' ]
+        tags: [ phpstan.rules.rule ]
+
+    -
+        class: \FiveLab\Component\CiRules\PhpStan\ForbiddenSuppressErrorRule
+        arguments: [ 'trigger_error', 'DOMDocument::loadXML', 'DOMDocument::loadHTML' ]
+        tags: [ phpstan.rules.rule ]
+
+    -
+        class: \FiveLab\Component\CiRules\PhpStan\ForbiddenPassArgumentAsReferenceRule
+        arguments: [ PhpParser\Node\Stmt\Function_ ]
+        tags: [ phpstan.rules.rule ]
+
+    -
+        class: \FiveLab\Component\CiRules\PhpStan\ForbiddenPassArgumentAsReferenceRule
+        arguments: [ PhpParser\Node\Stmt\ClassMethod ]
+        tags: [ phpstan.rules.rule ]

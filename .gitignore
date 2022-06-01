@@ -1,0 +1,9 @@
+# Binary files
+/bin/
+
+# Composer
+/vendor/
+composer.lock
+
+# Common
+.phpunit.result.cache

@@ -1,0 +1,17 @@
+includes:
+    - config/phpstan.services.neon
+
+parameters:
+    level: 8
+
+    bootstrapFiles:
+        - vendor/squizlabs/php_codesniffer/autoload.php
+
+    paths:
+        - src
+
+
+    ignoreErrors:
+        -
+            message: '#Call to an undefined method .+::(toString|toLowerString)\(\).#'
+            path: src/PhpStan
