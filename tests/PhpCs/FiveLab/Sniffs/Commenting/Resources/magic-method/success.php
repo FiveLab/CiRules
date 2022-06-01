@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Some comment here
+ */
 class FooBar implements \Stringable
 {
     /**

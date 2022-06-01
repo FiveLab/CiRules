@@ -50,6 +50,13 @@ abstract class AbstractFunctionDocCommentSniff implements Sniff
             return;
         }
 
+        $openCurlyBracketPtr = $phpcsFile->findNext([T_OPEN_CURLY_BRACKET], $closeTokenPtr + 1);
+
+        if ($openCurlyBracketPtr && $openCurlyBracketPtr < $functionTokenPtr) {
+            // Found open curly bracket previously then "function" keyword. Name of class/interface/trait.
+            return;
+        }
+
         $functionNameTokenPtr = $phpcsFile->findNext([T_WHITESPACE], $functionTokenPtr + 1, null, true);
         $functionNameToken = $phpcsFile->getTokens()[$functionNameTokenPtr];
 
