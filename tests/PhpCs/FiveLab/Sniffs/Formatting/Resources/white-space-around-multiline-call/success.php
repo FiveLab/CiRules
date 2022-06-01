@@ -29,3 +29,11 @@ $message = \sprintf(
 );
 
 $bar = '0';
+
+$a = new SomeObject(
+    new SomeActions([
+        new SomeFooBar(
+            new SomeObject()
+        ),
+    ])
+);

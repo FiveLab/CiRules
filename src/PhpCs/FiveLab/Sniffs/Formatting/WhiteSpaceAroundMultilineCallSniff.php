@@ -77,7 +77,7 @@ class WhiteSpaceAroundMultilineCallSniff extends AbstractFunctionCallSniff
             $prevToken = $tokens[$prevTokenPtr];
             $diffLines = PhpCsUtils::getDiffLines($phpcsFile, $prevTokenPtr, (int) $firstTokenPtrOnLine);
 
-            $possiblePrevTokens = [T_COMMA, T_OPEN_CURLY_BRACKET];
+            $possiblePrevTokens = [T_COMMA, T_OPEN_CURLY_BRACKET, T_OPEN_PARENTHESIS, T_OPEN_SHORT_ARRAY];
 
             if ($diffLines < 2 && !\in_array($prevToken['code'], $possiblePrevTokens, true)) {
                 $phpcsFile->addError(
