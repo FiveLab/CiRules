@@ -33,3 +33,12 @@ function withSprintf()
         'Some'
     ));
 }
+
+
+function withSwitch(): void
+{
+    switch (true) {
+        default:
+            throw new \RuntimeException('foo bar');
+    }
+}

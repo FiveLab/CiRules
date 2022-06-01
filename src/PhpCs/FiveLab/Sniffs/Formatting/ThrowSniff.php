@@ -45,7 +45,9 @@ class ThrowSniff implements Sniff
         $prevToken = $phpcsFile->getTokens()[$prevTokenPtr];
         $diffLinesBefore = PhpCsUtils::getDiffLines($phpcsFile, (int) $prevTokenPtr, $stackPtr);
 
-        if ($prevToken['code'] !== T_OPEN_CURLY_BRACKET && $diffLinesBefore < 2) {
+        $possiblePrevTokens = [T_OPEN_CURLY_BRACKET, T_COLON];
+
+        if (!\in_array($prevToken['code'], $possiblePrevTokens, true) && $diffLinesBefore < 2) {
             $phpcsFile->addError(
                 'Must be one blank line before throw exceptions.',
                 $stackPtr,
