@@ -18,7 +18,7 @@ jobs:
                 with:
                     coverage: "none"
                     ini-values: "memory_limit=-1"
-                    php-version: "8.0"
+                    php-version: "8.1"
                     tools: "composer"
 
             -   name: Install vendors
@@ -43,7 +43,7 @@ jobs:
                 with:
                     coverage: "none"
                     ini-values: "memory_limit=-1"
-                    php-version: "8.0"
+                    php-version: "8.1"
                     tools: "composer"
 
             -   name: Install vendors
