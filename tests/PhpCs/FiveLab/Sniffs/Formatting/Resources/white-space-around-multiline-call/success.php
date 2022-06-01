@@ -37,3 +37,12 @@ $a = new SomeObject(
         ),
     ])
 );
+
+switch (true) {
+    default:
+        \sprintf(
+            'foo bar',
+            $b
+        );
+        break;
+}

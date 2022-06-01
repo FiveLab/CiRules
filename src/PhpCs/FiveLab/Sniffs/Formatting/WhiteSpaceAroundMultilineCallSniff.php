@@ -77,7 +77,7 @@ class WhiteSpaceAroundMultilineCallSniff extends AbstractFunctionCallSniff
             $prevToken = $tokens[$prevTokenPtr];
             $diffLines = PhpCsUtils::getDiffLines($phpcsFile, $prevTokenPtr, (int) $firstTokenPtrOnLine);
 
-            $possiblePrevTokens = [T_COMMA, T_OPEN_CURLY_BRACKET, T_OPEN_PARENTHESIS, T_OPEN_SHORT_ARRAY];
+            $possiblePrevTokens = [T_COMMA, T_OPEN_CURLY_BRACKET, T_OPEN_PARENTHESIS, T_OPEN_SHORT_ARRAY, T_COLON];
 
             if ($diffLines < 2 && !\in_array($prevToken['code'], $possiblePrevTokens, true)) {
                 $phpcsFile->addError(
@@ -114,7 +114,9 @@ class WhiteSpaceAroundMultilineCallSniff extends AbstractFunctionCallSniff
             $nextToken = $tokens[$nextTokenPtr];
             $diffLines = PhpCsUtils::getDiffLines($phpcsFile, (int) $semicolonPtr, $nextTokenPtr);
 
-            if ($nextToken['code'] !== T_CLOSE_CURLY_BRACKET && $diffLines < 2) {
+            $possibleNextTokens = [T_CLOSE_CURLY_BRACKET, T_BREAK];
+
+            if (!\in_array($nextToken['code'], $possibleNextTokens, true) && $diffLines < 2) {
                 $phpcsFile->addError(
                     'Must be one blank line after multiline call.',
                     $nextTokenPtr,
