@@ -13,5 +13,9 @@ parameters:
 
     ignoreErrors:
         -
+            message: '#Constant T_SEMICOLON not found.#'
+            path: src/PhpStan
+
+        -
             message: '#Call to an undefined method .+::(toString|toLowerString)\(\).#'
             path: src/PhpStan
