@@ -82,13 +82,10 @@ class WhiteSpaceAroundParentCallSniff implements Sniff
     private function processBefore(File $phpcsFile, int $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
+        $token = $tokens[$stackPtr];
 
-        $prevTokenPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, $stackPtr - 1, null, true);
-
-        if ($tokens[$prevTokenPtr]['code'] === T_RETURN) {
-            // Use `return parent::methodCall();`
-            $prevTokenPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, $prevTokenPtr - 1, null, true);
-        }
+        $firstTokenOnLine = PhpCsUtils::findFirstTokenOnLine($phpcsFile, $token['line']);
+        $prevTokenPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, (int) $firstTokenOnLine, null, true);
 
         if ($tokens[$prevTokenPtr]['code'] === T_OPEN_CURLY_BRACKET) {
             // Start statement. Normal.

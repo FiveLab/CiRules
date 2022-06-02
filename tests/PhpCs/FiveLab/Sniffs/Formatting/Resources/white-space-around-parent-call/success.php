@@ -1,25 +1,32 @@
 <?php
 
-class MyException extends \Exception
+class MyException extends \SomeException
 {
     public function __construct($message = "", $code = 0, Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }
 
-    public function __toString(): string
+    public function foo(): string
     {
         $a = 1;
 
         // Some comment here
-        return parent::__toString();
+        return parent::foo();
     }
 
-    public function __wakeup()
+    public function bar()
     {
-        parent::__wakeup();
+        parent::bar();
 
         $a = 1;
         $b = 2;
+    }
+
+    public function some()
+    {
+        $result = parent::some();
+
+        return $result;
     }
 }

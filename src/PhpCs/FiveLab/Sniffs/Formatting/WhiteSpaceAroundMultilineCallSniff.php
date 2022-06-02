@@ -75,6 +75,13 @@ class WhiteSpaceAroundMultilineCallSniff extends AbstractFunctionCallSniff
 
         if (false !== $prevTokenPtr) {
             $prevToken = $tokens[$prevTokenPtr];
+
+            if ($prevToken['code'] === T_VARIABLE) {
+                // Call method on next line (multiline chain call).
+                $prevTokenPtr = (int) $phpcsFile->findPrevious(Tokens::$emptyTokens, $prevTokenPtr - 1, null, true);
+                $prevToken = $tokens[$prevTokenPtr];
+            }
+
             $diffLines = PhpCsUtils::getDiffLines($phpcsFile, $prevTokenPtr, (int) $firstTokenPtrOnLine);
 
             $possiblePrevTokens = [T_COMMA, T_OPEN_CURLY_BRACKET, T_OPEN_PARENTHESIS, T_OPEN_SHORT_ARRAY, T_COLON];

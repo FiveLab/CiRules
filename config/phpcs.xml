@@ -1,4 +1,0 @@
-<?xml version="1.0"?>
-<ruleset name="Default code standard">
-    <rule ref="../src/PhpCs/FiveLab/ruleset.xml"/>
-</ruleset>

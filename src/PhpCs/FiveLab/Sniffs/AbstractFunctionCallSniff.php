@@ -40,10 +40,11 @@ abstract class AbstractFunctionCallSniff implements Sniff
         $ignoreTokens = Tokens::$emptyTokens;
         $ignoreTokens[] = T_BITWISE_AND;
 
-        $functionKeywordPtr = $phpcsFile->findPrevious($ignoreTokens, $stackPtr - 1, null, true);
+        $specialKeywordPtr = $phpcsFile->findPrevious($ignoreTokens, $stackPtr - 1, null, true);
+        $specialKeywordCodes = [T_FUNCTION, T_CLASS, T_INTERFACE, T_TRAIT, T_ATTRIBUTE];
 
-        if ($functionKeywordPtr && \in_array($tokens[$functionKeywordPtr]['code'], [T_FUNCTION, T_CLASS], true)) {
-            // Declare function or class
+        if ($specialKeywordPtr && \in_array($tokens[$specialKeywordPtr]['code'], $specialKeywordCodes, true)) {
+            // Declare special construction (function, class, etc...)
             return;
         }
 
