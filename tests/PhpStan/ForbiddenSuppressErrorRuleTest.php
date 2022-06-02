@@ -55,7 +55,7 @@ class ForbiddenSuppressErrorRuleTest extends RuleTestCase
     {
         return [
             [
-                ['trigger_error', 'DOMDocument::loadxml'],
+                ['trigger_error', 'DOMDocument::loadXML'],
                 [
                     ['Suppress error is forbidden.', 13],
                     ['Suppress error is forbidden.', 15],

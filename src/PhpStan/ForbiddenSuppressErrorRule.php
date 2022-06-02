@@ -53,7 +53,7 @@ class ForbiddenSuppressErrorRule implements Rule
 
             if (\count($parts) === 1) {
                 // Function
-                $allowedFunctions[] = $item;
+                $allowedFunctions[] = \strtolower($item);
             } else {
                 // Method
                 [$className, $methodName] = $parts;
@@ -62,7 +62,7 @@ class ForbiddenSuppressErrorRule implements Rule
                     $allowedMethods[$className] = [];
                 }
 
-                $allowedMethods[$className][] = $methodName;
+                $allowedMethods[$className][] = \strtolower($methodName);
             }
         }
 
