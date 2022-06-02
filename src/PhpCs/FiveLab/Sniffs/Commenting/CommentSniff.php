@@ -76,7 +76,7 @@ class CommentSniff extends AbstractFunctionDocCommentSniff
         if (\count($lines) && !$lines[\count($lines) - 1]) {
             $phpcsFile->addErrorOnLine(
                 'Between end comment/notations and close comment tag can\'t be blank lines.',
-                $startCommentLine + \count($lines),
+                $startLineNumber + \count($lines),
                 ErrorCodes::WRONG_FORMAT
             );
         }

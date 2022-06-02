@@ -56,22 +56,26 @@ class DeclareSniff implements Sniff
         $declareContent = PhpCsUtils::getContentsBetweenPtrs($phpcsFile, $declareToken['parenthesis_opener'] + 1, $declareToken['parenthesis_closer']);
         $declares = \explode(',', $declareContent);
 
-        $processFirst = false;
+        $processedFirst = false;
 
         foreach ($declares as $declare) {
-            if ($processFirst && $declare[0] !== ' ') {
-                $phpcsFile->addError(
-                    \sprintf('Wrong declare tag (%s). Must be one space after comma.', \implode(',', $declares)),
-                    $declarePtr,
-                    ErrorCodes::WRONG_FORMAT
-                );
+            if ($processedFirst) {
+                if ($declare[0] !== ' ') {
+                    $phpcsFile->addError(
+                        \sprintf('Wrong declare tag (%s). Must be one space after comma.', \implode(',', $declares)),
+                        $declarePtr,
+                        ErrorCodes::WRONG_FORMAT
+                    );
+                } else {
+                    $declare = \substr($declare, 1);
+                }
             }
 
-            $processFirst = $processFirst ?: true;
+            $processedFirst = $processedFirst ?: true;
 
             if (!\preg_match('/^\S+\s=\s\S+$/', $declare)) {
                 $phpcsFile->addError(
-                    \sprintf('Wrong declare tag (%s). Add a single space around assignment operators.', $declare),
+                    \sprintf('Wrong declare tag (%s). Add a single space around assignment operators or trim spaces around.', $declare),
                     $declarePtr,
                     ErrorCodes::WRONG_FORMAT
                 );

@@ -36,7 +36,7 @@ class WhiteSpaceAroundControlStatementSniff implements Sniff
      * @var array<array<string|int>>
      */
     private static array $ignoredTokens = [
-        T_IF     => [T_ELSE, T_ELSEIF],
+        T_IF     => [T_ELSE, T_ELSEIF, T_COLON],
         T_ELSE   => [T_IF, T_CLOSE_CURLY_BRACKET],
         T_ELSEIF => [T_ELSEIF, T_CLOSE_CURLY_BRACKET, T_ELSE],
         T_DO     => [T_WHILE],

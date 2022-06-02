@@ -1,13 +1,14 @@
 <?php
 
 $object
-    ->method(\sprintf(
-        'Foo Bar %s %s %s',
-        'some',
-        'some',
-        'some'
-    ))
-    ->method('some');
+    ->child()
+        ->method(\sprintf(
+            'Foo Bar %s %s %s',
+            'some',
+            'some',
+            'some'
+        ))
+        ->method('some');
 
 //$dom = new \DOMDocument();
 //

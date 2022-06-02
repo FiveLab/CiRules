@@ -95,3 +95,9 @@ do {
     $bar = 'bar';
 } while (false);
 
+switch (true) {
+    default:
+        if (false) {
+            $bar = 'bar';
+        }
+}

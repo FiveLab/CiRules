@@ -47,7 +47,7 @@ class DeclareSniffTest extends SniffTestCase
             'wrong: without spaces' => [
                 __DIR__.'/Resources/declare/wrong-01.php',
                 [
-                    'message' => 'Wrong declare tag (strict_types=1). Add a single space around assignment operators.',
+                    'message' => 'Wrong declare tag (strict_types=1). Add a single space around assignment operators or trim spaces around.',
                     'source'  => 'FiveLab.Formatting.Declare.WrongFormat',
                 ],
             ],
@@ -55,7 +55,7 @@ class DeclareSniffTest extends SniffTestCase
             'wrong: without space on right side' => [
                 __DIR__.'/Resources/declare/wrong-02.php',
                 [
-                    'message' => 'Wrong declare tag (strict_types =1). Add a single space around assignment operators.',
+                    'message' => 'Wrong declare tag (strict_types =1). Add a single space around assignment operators or trim spaces around.',
                     'source'  => 'FiveLab.Formatting.Declare.WrongFormat',
                 ],
             ],
