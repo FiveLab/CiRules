@@ -25,7 +25,7 @@ jobs:
                 run: composer install --prefer-dist
 
             -   name: Check style on sources
-                run: /bin/phpcs --standard=src/PhpCs/FiveLab/ruleset.xml src/
+                run: ./bin/phpcs --standard=src/PhpCs/FiveLab/ruleset.xml src/
 
             -   name: Check style on tests
                 run: ./bin/phpcs --standard=tests/phpcs.xml tests/
