@@ -105,11 +105,11 @@ class WhiteSpaceAroundControlStatementSniff implements Sniff
             if ($nextToken['code'] === T_SEMICOLON && $stackToken['code'] === T_MATCH) {
                 // Use "match" construction.
                 $nextTokenPtr = $phpcsFile->findNext(Tokens::$emptyTokens, $nextTokenPtr + 1, null, true);
-                $nextToken = $phpcsFile->getTokens()[$nextTokenPtr] ?? null;
+                $nextToken = $nextTokenPtr ? $phpcsFile->getTokens()[$nextTokenPtr] : null;
             }
 
             if ($nextToken) {
-                $diffLinesAfter = PhpCsUtils::getDiffLines($phpcsFile, $scopeCloserPtr, $nextTokenPtr);
+                $diffLinesAfter = PhpCsUtils::getDiffLines($phpcsFile, $scopeCloserPtr, (int) $nextTokenPtr);
                 $shouldNextIgnore = $this->shouldIgnore($stackToken, $nextToken);
 
                 if ($nextToken['code'] !== T_CLOSE_CURLY_BRACKET && !$shouldNextIgnore && $diffLinesAfter < 2) {
