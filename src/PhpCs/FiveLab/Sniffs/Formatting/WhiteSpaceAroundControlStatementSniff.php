@@ -77,6 +77,13 @@ class WhiteSpaceAroundControlStatementSniff implements Sniff
         $prevTokenPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, $stackPtr - 1, null, true);
         $prevToken = $phpcsFile->getTokens()[$prevTokenPtr];
 
+        if ($prevToken['code'] === T_EQUAL && $stackToken['code'] === T_MATCH) {
+            // Use "match" construction.
+            $firstTokenPtr = PhpCsUtils::findFirstTokenOnLine($phpcsFile, $stackToken['line']);
+            $prevTokenPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, $firstTokenPtr - 1, null, true);
+            $prevToken = $phpcsFile->getTokens()[$prevTokenPtr];
+        }
+
         $diffLinesBefore = PhpCsUtils::getDiffLines($phpcsFile, (int) $prevTokenPtr, (int) $stackPtr);
         $shouldPrevIgnore = $this->shouldIgnore($stackToken, $prevToken);
 
@@ -95,15 +102,23 @@ class WhiteSpaceAroundControlStatementSniff implements Sniff
         if ($nextTokenPtr) {
             $nextToken = $phpcsFile->getTokens()[$nextTokenPtr];
 
-            $diffLinesAfter = PhpCsUtils::getDiffLines($phpcsFile, $scopeCloserPtr, $nextTokenPtr);
-            $shouldNextIgnore = $this->shouldIgnore($stackToken, $nextToken);
+            if ($nextToken['code'] === T_SEMICOLON && $stackToken['code'] === T_MATCH) {
+                // Use "match" construction.
+                $nextTokenPtr = $phpcsFile->findNext(Tokens::$emptyTokens, $nextTokenPtr + 1, null, true);
+                $nextToken = $phpcsFile->getTokens()[$nextTokenPtr] ?? null;
+            }
 
-            if ($nextToken['code'] !== T_CLOSE_CURLY_BRACKET && !$shouldNextIgnore && $diffLinesAfter < 2) {
-                $phpcsFile->addError(
-                    \sprintf('Must be one blank line after close "%s" statement.', $stackToken['content']),
-                    $scopeCloserPtr,
-                    ErrorCodes::MISSED_LINE_AFTER
-                );
+            if ($nextToken) {
+                $diffLinesAfter = PhpCsUtils::getDiffLines($phpcsFile, $scopeCloserPtr, $nextTokenPtr);
+                $shouldNextIgnore = $this->shouldIgnore($stackToken, $nextToken);
+
+                if ($nextToken['code'] !== T_CLOSE_CURLY_BRACKET && !$shouldNextIgnore && $diffLinesAfter < 2) {
+                    $phpcsFile->addError(
+                        \sprintf('Must be one blank line after close "%s" statement.', $stackToken['content']),
+                        $scopeCloserPtr,
+                        ErrorCodes::MISSED_LINE_AFTER
+                    );
+                }
             }
         }
     }

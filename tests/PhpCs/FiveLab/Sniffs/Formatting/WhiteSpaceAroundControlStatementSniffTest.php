@@ -36,6 +36,10 @@ class WhiteSpaceAroundControlStatementSniffTest extends SniffTestCase
                 __DIR__.'/Resources/white-space-around-control-statement/success.php',
             ],
 
+            'success match' => [
+                __DIR__.'/Resources/white-space-around-control-statement/success-match.php',
+            ],
+
             'wrong' => [
                 __DIR__.'/Resources/white-space-around-control-statement/wrong.php',
                 [
