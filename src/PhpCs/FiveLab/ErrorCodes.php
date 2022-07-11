@@ -24,4 +24,5 @@ final class ErrorCodes
     public const WRONG_FORMAT       = 'WrongFormat';
     public const MULTIPLE           = 'Multiple';
     public const PROHIBITED         = 'Prohibited';
+    public const UNUSED             = 'Unused';
 }
