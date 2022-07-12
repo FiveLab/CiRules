@@ -22,6 +22,19 @@ use PHP_CodeSniffer\Sniffs\Sniff;
  */
 class UnusedImportsSniff implements Sniff
 {
+    const CHARS_AROUND_USAGE = [
+        '', ' ', '|',
+        '[', ']',
+        '<', '>',
+        '@', '(', ')',
+    ];
+
+    const TOKENS_SEARCH_IN = [
+        T_DOC_COMMENT_STRING,
+        T_DOC_COMMENT_TAG,
+        T_STRING,
+    ];
+
     /**
      * {@inheritdoc}
      */
@@ -44,20 +57,35 @@ class UnusedImportsSniff implements Sniff
         }
 
         $currentStackPtr = $phpcsFile->findNext(T_SEMICOLON, $stackPtr);
+
         $import = $tokens[$currentStackPtr - 1]['content'];
 
-        while ($currentStackPtr = $phpcsFile->findNext([T_DOC_COMMENT_STRING, T_STRING], ++$currentStackPtr)) {
+        $importStackPtr = $stackPtr;
+
+        while ($currentStackPtr = $phpcsFile->findNext(T_USE, ++$currentStackPtr)) {
+            if (1 === $tokens[$currentStackPtr]['column'] && 0 === $tokens[$currentStackPtr]['level']) {
+                $importStackPtr = $currentStackPtr;
+            }
+        }
+
+        $currentStackPtr = $phpcsFile->findNext(T_SEMICOLON, $importStackPtr);
+
+        while ($currentStackPtr && $currentStackPtr = $phpcsFile->findNext(self::TOKENS_SEARCH_IN, ++$currentStackPtr)) {
             $token = $tokens[$currentStackPtr];
 
-            $search = T_DOC_COMMENT_STRING === $token['code'] ? \explode('|', $token['content']) : [$token['content']];
+            $pos = false;
 
-            foreach ($search as $value) {
-                $pos = 0 === \strpos($value, $import);
-                $char = \in_array(\substr($value, \strlen($import), 1), ['', '[', '<']);
+            for ($i = 0; $i < \substr_count($token['content'], $import); $i++) {
+                $pos = \strpos($token['content'], $import, (int) $pos);
 
-                if ($pos && $char) {
+                $beforeChar = $pos === 0 ? '' : \substr($token['content'], $pos - 1, 1);
+                $afterChar = \substr($token['content'], $pos + \strlen($import), 1);
+
+                if (\in_array($beforeChar, self::CHARS_AROUND_USAGE, true) && \in_array($afterChar, self::CHARS_AROUND_USAGE, true)) {
                     return;
                 }
+
+                $pos++;
             }
         }
 
