@@ -40,14 +40,30 @@ class UnusedImportsSniffTest extends SniffTestCase
                 __DIR__.'/Resources/unused-imports/success-arg.php',
             ],
 
-            'success: doc' => [
-                __DIR__.'/Resources/unused-imports/success-doc.php',
+            'success: doc-throws' => [
+                __DIR__.'/Resources/unused-imports/success-doc-throws.php',
+            ],
+
+            'success: doc-class-string' => [
+                __DIR__.'/Resources/unused-imports/success-doc-class-string.php',
+            ],
+
+            'success: doc-annotation' => [
+                __DIR__.'/Resources/unused-imports/success-doc-annotation.php',
+            ],
+
+            'success: doc-return' => [
+                __DIR__.'/Resources/unused-imports/success-doc-return.php',
             ],
 
             'unused' => [
                 __DIR__.'/Resources/unused-imports/unused.php',
                 [
                     'message' => 'Unused import: Bar.',
+                    'source'  => 'FiveLab.Formatting.UnusedImports.Unused',
+                ],
+                [
+                    'message' => 'Unused import: Bazz.',
                     'source'  => 'FiveLab.Formatting.UnusedImports.Unused',
                 ],
             ],
