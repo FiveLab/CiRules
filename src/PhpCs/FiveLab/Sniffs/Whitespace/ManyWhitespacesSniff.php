@@ -17,6 +17,9 @@ use FiveLab\Component\CiRules\PhpCs\FiveLab\ErrorCodes;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
+/**
+ * Check many whitespaces.
+ */
 class ManyWhitespacesSniff implements Sniff
 {
     /**
