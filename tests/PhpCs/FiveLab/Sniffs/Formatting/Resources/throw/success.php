@@ -34,11 +34,15 @@ function withSprintf()
     ));
 }
 
-
 function withSwitch(): void
 {
     switch (true) {
         default:
             throw new \RuntimeException('foo bar');
     }
+}
+
+function withTernary(): void
+{
+    $a = $b['foo'] ?? throw new \RuntimeException('some');
 }

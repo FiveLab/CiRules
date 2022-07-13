@@ -45,7 +45,7 @@ class ThrowSniff implements Sniff
         $prevToken = $phpcsFile->getTokens()[$prevTokenPtr];
         $diffLinesBefore = PhpCsUtils::getDiffLines($phpcsFile, (int) $prevTokenPtr, $stackPtr);
 
-        $possiblePrevTokens = [T_OPEN_CURLY_BRACKET, T_COLON];
+        $possiblePrevTokens = [T_OPEN_CURLY_BRACKET, T_COLON, T_COALESCE];
 
         if (!\in_array($prevToken['code'], $possiblePrevTokens, true) && $diffLinesBefore < 2) {
             $phpcsFile->addError(
