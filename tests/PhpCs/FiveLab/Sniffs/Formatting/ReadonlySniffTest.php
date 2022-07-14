@@ -32,12 +32,24 @@ class ReadonlySniffTest extends SniffTestCase
     public function provideDataSet(): array
     {
         return [
-            'success' => [
-                __DIR__.'/Resources/readonly/success.php',
+            'success: construct' => [
+                __DIR__.'/Resources/readonly/success-construct.php',
             ],
 
-            'wrong' => [
-                __DIR__.'/Resources/readonly/wrong.php',
+            'success: property' => [
+                __DIR__.'/Resources/readonly/success-property.php',
+            ],
+
+            'wrong: construct' => [
+                __DIR__.'/Resources/readonly/wrong-construct.php',
+                [
+                    'message' => 'Scope should be declared before readonly keyword.',
+                    'source'  => 'FiveLab.Formatting.Readonly.WrongFormat',
+                ],
+            ],
+
+            'wrong: property' => [
+                __DIR__.'/Resources/readonly/wrong-property.php',
                 [
                     'message' => 'Scope should be declared before readonly keyword.',
                     'source'  => 'FiveLab.Formatting.Readonly.WrongFormat',
