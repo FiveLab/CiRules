@@ -37,6 +37,9 @@
     },
 
     "autoload-dev": {
+        "files": [
+            "src/bootstrap.php"
+        ],
         "psr-4": { "FiveLab\\Component\\CiRules\\Tests\\": "tests/" }
     },
 
