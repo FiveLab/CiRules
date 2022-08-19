@@ -16,26 +16,26 @@ Development
 
 For easy development you can use the `Docker`.
 
-```bash
-$ docker build -t ci-rules .
-$ docker run -it -v $(pwd):/code --name ci-rules ci-rules bash
+```shell
+docker build -t ci-rules .
+docker run -it -v $(pwd):/code --name ci-rules ci-rules bash
 
 ```
 
 After success run and attach to container you must install vendors:
 
-```bash
-$ composer update
+```shell
+composer update
 ```
 
 Before create the PR or merge into develop, please run next commands for validate code:
 
-```bash
-$ ./bin/phpunit
+```shell
+./bin/phpunit
 
-$ ./bin/phpcs --config-set show_warnings 0
-$ ./bin/phpcs --standard=vendor/escapestudios/symfony2-coding-standard/Symfony/ src/
-$ ./bin/phpcs --standard=tests/phpcs-ruleset.xml tests/
+./bin/phpcs --config-set show_warnings 0
+./bin/phpcs --standard=vendor/escapestudios/symfony2-coding-standard/Symfony/ src/
+./bin/phpcs --standard=tests/phpcs-ruleset.xml tests/
 
 ```
 

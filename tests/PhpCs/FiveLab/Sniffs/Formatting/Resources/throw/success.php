@@ -46,3 +46,9 @@ function withTernary(): void
 {
     $a = $b['foo'] ?? throw new \RuntimeException('some');
 }
+
+function withMatch(): void {
+    match(true) {
+        default => throw new \RuntimeException('foo')
+    };
+}

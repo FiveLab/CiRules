@@ -18,3 +18,9 @@ if (true) {
 
     $bar = 'some';
 }
+
+function foo () {
+    return match(true) {
+        default => 1
+    };
+}
