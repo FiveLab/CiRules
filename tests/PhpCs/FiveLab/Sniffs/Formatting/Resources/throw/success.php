@@ -44,6 +44,11 @@ function withSwitch(): void
 
 function withTernary(): void
 {
+    $a = $b['foo'] ?: throw new \RuntimeException('some');
+}
+
+function withTernaryIsset(): void
+{
     $a = $b['foo'] ?? throw new \RuntimeException('some');
 }
 
