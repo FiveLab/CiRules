@@ -96,11 +96,12 @@ class InheritdocSniff extends AbstractFunctionDocCommentSniff
             return;
         }
 
-        $implements = [$ref->getInterfaceNames()];
+        $implements = [$ref->getInterfaceNames(), $ref->getTraitNames()];
 
         while ($ref = $ref->getParentClass()) {
             $implements[][] = $ref->getName();
             $implements[] = $ref->getInterfaceNames();
+            $implements[] = $ref->getTraitNames();
         }
 
         $implements = \array_merge(...$implements);
