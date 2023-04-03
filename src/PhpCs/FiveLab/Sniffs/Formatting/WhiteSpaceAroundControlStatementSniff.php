@@ -41,6 +41,7 @@ class WhiteSpaceAroundControlStatementSniff implements Sniff
         T_ELSEIF => [T_ELSEIF, T_CLOSE_CURLY_BRACKET, T_ELSE],
         T_DO     => [T_WHILE],
         T_WHILE  => [T_DO],
+        T_MATCH  => [T_OPEN_SHORT_ARRAY, T_CLOSE_SHORT_ARRAY, T_COMMA],
     ];
 
     /**
@@ -77,7 +78,7 @@ class WhiteSpaceAroundControlStatementSniff implements Sniff
         $prevTokenPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, $stackPtr - 1, null, true);
         $prevToken = $phpcsFile->getTokens()[$prevTokenPtr];
 
-        if (($prevToken['code'] === T_EQUAL || $prevToken['code'] === T_RETURN) && $stackToken['code'] === T_MATCH) {
+        if (($prevToken['code'] === T_EQUAL || $prevToken['code'] === T_RETURN || $prevToken['code'] === T_DOUBLE_ARROW) && $stackToken['code'] === T_MATCH) {
             // Use "match" construction.
             $firstTokenPtr = PhpCsUtils::findFirstTokenOnLine($phpcsFile, $stackToken['line']);
             $prevTokenPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, $firstTokenPtr - 1, null, true);
