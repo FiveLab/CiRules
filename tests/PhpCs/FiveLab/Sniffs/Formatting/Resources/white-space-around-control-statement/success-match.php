@@ -24,3 +24,13 @@ function foo () {
         default => 1
     };
 }
+
+$baz = [
+    'foo' => 1,
+    'bar' => match (true) {
+        true => 'yes',
+        false => 'no',
+        default => 'none',
+    },
+    'baz' => 2
+];
