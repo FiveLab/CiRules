@@ -50,6 +50,26 @@ function c(): bool
         : 'no';
 }
 
+\sprintf(
+    'Variable is true: %s',
+    $a
+    ? 'yes'
+    : 'no'
+);
+
+$c = $a
+   ?: \sprintf(
+    'Some %s',
+    $b
+);
+
+$d = $a
+   ? 'Yes'
+   : \sprintf(
+        'Some %s',
+        $b
+    );
+
 // while
 $a = $b = $c = true;
 

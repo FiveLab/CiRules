@@ -66,6 +66,18 @@ class MultiLineSniffTest extends SniffTestCase
                     'message' => 'Multi line is not allowed.',
                     'source'  => 'FiveLab.Formatting.MultiLine.WrongFormat',
                 ],
+                [
+                    'message' => 'Multi line is not allowed.',
+                    'source'  => 'FiveLab.Formatting.MultiLine.WrongFormat',
+                ],
+                [
+                    'message' => 'Multi line is not allowed.',
+                    'source'  => 'FiveLab.Formatting.MultiLine.WrongFormat',
+                ],
+                [
+                    'message' => 'Multi line is not allowed.',
+                    'source'  => 'FiveLab.Formatting.MultiLine.WrongFormat',
+                ],
             ],
         ];
     }
