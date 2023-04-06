@@ -14,8 +14,10 @@ declare(strict_types = 1);
 namespace FiveLab\Component\CiRules\PhpCs\FiveLab\Sniffs\Formatting;
 
 use FiveLab\Component\CiRules\PhpCs\FiveLab\ErrorCodes;
+use FiveLab\Component\CiRules\PhpCs\FiveLab\PhpCsUtils;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Check the multi line.
@@ -46,12 +48,22 @@ class MultiLineSniff implements Sniff
         $stmt = $tokens[$stackPtr];
 
         if (T_INLINE_THEN === $stmt['code']) {
-            $equalPtr = $phpcsFile->findPrevious(T_EQUAL, $stackPtr);
-            $returnPtr = $phpcsFile->findPrevious(T_RETURN, $stackPtr);
-            $semiPtr = $phpcsFile->findNext(T_SEMICOLON, $stackPtr);
+            $lineTokens = \array_map(static function (array $token): string {
+                return (string) $token['code'];
+            }, PhpCsUtils::getTokensOnLine($phpcsFile, $stmt['line']));
 
-            $startLine = $tokens[\max($equalPtr, $returnPtr)]['line'];
-            $endLine = $tokens[$semiPtr]['line'];
+            $diff = \array_values(\array_diff($lineTokens, Tokens::$emptyTokens));
+
+            $then = \array_search(T_INLINE_THEN, $diff);
+            $else = \array_search(T_INLINE_ELSE, $diff);
+
+            if (false !== $then || false !== $else) {
+                $startLine = (int) \array_key_exists($then - 1, $diff);
+                $endLine = (int) \array_key_exists($else + 1, $diff);
+            } else {
+                $startLine = 0;
+                $endLine = 1;
+            }
         } else {
             $startLine = $stmt['line'];
             $endLine = $tokens[$stmt['parenthesis_closer']]['line'];
