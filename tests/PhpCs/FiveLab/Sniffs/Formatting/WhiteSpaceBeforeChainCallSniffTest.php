@@ -47,11 +47,11 @@ class WhiteSpaceBeforeChainCallSniffTest extends SniffTestCase
                     'source'  => 'FiveLab.Formatting.WhiteSpaceBeforeChainCall.WrongFormat',
                 ],
                 [
-                    'message' => 'Must be 0 or 4 whitespaces before chain call.',
+                    'message' => 'Must be 4 whitespaces before chain call.',
                     'source'  => 'FiveLab.Formatting.WhiteSpaceBeforeChainCall.WrongFormat',
                 ],
                 [
-                    'message' => 'Must be 0 or 4 or 8 whitespaces before chain call.',
+                    'message' => 'Must be 4 or 8 whitespaces before chain call.',
                     'source'  => 'FiveLab.Formatting.WhiteSpaceBeforeChainCall.WrongFormat',
                 ],
                 [
@@ -63,7 +63,7 @@ class WhiteSpaceBeforeChainCallSniffTest extends SniffTestCase
                     'source'  => 'FiveLab.Formatting.WhiteSpaceBeforeChainCall.WrongFormat',
                 ],
                 [
-                    'message' => 'Must be 2 or 6 whitespaces before chain call.',
+                    'message' => 'Must be 6 whitespaces before chain call.',
                     'source'  => 'FiveLab.Formatting.WhiteSpaceBeforeChainCall.WrongFormat',
                 ],
             ],

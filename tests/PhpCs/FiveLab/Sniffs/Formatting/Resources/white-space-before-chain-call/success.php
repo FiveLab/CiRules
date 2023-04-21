@@ -21,7 +21,7 @@ $a = $this
         ->bar(
             $b->foo()
                 ->bar()
-            ->baz()
+                ->baz()
         )
     ->baz();
 

@@ -71,6 +71,8 @@ class WhiteSpaceBeforeChainCallSniff implements Sniff
         $prevStarted = $prevLine === $startToken['line'];
         $currentEnds = $currentLine === $endToken['line'];
 
+        $startLineWhitespaces = $this->calculateWhitespacesBeforeFirstTokenOnLine($phpcsFile, $startToken['line']);
+
         $allowedWhitespaces = [];
 
         if ($prevStarted) {
@@ -78,7 +80,7 @@ class WhiteSpaceBeforeChainCallSniff implements Sniff
         } else {
             $allowedWhitespaces[] = $prevLineWhitespaces;
 
-            if ($prevLineWhitespaces >= self::GAP) {
+            if ($prevLineWhitespaces - self::GAP >= $startLineWhitespaces + self::GAP) {
                 $allowedWhitespaces[] = $prevLineWhitespaces - self::GAP;
             }
 
