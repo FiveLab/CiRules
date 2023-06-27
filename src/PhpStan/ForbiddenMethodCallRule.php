@@ -45,7 +45,7 @@ class ForbiddenMethodCallRule implements Rule
                     $forbiddenMethods[$className] = [];
                 }
 
-                $forbiddenMethods[$className][] = \strtolower($methodName);
+                $forbiddenMethods[$className][] = \strtolower($methodName); // @phpstan-ignore-line
             } else {
                 $forbiddenMethods[$className] = 'all';
             }

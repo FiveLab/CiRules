@@ -109,11 +109,25 @@ class InheritdocSniff extends AbstractFunctionDocCommentSniff
 
         foreach ($implements as $implement) {
             try {
-                $implementRef = new \ReflectionClass($implement); // @phpstan-ignore-line
+                // Check if method declared as code.
+                $implementRef = new \ReflectionClass($implement);
 
                 if ($implementRef->hasMethod($methodName)) {
                     $exist = true;
                     break;
+                }
+
+                // Check if method declared in notations.
+                $docComment = (string) $implementRef->getDocComment();
+                $docCommentLines = \explode(PHP_EOL, $docComment);
+
+                foreach ($docCommentLines as $docCommentLine) {
+                    if (\preg_match('/^\*\s*@method ([^\\\(]+)\s*\(/', \trim($docCommentLine), $parts)) {
+                        if ($methodName === $parts[1]) {
+                            $exist = true;
+                            break;
+                        }
+                    }
                 }
             } catch (\ReflectionException $error) {
             }

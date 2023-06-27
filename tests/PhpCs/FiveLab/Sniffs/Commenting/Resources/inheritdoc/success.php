@@ -3,10 +3,18 @@
 namespace Sniff\Inheritdoc\Success;
 
 include_once __DIR__.'/success-trait.php';
+include_once __DIR__.'/success-interface.php';
 
-class MyDom extends \DOMDocument
+class MyDom extends \DOMDocument implements MyInterface
 {
     use MyTrait;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function doSomething(string $a, ?string $b): void
+    {
+    }
 
     /**
      * {@inheritdoc}
