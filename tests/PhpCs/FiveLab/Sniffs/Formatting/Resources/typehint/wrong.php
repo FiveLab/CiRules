@@ -15,3 +15,7 @@ class Foo
         return '';
     }
 }
+
+function foo($param1, string $param2) {
+    return '';
+}

@@ -39,20 +39,28 @@ class TypehintSniffTest extends SniffTestCase
             'wrong' => [
                 __DIR__.'/Resources/typehint/wrong.php',
                 [
-                    'message' => 'Missing function parameter type.',
-                    'source'  => 'FiveLab.Formatting.Typehint.MissingFunctionParameterType',
+                    'message' => 'Missed function parameter type.',
+                    'source'  => 'FiveLab.Formatting.Typehint.MissedFunctionParameterType',
                 ],
                 [
-                    'message' => 'Missing function parameter type.',
-                    'source'  => 'FiveLab.Formatting.Typehint.MissingFunctionParameterType',
+                    'message' => 'Missed function parameter type.',
+                    'source'  => 'FiveLab.Formatting.Typehint.MissedFunctionParameterType',
                 ],
                 [
-                    'message' => 'Missing function parameter type.',
-                    'source'  => 'FiveLab.Formatting.Typehint.MissingFunctionParameterType',
+                    'message' => 'Missed function parameter type.',
+                    'source'  => 'FiveLab.Formatting.Typehint.MissedFunctionParameterType',
                 ],
                 [
-                    'message' => 'Missing function return type.',
-                    'source'  => 'FiveLab.Formatting.Typehint.MissingFunctionReturnType',
+                    'message' => 'Missed function return type.',
+                    'source'  => 'FiveLab.Formatting.Typehint.MissedFunctionReturnType',
+                ],
+                [
+                    'message' => 'Missed function parameter type.',
+                    'source'  => 'FiveLab.Formatting.Typehint.MissedFunctionParameterType',
+                ],
+                [
+                    'message' => 'Missed function return type.',
+                    'source'  => 'FiveLab.Formatting.Typehint.MissedFunctionReturnType',
                 ],
             ],
         ];

@@ -13,6 +13,7 @@ declare(strict_types = 1);
 
 namespace FiveLab\Component\CiRules\PhpCs\FiveLab\Sniffs\Formatting;
 
+use FiveLab\Component\CiRules\PhpCs\FiveLab\ErrorCodes;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
@@ -41,7 +42,7 @@ class TypehintSniff implements Sniff
 
         foreach ($methodParameters as $methodParameter) {
             if ('' === $methodParameter['type_hint']) {
-                $phpcsFile->addError('Missing function parameter type.', $stackPtr, 'MissingFunctionParameterType');
+                $phpcsFile->addError('Missed function parameter type.', $stackPtr, ErrorCodes::MISSED_PARAMETER_TYPE);
             }
         }
 
@@ -52,7 +53,7 @@ class TypehintSniff implements Sniff
 
             if (T_STRING === $fnToken['code'] && '__' !== \substr($fnToken['content'], 0, 2)) {
                 if ('' === $methodProperties['return_type']) {
-                    $phpcsFile->addError('Missing function return type.', $stackPtr, 'MissingFunctionReturnType');
+                    $phpcsFile->addError('Missed function return type.', $stackPtr, ErrorCodes::MISSED_RETURN_TYPE);
                 }
             }
         }

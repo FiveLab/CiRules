@@ -18,3 +18,7 @@ class Foo
         return '';
     }
 }
+
+function foo(string $param1): string {
+    return '';
+}
