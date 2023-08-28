@@ -33,7 +33,7 @@ abstract class AbstractFunctionCallSniff implements Sniff
     /**
      * {@inheritdoc}
      */
-    final public function process(File $phpcsFile, $stackPtr)
+    final public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
 

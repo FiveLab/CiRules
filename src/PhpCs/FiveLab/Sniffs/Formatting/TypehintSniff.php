@@ -35,7 +35,7 @@ class TypehintSniff implements Sniff
     /**
      * {@inheritdoc}
      */
-    final public function process(File $phpcsFile, $stackPtr)
+    final public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $methodParameters = $phpcsFile->getMethodParameters($stackPtr);
         $methodProperties = $phpcsFile->getMethodProperties($stackPtr);

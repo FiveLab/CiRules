@@ -37,7 +37,7 @@ class WhiteSpaceAroundMultilineArraySniff implements Sniff
     /**
      * {@inheritdoc}
      */
-    public function process(File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
 
