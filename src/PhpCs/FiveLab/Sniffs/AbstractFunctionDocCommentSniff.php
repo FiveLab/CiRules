@@ -34,7 +34,7 @@ abstract class AbstractFunctionDocCommentSniff implements Sniff
     /**
      * {@inheritdoc}
      */
-    final public function process(File $phpcsFile, $stackPtr)
+    final public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $closeTokenPtr = $phpcsFile->findNext([T_DOC_COMMENT_CLOSE_TAG], $stackPtr);
 

@@ -39,7 +39,7 @@ class WhiteSpaceBeforeChainCallSniff implements Sniff
     /**
      * {@inheritdoc}
      */
-    public function process(File $phpcsFile, $stackPtr): void
+    public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $token = $phpcsFile->getTokens()[$stackPtr];
 

@@ -37,7 +37,7 @@ class SemicolonSingleCharSniff implements Sniff
     /**
      * {@inheritdoc}
      */
-    public function process(File $phpcsFile, $stackPtr): void
+    public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $tokens = \array_map(static function (array $token): string {
             return (string) $token['code'];

@@ -37,7 +37,7 @@ class WhiteSpaceAroundParentCallSniff implements Sniff
     /**
      * {@inheritdoc}
      */
-    public function process(File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $this->processBefore($phpcsFile, $stackPtr);
         $this->processAfter($phpcsFile, $stackPtr);

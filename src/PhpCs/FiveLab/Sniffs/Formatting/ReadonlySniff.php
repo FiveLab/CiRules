@@ -41,7 +41,7 @@ class ReadonlySniff implements Sniff
     /**
      * {@inheritdoc}
      */
-    public function process(File $phpcsFile, $stackPtr): void
+    public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $readonly = $phpcsFile->getTokens()[$stackPtr];
 

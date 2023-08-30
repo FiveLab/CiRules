@@ -35,7 +35,7 @@ class WhiteSpaceAfterCommentStartSniff implements Sniff
     /**
      * {@inheritdoc}
      */
-    public function process(File $phpcsFile, $stackPtr): void
+    public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $content = $phpcsFile->getTokens()[$stackPtr]['content'];
         $content = \rtrim($content);

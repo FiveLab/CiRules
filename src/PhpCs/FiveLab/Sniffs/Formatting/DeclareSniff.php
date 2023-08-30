@@ -36,7 +36,7 @@ class DeclareSniff implements Sniff
     /**
      * {@inheritdoc}
      */
-    public function process(File $phpcsFile, $stackPtr): void
+    public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $declarePtr = $phpcsFile->findNext(T_DECLARE, $stackPtr);
 
