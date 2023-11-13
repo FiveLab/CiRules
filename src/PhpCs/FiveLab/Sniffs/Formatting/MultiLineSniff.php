@@ -42,7 +42,7 @@ class MultiLineSniff implements Sniff
     /**
      * {@inheritdoc}
      */
-    public function process(File $phpcsFile, $stackPtr): void
+    public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
         $stmt = $tokens[$stackPtr];

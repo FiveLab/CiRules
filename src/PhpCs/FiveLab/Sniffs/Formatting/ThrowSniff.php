@@ -37,7 +37,7 @@ class ThrowSniff implements Sniff
     /**
      * {@inheritdoc}
      */
-    public function process(File $phpcsFile, $stackPtr): void
+    public function process(File $phpcsFile, mixed $stackPtr): void
     {
         // Check blank lines before
         $prevTokenPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, $stackPtr - 1, null, true);
