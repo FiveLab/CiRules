@@ -122,6 +122,15 @@ class InheritdocSniff extends AbstractFunctionDocCommentSniff
                 $docCommentLines = \explode(PHP_EOL, $docComment);
 
                 foreach ($docCommentLines as $docCommentLine) {
+                    // Check for pattern: @method returnType methodName(arg1, arg2)
+                    if (\preg_match('/^\*\s*@method (\S+) ([^\\\(]+)\s*\(/', \trim($docCommentLine), $parts)) {
+                        if ($methodName === $parts[2]) {
+                            $exist = true;
+                            break;
+                        }
+                    }
+
+                    // Check for pattern: @method methodName(arg1, arg2)
                     if (\preg_match('/^\*\s*@method ([^\\\(]+)\s*\(/', \trim($docCommentLine), $parts)) {
                         if ($methodName === $parts[1]) {
                             $exist = true;

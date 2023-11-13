@@ -19,6 +19,20 @@ class MyDom extends \DOMDocument implements MyInterface
     /**
      * {@inheritdoc}
      */
+    public function doSomethingSecond(string $a): void
+    {
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function doSomethingThird(): null|array
+    {
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function loadXML($source, $options = null)
     {
     }
