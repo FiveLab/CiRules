@@ -25,7 +25,7 @@ class UnusedImportsSniff implements Sniff
     const CHARS_AROUND_USAGE = [
         '', ' ', '|',
         '[', ']',
-        '<', '>',
+        '<', '>', ',',
         '@', '(', ')',
     ];
 
