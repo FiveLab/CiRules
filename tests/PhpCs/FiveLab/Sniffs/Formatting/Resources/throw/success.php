@@ -57,3 +57,8 @@ function withMatch(): void {
         default => throw new \RuntimeException('foo')
     };
 }
+
+function withFn(): void
+{
+    $executor->shouldExecute(static fn() => throw $error);
+}
