@@ -32,6 +32,10 @@ class UnusedImportsSniffTest extends SniffTestCase
     public function provideDataSet(): array
     {
         return [
+            'success: var namespace' => [
+                __DIR__.'/Resources/unused-imports/success-var-namespace.php',
+            ],
+
             'success: property' => [
                 __DIR__.'/Resources/unused-imports/success-prop.php',
             ],
