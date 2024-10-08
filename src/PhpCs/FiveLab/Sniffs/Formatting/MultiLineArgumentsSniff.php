@@ -23,7 +23,7 @@ use PHP_CodeSniffer\Sniffs\Sniff;
  */
 class MultiLineArgumentsSniff implements Sniff
 {
-    public int $allowMultiLine = 1;
+    public int $onlyInOneLine = 1;
 
     /**
      * {@inheritdoc}
@@ -83,7 +83,7 @@ class MultiLineArgumentsSniff implements Sniff
             return $carry;
         }, 0);
 
-        if ($totalArguments <= $this->allowMultiLine) {
+        if ($totalArguments <= $this->onlyInOneLine) {
             $phpcsFile->addError(
                 \sprintf('Multi line for %d arguments is not allowed.', $totalArguments),
                 $stackPtr,

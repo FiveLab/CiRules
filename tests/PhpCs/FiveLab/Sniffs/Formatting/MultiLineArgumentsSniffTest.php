@@ -28,8 +28,8 @@ class MultiLineArgumentsSniffTest extends SniffTestCase
      */
     public function shouldSuccessProcessFile(string $file, array ...$expectedErrors): void
     {
-        $allowMultiLine = (int) \substr($file, -5, 1);
-        $this->ruleset->sniffs[$this->getSniffClass()]->allowMultiLine = $allowMultiLine;
+        $onlyInOneLine = (int) \substr($file, -5, 1);
+        $this->ruleset->sniffs[$this->getSniffClass()]->onlyInOneLine = $onlyInOneLine;
 
         parent::shouldSuccessProcessFile($file, ...$expectedErrors);
     }
