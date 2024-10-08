@@ -60,13 +60,11 @@ class MultiLineArgumentsSniff implements Sniff
         );
 
         if ('' === \trim($contentsBetweenPtrs)) {
-            if ($isMultiLine) {
-                $phpcsFile->addError(
-                    'Multi line empty constructor is not allowed.',
-                    $stackPtr,
-                    ErrorCodes::WRONG_FORMAT
-                );
-            }
+            $phpcsFile->addError(
+                'Multi line empty constructor is not allowed.',
+                $stackPtr,
+                ErrorCodes::WRONG_FORMAT
+            );
 
             return;
         }
