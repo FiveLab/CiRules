@@ -43,7 +43,8 @@ class MultiLineArgumentsSniff implements Sniff
         $tokens = $phpcsFile->getTokens();
 
         $startPtr = (int) $phpcsFile->findNext([T_OPEN_PARENTHESIS], $stackPtr);
-        $endPtr = (int) $phpcsFile->findNext([T_CLOSE_PARENTHESIS], $stackPtr);
+        $endPtr = (int) $phpcsFile->findNext([T_OPEN_CURLY_BRACKET, T_SEMICOLON], $stackPtr);
+        $endPtr = (int) $phpcsFile->findPrevious([T_CLOSE_PARENTHESIS], $endPtr);
 
         $startToken = $tokens[$startPtr];
         $endToken = $tokens[$endPtr];
@@ -69,19 +70,18 @@ class MultiLineArgumentsSniff implements Sniff
             return;
         }
 
-        $argumentLines = \array_filter(\explode(PHP_EOL, $contentsBetweenPtrs), static function (string $argumentLine): bool {
-            return '' !== \trim($argumentLine);
-        });
+        $totalArguments = 0;
+        $currentPtr = $startPtr;
 
-        $totalArguments = \array_reduce($argumentLines, static function (int $carry, string $argumentLine): int {
-            $arguments = \array_filter(\explode(',', $argumentLine), static function (string $argument): bool {
-                return '' !== \trim($argument);
-            });
+        while (true) {
+            $currentPtr = (int) $phpcsFile->findNext([T_VARIABLE], $currentPtr + 1);
 
-            $carry += \count($arguments);
+            if (!$currentPtr || $currentPtr > $endPtr) {
+                break;
+            }
 
-            return $carry;
-        }, 0);
+            $totalArguments++;
+        }
 
         if ($totalArguments <= $this->onlyInOneLine) {
             $phpcsFile->addError(

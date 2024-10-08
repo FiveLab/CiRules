@@ -78,6 +78,10 @@ class MultiLineArgumentsSniffTest extends SniffTestCase
                     'message' => 'Multi line for 1 arguments is not allowed.',
                     'source'  => 'FiveLab.Formatting.MultiLineArguments.WrongFormat',
                 ],
+                [
+                    'message' => 'Multi line for 1 arguments is not allowed.',
+                    'source'  => 'FiveLab.Formatting.MultiLineArguments.WrongFormat',
+                ],
             ],
 
             'wrong 2' => [
@@ -88,6 +92,10 @@ class MultiLineArgumentsSniffTest extends SniffTestCase
                 ],
                 [
                     'message' => 'Multi line for 1 arguments is not allowed.',
+                    'source'  => 'FiveLab.Formatting.MultiLineArguments.WrongFormat',
+                ],
+                [
+                    'message' => 'Multi line for 2 arguments is not allowed.',
                     'source'  => 'FiveLab.Formatting.MultiLineArguments.WrongFormat',
                 ],
                 [

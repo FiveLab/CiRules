@@ -30,3 +30,20 @@ readonly class Some
     ) {
     }
 }
+
+readonly class Some
+{
+    public function __construct(#[Attribute(min: 1, max: 2)] private Foo $foo, #[Attribute(min: 1, max: 2)] private Bar $bar)
+    {
+    }
+}
+
+readonly class Some
+{
+    public function __construct(
+        #[Attribute(min: 1, max: 2)] private Foo $foo,
+        #[Attribute(min: 1, max: 2)] private Bar $bar,
+        #[Attribute(min: 1, max: 2)] private Baz $baz,
+    ) {
+    }
+}
