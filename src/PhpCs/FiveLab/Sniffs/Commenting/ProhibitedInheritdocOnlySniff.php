@@ -23,9 +23,6 @@ use PHP_CodeSniffer\Sniffs\Sniff;
  */
 class ProhibitedInheritdocOnlySniff implements Sniff
 {
-    /**
-     * {@inheritdoc}
-     */
     public function register(): array
     {
         return [
@@ -33,9 +30,6 @@ class ProhibitedInheritdocOnlySniff implements Sniff
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $closeTokenPtr = $phpcsFile->findNext([T_DOC_COMMENT_CLOSE_TAG], $stackPtr);

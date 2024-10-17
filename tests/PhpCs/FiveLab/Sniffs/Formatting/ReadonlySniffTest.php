@@ -18,17 +18,11 @@ use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\SniffTestCase;
 
 class ReadonlySniffTest extends SniffTestCase
 {
-    /**
-     * {@inheritdoc}
-     */
     protected function getSniffClass(): string
     {
         return ReadonlySniff::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function provideDataSet(): array
     {
         return [

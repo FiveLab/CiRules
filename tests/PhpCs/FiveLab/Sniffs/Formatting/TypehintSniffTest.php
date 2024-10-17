@@ -18,17 +18,11 @@ use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\SniffTestCase;
 
 class TypehintSniffTest extends SniffTestCase
 {
-    /**
-     * {@inheritdoc}
-     */
     protected function getSniffClass(): string
     {
         return TypehintSniff::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function provideDataSet(): array
     {
         return [

@@ -54,9 +54,6 @@ class ForbiddenMethodCallRule implements Rule
         $this->forbiddenMethods = $forbiddenMethods;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getNodeType(): string
     {
         return Node\Expr\MethodCall::class;

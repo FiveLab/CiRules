@@ -31,9 +31,6 @@ abstract class SniffTestCase extends TestCase
      */
     protected Ruleset $ruleset;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         $this->config = new Config();

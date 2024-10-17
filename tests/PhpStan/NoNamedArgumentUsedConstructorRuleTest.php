@@ -24,9 +24,6 @@ class NoNamedArgumentUsedConstructorRuleTest extends RuleTestCase
      */
     private NoNamedArgumentUsedConstructorRule $rule;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getRule(): Rule
     {
         return $this->rule;

@@ -23,9 +23,6 @@ class ForbiddenSuppressErrorRuleTest extends RuleTestCase
      */
     private ForbiddenSuppressErrorRule $rule;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getRule(): ForbiddenSuppressErrorRule
     {
         return $this->rule;

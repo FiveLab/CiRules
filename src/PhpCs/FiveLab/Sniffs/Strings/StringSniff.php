@@ -21,9 +21,6 @@ use PHP_CodeSniffer\Sniffs\Sniff;
  */
 class StringSniff implements Sniff
 {
-    /**
-     * {@inheritdoc}
-     */
     public function register(): array
     {
         return [
@@ -31,9 +28,6 @@ class StringSniff implements Sniff
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $token = $phpcsFile->getTokens()[$stackPtr];

@@ -18,17 +18,11 @@ use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\SniffTestCase;
 
 class WhiteSpaceAfterCommentStartSniffTest extends SniffTestCase
 {
-    /**
-     * {@inheritdoc}
-     */
     protected function getSniffClass(): string
     {
         return WhiteSpaceAfterCommentStartSniff::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function provideDataSet(): array
     {
         return [

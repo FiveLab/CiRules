@@ -22,9 +22,6 @@ use PHP_CodeSniffer\Files\File;
  */
 class CommentSniff extends AbstractFunctionDocCommentSniff
 {
-    /**
-     * {@inheritdoc}
-     */
     protected function processLines(File $phpcsFile, int $startLineNumber, array $lines, string $functionName): void
     {
         $startCommentLine = null;

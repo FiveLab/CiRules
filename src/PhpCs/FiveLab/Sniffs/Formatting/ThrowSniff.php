@@ -24,9 +24,6 @@ use PHP_CodeSniffer\Util\Tokens;
  */
 class ThrowSniff implements Sniff
 {
-    /**
-     * {@inheritdoc}
-     */
     public function register(): array
     {
         return [
@@ -34,9 +31,6 @@ class ThrowSniff implements Sniff
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function process(File $phpcsFile, mixed $stackPtr): void
     {
         // Check blank lines before

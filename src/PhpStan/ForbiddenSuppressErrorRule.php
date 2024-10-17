@@ -70,9 +70,6 @@ class ForbiddenSuppressErrorRule implements Rule
         $this->allowedMethods = $allowedMethods;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getNodeType(): string
     {
         return Node\Expr\ErrorSuppress::class;

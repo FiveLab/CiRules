@@ -34,17 +34,11 @@ class MultiLineArgumentsSniffTest extends SniffTestCase
         parent::shouldSuccessProcessFile($file, ...$expectedErrors);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getSniffClass(): string
     {
         return MultiLineArgumentsSniff::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function provideDataSet(): array
     {
         return [

@@ -26,9 +26,6 @@ class ForbiddenNodeTypeRuleTest extends RuleTestCase
      */
     private ForbiddenNodeTypeRule $rule;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getRule(): Rule
     {
         return $this->rule;

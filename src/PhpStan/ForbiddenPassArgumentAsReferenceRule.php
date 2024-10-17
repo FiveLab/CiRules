@@ -46,9 +46,6 @@ class ForbiddenPassArgumentAsReferenceRule implements Rule
         $this->nodeType = $nodeType;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getNodeType(): string
     {
         return $this->nodeType;

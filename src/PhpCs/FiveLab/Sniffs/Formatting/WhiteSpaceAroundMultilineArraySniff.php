@@ -24,9 +24,6 @@ use PHP_CodeSniffer\Util\Tokens;
  */
 class WhiteSpaceAroundMultilineArraySniff implements Sniff
 {
-    /**
-     * {@inheritdoc}
-     */
     public function register(): array
     {
         return [
@@ -34,9 +31,6 @@ class WhiteSpaceAroundMultilineArraySniff implements Sniff
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();

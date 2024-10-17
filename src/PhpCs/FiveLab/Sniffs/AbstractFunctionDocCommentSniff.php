@@ -21,9 +21,6 @@ use PHP_CodeSniffer\Sniffs\Sniff;
  */
 abstract class AbstractFunctionDocCommentSniff implements Sniff
 {
-    /**
-     * {@inheritdoc}
-     */
     public function register(): array
     {
         return [
@@ -31,9 +28,6 @@ abstract class AbstractFunctionDocCommentSniff implements Sniff
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     final public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $closeTokenPtr = $phpcsFile->findNext([T_DOC_COMMENT_CLOSE_TAG], $stackPtr);

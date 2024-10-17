@@ -35,9 +35,6 @@ class UnusedImportsSniff implements Sniff
         T_STRING,
     ];
 
-    /**
-     * {@inheritdoc}
-     */
     public function register(): array
     {
         return [
@@ -45,9 +42,6 @@ class UnusedImportsSniff implements Sniff
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();

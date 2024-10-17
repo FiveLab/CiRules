@@ -22,9 +22,6 @@ use PHP_CodeSniffer\Files\File;
  */
 class GlobalFunctionsSniff extends AbstractFunctionCallSniff
 {
-    /**
-     * {@inheritdoc}
-     */
     protected function processFunctionCall(File $phpcsFile, int $stackPtr, array $parenthesisPtrs): void
     {
         $tokens = $phpcsFile->getTokens();

@@ -24,9 +24,6 @@ use PHP_CodeSniffer\Util\Tokens;
  */
 class MultiLineSniff implements Sniff
 {
-    /**
-     * {@inheritdoc}
-     */
     public function register(): array
     {
         return [
@@ -39,9 +36,6 @@ class MultiLineSniff implements Sniff
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
