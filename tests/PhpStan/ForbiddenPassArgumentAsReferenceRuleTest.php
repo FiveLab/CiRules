@@ -25,9 +25,6 @@ class ForbiddenPassArgumentAsReferenceRuleTest extends RuleTestCase
      */
     private ForbiddenPassArgumentAsReferenceRule $rule;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getRule(): ForbiddenPassArgumentAsReferenceRule
     {
         return $this->rule;

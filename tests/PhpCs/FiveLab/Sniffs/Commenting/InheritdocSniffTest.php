@@ -18,25 +18,16 @@ use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\SniffTestCase;
 
 class InheritdocSniffTest extends SniffTestCase
 {
-    /**
-     * {@inheritdoc}
-     */
     protected function getSniffClass(): string
     {
         return InheritdocSniff::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function isShouldIncludeFile(): bool
     {
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function provideDataSet(): array
     {
         return [

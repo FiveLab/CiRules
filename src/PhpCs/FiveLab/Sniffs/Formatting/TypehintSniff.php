@@ -22,9 +22,6 @@ use PHP_CodeSniffer\Sniffs\Sniff;
  */
 class TypehintSniff implements Sniff
 {
-    /**
-     * {@inheritdoc}
-     */
     public function register(): array
     {
         return [
@@ -32,9 +29,6 @@ class TypehintSniff implements Sniff
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     final public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $methodParameters = $phpcsFile->getMethodParameters($stackPtr);

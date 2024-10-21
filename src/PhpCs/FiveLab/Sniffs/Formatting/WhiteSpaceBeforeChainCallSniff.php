@@ -26,9 +26,6 @@ class WhiteSpaceBeforeChainCallSniff implements Sniff
 {
     const GAP = 4;
 
-    /**
-     * {@inheritdoc}
-     */
     public function register(): array
     {
         return [
@@ -36,9 +33,6 @@ class WhiteSpaceBeforeChainCallSniff implements Sniff
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $token = $phpcsFile->getTokens()[$stackPtr];

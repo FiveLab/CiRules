@@ -23,9 +23,6 @@ use PHP_CodeSniffer\Sniffs\Sniff;
  */
 class DeclareSniff implements Sniff
 {
-    /**
-     * {@inheritdoc}
-     */
     public function register(): array
     {
         return [
@@ -33,9 +30,6 @@ class DeclareSniff implements Sniff
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $declarePtr = $phpcsFile->findNext(T_DECLARE, $stackPtr);

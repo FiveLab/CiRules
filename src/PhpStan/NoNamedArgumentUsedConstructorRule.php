@@ -36,9 +36,6 @@ class NoNamedArgumentUsedConstructorRule extends AbstractNoNamedArgumentUsedRule
         parent::__construct(...$methods);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getNodeType(): string
     {
         return Node\Expr\New_::class;

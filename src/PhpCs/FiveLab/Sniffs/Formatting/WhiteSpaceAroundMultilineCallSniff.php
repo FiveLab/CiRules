@@ -35,9 +35,6 @@ use PHP_CodeSniffer\Util\Tokens;
  */
 class WhiteSpaceAroundMultilineCallSniff extends AbstractFunctionCallSniff
 {
-    /**
-     * {@inheritdoc}
-     */
     protected function processFunctionCall(File $phpcsFile, int $stackPtr, array $parenthesisPtrs): void
     {
         [$parenthesisOpener, $parenthesisCloser] = $parenthesisPtrs;

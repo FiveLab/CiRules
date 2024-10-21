@@ -24,9 +24,6 @@ class NoNamedArgumentUsedMethodCallRuleTest extends RuleTestCase
      */
     private NoNamedArgumentUsedMethodCallRule $rule;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getRule(): Rule
     {
         return $this->rule;

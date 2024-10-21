@@ -22,9 +22,6 @@ use PHP_CodeSniffer\Files\File;
  */
 class MagicMethodSniff extends AbstractFunctionDocCommentSniff
 {
-    /**
-     * {@inheritdoc}
-     */
     protected function processLines(File $phpcsFile, int $startLineNumber, array $lines, string $functionName): void
     {
         if (0 !== \strpos($functionName, '__')) {

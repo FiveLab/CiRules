@@ -59,17 +59,11 @@ class ForbiddenNodeTypeRule implements Rule
         $this->message = $message;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getNodeType(): string
     {
         return $this->nodeType;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function processNode(Node $node, Scope $scope): array
     {
         return [$this->message];

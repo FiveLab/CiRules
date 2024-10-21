@@ -25,9 +25,6 @@ class MultiLineArgumentsSniff implements Sniff
 {
     public int $onlyInOneLine = 1;
 
-    /**
-     * {@inheritdoc}
-     */
     public function register(): array
     {
         return [
@@ -35,9 +32,6 @@ class MultiLineArgumentsSniff implements Sniff
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();

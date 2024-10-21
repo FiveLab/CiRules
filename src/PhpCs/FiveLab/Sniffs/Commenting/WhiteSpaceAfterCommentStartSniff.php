@@ -22,9 +22,6 @@ use PHP_CodeSniffer\Sniffs\Sniff;
  */
 class WhiteSpaceAfterCommentStartSniff implements Sniff
 {
-    /**
-     * {@inheritdoc}
-     */
     public function register(): array
     {
         return [
@@ -32,9 +29,6 @@ class WhiteSpaceAfterCommentStartSniff implements Sniff
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $content = $phpcsFile->getTokens()[$stackPtr]['content'];

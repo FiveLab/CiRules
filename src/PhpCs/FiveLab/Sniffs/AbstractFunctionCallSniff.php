@@ -22,17 +22,11 @@ use PHP_CodeSniffer\Util\Tokens;
  */
 abstract class AbstractFunctionCallSniff implements Sniff
 {
-    /**
-     * {@inheritdoc}
-     */
     public function register(): array
     {
         return Tokens::$functionNameTokens;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     final public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();

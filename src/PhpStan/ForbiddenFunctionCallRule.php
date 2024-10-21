@@ -43,9 +43,6 @@ class ForbiddenFunctionCallRule implements Rule
         }, $forbiddenFunctions);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getNodeType(): string
     {
         return Node\Expr\FuncCall::class;

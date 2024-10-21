@@ -28,9 +28,6 @@ class ReadonlySniff implements Sniff
         T_PUBLIC,
     ];
 
-    /**
-     * {@inheritdoc}
-     */
     public function register(): array
     {
         return [
@@ -38,9 +35,6 @@ class ReadonlySniff implements Sniff
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $readonly = $phpcsFile->getTokens()[$stackPtr];

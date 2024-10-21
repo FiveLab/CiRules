@@ -23,9 +23,6 @@ use PHP_CodeSniffer\Files\File;
  */
 class InheritdocSniff extends AbstractFunctionDocCommentSniff
 {
-    /**
-     * {@inheritdoc}
-     */
     protected function processLines(File $phpcsFile, int $startLineNumber, array $lines, string $functionName): void
     {
         $commentBeforeInheritdoc = null;

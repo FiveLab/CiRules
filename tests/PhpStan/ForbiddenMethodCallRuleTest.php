@@ -24,9 +24,6 @@ class ForbiddenMethodCallRuleTest extends RuleTestCase
      */
     private ForbiddenMethodCallRule $rule;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getRule(): Rule
     {
         return $this->rule;

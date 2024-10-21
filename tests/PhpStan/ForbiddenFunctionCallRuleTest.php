@@ -23,9 +23,6 @@ class ForbiddenFunctionCallRuleTest extends RuleTestCase
      */
     private ForbiddenFunctionCallRule $rule;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getRule(): ForbiddenFunctionCallRule
     {
         return $this->rule;

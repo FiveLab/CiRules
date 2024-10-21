@@ -44,9 +44,6 @@ class WhiteSpaceAroundControlStatementSniff implements Sniff
         T_MATCH  => [T_OPEN_SHORT_ARRAY, T_CLOSE_SHORT_ARRAY, T_COMMA],
     ];
 
-    /**
-     * {@inheritdoc}
-     */
     public function register(): array
     {
         return [
@@ -62,9 +59,6 @@ class WhiteSpaceAroundControlStatementSniff implements Sniff
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $stackToken = $phpcsFile->getTokens()[$stackPtr];

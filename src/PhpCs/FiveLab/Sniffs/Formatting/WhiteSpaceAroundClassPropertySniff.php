@@ -30,9 +30,6 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
 
     private bool $previousTokenWhiteSpaceNeeded = false;
 
-    /**
-     * {@inheritdoc}
-     */
     public function register(): array
     {
         return [
@@ -41,9 +38,6 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function process(File $phpcsFile, mixed $stackPtr): void
     {
         if ($this->shouldAbort($phpcsFile, $stackPtr)) {
