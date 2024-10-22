@@ -29,4 +29,5 @@ final class ErrorCodes
     public const MISSED_RETURN_TYPE      = 'MissedFunctionReturnType';
     public const LINE_AFTER_NOT_ALLOWED  = 'LineAfterNotAllowed';
     public const LINE_BEFORE_NOT_ALLOWED = 'LineBeforeNotAllowed';
+    public const MISSED_CONSTANT_TYPE    = 'MissedConstantType';
 }

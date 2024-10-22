@@ -18,14 +18,14 @@ jobs:
                 with:
                     coverage: "none"
                     ini-values: "memory_limit=-1"
-                    php-version: "8.1"
+                    php-version: "8.3"
                     tools: "composer"
 
             -   name: Install vendors
                 run: composer install --prefer-dist
 
             -   name: Check style on sources
-                run: ./bin/phpcs --standard=src/PhpCs/FiveLab/ruleset.xml src/
+                run: ./bin/phpcs --standard=src/phpcs.xml src/
 
             -   name: Check style on tests
                 run: ./bin/phpcs --standard=tests/phpcs.xml tests/
@@ -43,7 +43,7 @@ jobs:
                 with:
                     coverage: "none"
                     ini-values: "memory_limit=-1"
-                    php-version: "8.1"
+                    php-version: "8.3"
                     tools: "composer"
 
             -   name: Install vendors
@@ -58,7 +58,7 @@ jobs:
 
         strategy:
             matrix:
-                php: [ '8.0', '8.1', '8.2' ]
+                php: [ '8.0', '8.1', '8.2', '8.3' ]
 
         steps:
             -   name: Checkout

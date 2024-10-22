@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<ruleset name="FiveLab code standard">
+    <rule ref="./PhpCs/FiveLab">
+        <exclude name="FiveLab.Formatting.TypedConstants.MissedConstantType"/>
+    </rule>
+</ruleset>
