@@ -23,7 +23,7 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 class UnusedImportsSniff implements Sniff
 {
     const CHARS_AROUND_USAGE = [
-        '', ' ', '|', '\\',
+        '', ' ', '|', '&', '\\',
         '[', ']',
         '<', '>', ',',
         '@', '(', ')',

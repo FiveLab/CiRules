@@ -58,6 +58,10 @@ class UnusedImportsSniffTest extends SniffTestCase
                 __DIR__.'/Resources/unused-imports/success-doc-implements.php',
             ],
 
+            'success: combined' => [
+                __DIR__.'/Resources/unused-imports/success-combined.php',
+            ],
+
             'unused' => [
                 __DIR__.'/Resources/unused-imports/unused.php',
                 [
