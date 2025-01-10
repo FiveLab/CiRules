@@ -18,9 +18,6 @@ use PHPStan\Testing\RuleTestCase;
 
 class ForbiddenFunctionCallRuleTest extends RuleTestCase
 {
-    /**
-     * @var ForbiddenFunctionCallRule
-     */
     private ForbiddenFunctionCallRule $rule;
 
     protected function getRule(): ForbiddenFunctionCallRule
@@ -43,11 +40,6 @@ class ForbiddenFunctionCallRuleTest extends RuleTestCase
         $this->analyse([__DIR__.'/Resources/forbidden-functions.php'], [...$errors]);
     }
 
-    /**
-     * Provide data for test analyze
-     *
-     * @return array
-     */
     public function provideDataForProcess(): array
     {
         return [

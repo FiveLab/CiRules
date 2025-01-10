@@ -19,9 +19,6 @@ use PHPStan\Testing\RuleTestCase;
 
 class ForbiddenMethodCallRuleTest extends RuleTestCase
 {
-    /**
-     * @var ForbiddenMethodCallRule
-     */
     private ForbiddenMethodCallRule $rule;
 
     protected function getRule(): Rule
@@ -44,11 +41,6 @@ class ForbiddenMethodCallRuleTest extends RuleTestCase
         $this->analyse([__DIR__.'/Resources/forbidden-methods.php'], [...$errors]);
     }
 
-    /**
-     * Provide data for testing
-     *
-     * @return array
-     */
     public function provideDataForTesting(): array
     {
         return [

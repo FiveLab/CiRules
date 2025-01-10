@@ -19,9 +19,6 @@ use PHPStan\Testing\RuleTestCase;
 
 class NoNamedArgumentUsedMethodCallRuleTest extends RuleTestCase
 {
-    /**
-     * @var NoNamedArgumentUsedMethodCallRule
-     */
     private NoNamedArgumentUsedMethodCallRule $rule;
 
     protected function getRule(): Rule
@@ -44,11 +41,6 @@ class NoNamedArgumentUsedMethodCallRuleTest extends RuleTestCase
         $this->analyse([__DIR__.'/Resources/no-named-argument-used-method-call.php'], [...$errors]);
     }
 
-    /**
-     * Provide data for testing
-     *
-     * @return array
-     */
     public function provideDataForTesting(): array
     {
         return [
