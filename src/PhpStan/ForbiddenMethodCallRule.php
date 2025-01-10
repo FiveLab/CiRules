@@ -16,6 +16,7 @@ namespace FiveLab\Component\CiRules\PhpStan;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\ObjectType;
 
 /**
@@ -76,16 +77,13 @@ class ForbiddenMethodCallRule implements Rule
 
                 if ($varClassReflection && \is_a($varClassReflection->getName(), $forbiddenClass, true)) {
                     if ('all' === $forbiddenMethods) {
-                        $errors[] = \sprintf(
-                            'Any method call from "%s" is forbidden.',
-                            $forbiddenClass
-                        );
+                        $errors[] = RuleErrorBuilder::message(\sprintf('Any method call from "%s" is forbidden.', $forbiddenClass))
+                            ->identifier('call.any.method.forbidden')
+                            ->build();
                     } elseif (\in_array($node->name->toLowerString(), $forbiddenMethods, true)) {
-                        $errors[] = \sprintf(
-                            'The method "%s::%s" is forbidden to call.',
-                            $varClassReflection->getName(),
-                            $node->name->toString()
-                        );
+                        $errors[] = RuleErrorBuilder::message(\sprintf('The method "%s::%s" is forbidden to call.', $varClassReflection->getName(), $node->name->toString()))
+                            ->identifier('call.method.forbidden')
+                            ->build();
                     }
                 }
             }
