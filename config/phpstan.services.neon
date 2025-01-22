@@ -23,3 +23,13 @@ services:
         class: \FiveLab\Component\CiRules\PhpStan\ForbiddenPassArgumentAsReferenceRule
         arguments: [ PhpParser\Node\Stmt\ClassMethod ]
         tags: [ phpstan.rules.rule ]
+
+    -
+        class: \FiveLab\Component\CiRules\PhpStan\MethodCallConsistencyRule
+        arguments:
+            - @reflectionProvider
+        tags: [ phpstan.rules.rule ]
+
+    -
+        class: \FiveLab\Component\CiRules\PhpStan\NamespaceConsistencyRule
+        tags: [ phpstan.rules.rule ]
