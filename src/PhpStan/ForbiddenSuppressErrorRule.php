@@ -109,7 +109,7 @@ class ForbiddenSuppressErrorRule implements Rule
 
         return [
             RuleErrorBuilder::message('Suppress error is forbidden.')
-                ->identifier('errorSuppress')
+                ->identifier('errorSuppress.forbidden')
                 ->build(),
         ];
     }

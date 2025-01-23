@@ -63,7 +63,7 @@ class ForbiddenPassArgumentAsReferenceRule implements Rule
             if ($param->byRef) {
                 return [
                     RuleErrorBuilder::message('Pass arguments by reference is forbidden.')
-                        ->identifier('passArguments.byReference')
+                        ->identifier('passArguments.byReference.forbidden')
                         ->build(),
                 ];
             }
