@@ -61,7 +61,7 @@ class ForbiddenFunctionCallRule implements Rule
         if (\in_array($funcName, $this->forbiddenFunctions, true)) {
             return [
                 RuleErrorBuilder::message(\sprintf('The function "%s" is forbidden for usage.', $funcName))
-                    ->identifier('function.usage.forbidden')
+                    ->identifier('functionCall')
                     ->build(),
             ];
         }

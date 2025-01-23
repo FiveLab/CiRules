@@ -72,7 +72,7 @@ abstract class AbstractNoNamedArgumentUsedRule implements Rule
                 if ('all' === $forbiddenMethods || \in_array(\strtolower($methodName), $forbiddenMethods, true)) {
                     if ($this->findNullableName($node)) {
                         $errors[] = RuleErrorBuilder::message(\sprintf('The method "%s::%s" is forbidden to call without named arguments.', $className, $methodName))
-                            ->identifier('method.call.without.named.arguments.forbidden')
+                            ->identifier('methodCall.withoutNamedArguments')
                             ->build();
                     }
                 }

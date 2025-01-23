@@ -69,7 +69,7 @@ class ForbiddenNodeTypeRule implements Rule
     {
         return [
             RuleErrorBuilder::message($this->message)
-                ->identifier('node.usage.forbidden')
+                ->identifier('nodeCall')
                 ->build(),
         ];
     }

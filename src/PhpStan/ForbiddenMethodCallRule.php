@@ -78,11 +78,11 @@ class ForbiddenMethodCallRule implements Rule
                 if ($varClassReflection && \is_a($varClassReflection->getName(), $forbiddenClass, true)) {
                     if ('all' === $forbiddenMethods) {
                         $errors[] = RuleErrorBuilder::message(\sprintf('Any method call from "%s" is forbidden.', $forbiddenClass))
-                            ->identifier('call.any.method.forbidden')
+                            ->identifier('methodsCall')
                             ->build();
                     } elseif (\in_array($node->name->toLowerString(), $forbiddenMethods, true)) {
                         $errors[] = RuleErrorBuilder::message(\sprintf('The method "%s::%s" is forbidden to call.', $varClassReflection->getName(), $node->name->toString()))
-                            ->identifier('call.method.forbidden')
+                            ->identifier('methodCall')
                             ->build();
                     }
                 }
