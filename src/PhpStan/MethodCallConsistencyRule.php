@@ -64,7 +64,7 @@ readonly class MethodCallConsistencyRule implements Rule
                 'Method "%s::%s" is not static but called statically.',
                 $className,
                 $methodReflection->getName()
-            ),];
+            ), ];
         }
 
         return [];
@@ -85,7 +85,7 @@ readonly class MethodCallConsistencyRule implements Rule
                 'Method "%s->%s" is static but called dynamically.',
                 $className,
                 $methodReflection->getName()
-            ),];
+            ), ];
         }
 
         return [];

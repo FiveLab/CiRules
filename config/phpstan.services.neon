@@ -26,10 +26,5 @@ services:
 
     -
         class: \FiveLab\Component\CiRules\PhpStan\MethodCallConsistencyRule
-        arguments:
-            - @reflectionProvider
-        tags: [ phpstan.rules.rule ]
-
-    -
-        class: \FiveLab\Component\CiRules\PhpStan\NamespaceConsistencyRule
+        arguments: [ @reflectionProvider ]
         tags: [ phpstan.rules.rule ]

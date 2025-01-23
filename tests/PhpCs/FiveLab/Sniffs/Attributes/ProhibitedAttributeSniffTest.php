@@ -11,7 +11,7 @@
 
 declare(strict_types = 1);
 
-namespace FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\Commenting;
+namespace FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\Attributes;
 
 use FiveLab\Component\CiRules\PhpCs\FiveLab\Sniffs\Attributes\ProhibitedAttributeSniff;
 use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\SniffTestCase;
