@@ -19,9 +19,6 @@ use PHPStan\Testing\RuleTestCase;
 
 class NoNamedArgumentUsedConstructorRuleTest extends RuleTestCase
 {
-    /**
-     * @var NoNamedArgumentUsedConstructorRule
-     */
     private NoNamedArgumentUsedConstructorRule $rule;
 
     protected function getRule(): Rule
@@ -44,11 +41,6 @@ class NoNamedArgumentUsedConstructorRuleTest extends RuleTestCase
         $this->analyse([__DIR__.'/Resources/no-named-argument-used-new.php'], [...$errors]);
     }
 
-    /**
-     * Provide data for testing
-     *
-     * @return array
-     */
     public function provideDataForTesting(): array
     {
         return [

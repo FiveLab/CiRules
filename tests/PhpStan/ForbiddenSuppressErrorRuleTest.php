@@ -18,9 +18,6 @@ use PHPStan\Testing\RuleTestCase;
 
 class ForbiddenSuppressErrorRuleTest extends RuleTestCase
 {
-    /**
-     * @var ForbiddenSuppressErrorRule
-     */
     private ForbiddenSuppressErrorRule $rule;
 
     protected function getRule(): ForbiddenSuppressErrorRule
@@ -43,11 +40,6 @@ class ForbiddenSuppressErrorRuleTest extends RuleTestCase
         $this->analyse([__DIR__.'/Resources/forbidden-suppress-error.php'], [...$errors]);
     }
 
-    /**
-     * Provide data for testing
-     *
-     * @return array
-     */
     public function provideDataForTesting(): array
     {
         return [

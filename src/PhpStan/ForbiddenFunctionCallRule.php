@@ -16,6 +16,7 @@ namespace FiveLab\Component\CiRules\PhpStan;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 
 /**
  * @implements Rule<Node\Expr\FuncCall>
@@ -58,7 +59,11 @@ class ForbiddenFunctionCallRule implements Rule
         $funcName = $node->name->toString();
 
         if (\in_array($funcName, $this->forbiddenFunctions, true)) {
-            return [\sprintf('The function "%s" is forbidden for usage.', $funcName)];
+            return [
+                RuleErrorBuilder::message(\sprintf('The function "%s" is forbidden for usage.', $funcName))
+                    ->identifier('functionCall.forbidden')
+                    ->build(),
+            ];
         }
 
         return [];

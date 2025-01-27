@@ -16,6 +16,7 @@ namespace FiveLab\Component\CiRules\PhpStan;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 
 /**
  * @implements Rule<Node>
@@ -70,11 +71,9 @@ abstract class AbstractNoNamedArgumentUsedRule implements Rule
 
                 if ('all' === $forbiddenMethods || \in_array(\strtolower($methodName), $forbiddenMethods, true)) {
                     if ($this->findNullableName($node)) {
-                        $errors[] = \sprintf(
-                            'The method "%s::%s" is forbidden to call without named arguments.',
-                            $className,
-                            $methodName
-                        );
+                        $errors[] = RuleErrorBuilder::message(\sprintf('The method "%s::%s" is forbidden to call without named arguments.', $className, $methodName))
+                            ->identifier('methodCall.withoutNamedArguments.forbidden')
+                            ->build();
                     }
                 }
             }

@@ -20,9 +20,6 @@ use PHPStan\Testing\RuleTestCase;
 
 class ForbiddenPassArgumentAsReferenceRuleTest extends RuleTestCase
 {
-    /**
-     * @var ForbiddenPassArgumentAsReferenceRule
-     */
     private ForbiddenPassArgumentAsReferenceRule $rule;
 
     protected function getRule(): ForbiddenPassArgumentAsReferenceRule

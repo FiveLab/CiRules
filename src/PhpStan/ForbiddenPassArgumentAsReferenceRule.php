@@ -16,6 +16,7 @@ namespace FiveLab\Component\CiRules\PhpStan;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 
 /**
  * @implements Rule<Node>
@@ -60,7 +61,11 @@ class ForbiddenPassArgumentAsReferenceRule implements Rule
     {
         foreach ($node->getParams() as $param) {
             if ($param->byRef) {
-                return ['Pass arguments by reference is forbidden.'];
+                return [
+                    RuleErrorBuilder::message('Pass arguments by reference is forbidden.')
+                        ->identifier('passArguments.byReference.forbidden')
+                        ->build(),
+                ];
             }
         }
 

@@ -21,6 +21,7 @@ use PhpParser\Node\Expr\List_;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\ObjectType;
 
 /**
@@ -106,6 +107,10 @@ class ForbiddenSuppressErrorRule implements Rule
             }
         }
 
-        return ['Suppress error is forbidden.'];
+        return [
+            RuleErrorBuilder::message('Suppress error is forbidden.')
+                ->identifier('errorSuppress.forbidden')
+                ->build(),
+        ];
     }
 }

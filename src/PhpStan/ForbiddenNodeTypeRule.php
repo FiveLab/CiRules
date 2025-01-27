@@ -16,6 +16,7 @@ namespace FiveLab\Component\CiRules\PhpStan;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 
 /**
  * @implements Rule<Node>
@@ -66,6 +67,10 @@ class ForbiddenNodeTypeRule implements Rule
 
     public function processNode(Node $node, Scope $scope): array
     {
-        return [$this->message];
+        return [
+            RuleErrorBuilder::message($this->message)
+                ->identifier('nodeCall.forbidden')
+                ->build(),
+        ];
     }
 }
