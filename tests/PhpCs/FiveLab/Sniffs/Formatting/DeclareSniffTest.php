@@ -23,7 +23,7 @@ class DeclareSniffTest extends SniffTestCase
         return DeclareSniff::class;
     }
 
-    public function provideDataSet(): array
+    public static function provideDataSet(): array
     {
         return [
             'success' => [

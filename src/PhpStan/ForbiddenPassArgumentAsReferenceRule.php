@@ -35,7 +35,7 @@ class ForbiddenPassArgumentAsReferenceRule implements Rule
      */
     public function __construct(string $nodeType)
     {
-        if (!\is_a($nodeType, Node\Stmt\Function_::class, true) && !\is_a($nodeType, Node\Stmt\ClassMethod::class, true)) {
+        if (!\is_a($nodeType, Node\Stmt\Function_::class, true) && !\is_a($nodeType, Node\Stmt\ClassMethod::class, true)) { // @phpstan-ignore-line
             throw new \InvalidArgumentException(\sprintf(
                 'Invalid node type "%s". Support only %s or %s.',
                 $nodeType,

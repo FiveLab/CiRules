@@ -23,7 +23,7 @@ class WhiteSpaceAfterCommentStartSniffTest extends SniffTestCase
         return WhiteSpaceAfterCommentStartSniff::class;
     }
 
-    public function provideDataSet(): array
+    public static function provideDataSet(): array
     {
         return [
             'success' => [

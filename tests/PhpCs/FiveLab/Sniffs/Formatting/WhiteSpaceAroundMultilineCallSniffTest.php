@@ -23,7 +23,7 @@ class WhiteSpaceAroundMultilineCallSniffTest extends SniffTestCase
         return WhiteSpaceAroundMultilineCallSniff::class;
     }
 
-    public function provideDataSet(): array
+    public static function provideDataSet(): array
     {
         return [
             'success' => [

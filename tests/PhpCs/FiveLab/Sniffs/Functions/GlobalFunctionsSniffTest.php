@@ -23,7 +23,7 @@ class GlobalFunctionsSniffTest extends SniffTestCase
         return GlobalFunctionsSniff::class;
     }
 
-    public function provideDataSet(): array
+    public static function provideDataSet(): array
     {
         return [
             'success' => [

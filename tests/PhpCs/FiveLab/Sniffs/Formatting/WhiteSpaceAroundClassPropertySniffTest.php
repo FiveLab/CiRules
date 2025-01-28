@@ -23,7 +23,7 @@ class WhiteSpaceAroundClassPropertySniffTest extends SniffTestCase
         return WhiteSpaceAroundClassPropertySniff::class;
     }
 
-    public function provideDataSet(): array
+    public static function provideDataSet(): array
     {
         return [
             'success' => [

@@ -23,7 +23,7 @@ class CommentSniffTest extends SniffTestCase
         return CommentSniff::class;
     }
 
-    public function provideDataSet(): array
+    public static function provideDataSet(): array
     {
         return [
             'success' => [

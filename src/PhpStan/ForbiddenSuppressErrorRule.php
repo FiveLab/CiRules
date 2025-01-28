@@ -22,7 +22,6 @@ use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
-use PHPStan\Type\ObjectType;
 
 /**
  * @implements Rule<Node\Expr\ErrorSuppress>
@@ -39,11 +38,6 @@ class ForbiddenSuppressErrorRule implements Rule
      */
     private array $allowedMethods;
 
-    /**
-     * Constructor.
-     *
-     * @param string ...$allowed
-     */
     public function __construct(string ...$allowed)
     {
         $allowedFunctions = [];
@@ -94,15 +88,9 @@ class ForbiddenSuppressErrorRule implements Rule
         if ($node->expr instanceof MethodCall) {
             $variableType = $scope->getType($node->expr->var);
 
-            if ($variableType instanceof ObjectType) {
-                $varClassReflection = $variableType->getClassReflection();
-
-                if ($varClassReflection) {
-                    foreach ($this->allowedMethods as $allowedClass => $allowedMethods) {
-                        if (\is_a($varClassReflection->getName(), $allowedClass, true) && \in_array($node->expr->name->toLowerString(), $allowedMethods, true)) {
-                            return [];
-                        }
-                    }
+            foreach ($this->allowedMethods as $allowedClass => $allowedMethods) {
+                if (\in_array($allowedClass, $variableType->getObjectClassNames(), true) && \in_array($node->expr->name->toLowerString(), $allowedMethods, true)) {
+                    return [];
                 }
             }
         }

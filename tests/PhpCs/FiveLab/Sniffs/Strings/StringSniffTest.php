@@ -23,7 +23,7 @@ class StringSniffTest extends SniffTestCase
         return StringSniff::class;
     }
 
-    public function provideDataSet(): array
+    public static function provideDataSet(): array
     {
         return [
             'success' => [

@@ -17,7 +17,6 @@ use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
-use PHPStan\Type\ObjectType;
 
 /**
  * @implements Rule<Node\Expr\MethodCall>
@@ -72,19 +71,15 @@ class ForbiddenMethodCallRule implements Rule
         foreach ($this->forbiddenMethods as $forbiddenClass => $forbiddenMethods) {
             $varType = $scope->getType($node->var);
 
-            if ($varType instanceof ObjectType) {
-                $varClassReflection = $varType->getClassReflection();
-
-                if ($varClassReflection && \is_a($varClassReflection->getName(), $forbiddenClass, true)) {
-                    if ('all' === $forbiddenMethods) {
-                        $errors[] = RuleErrorBuilder::message(\sprintf('Any method call from "%s" is forbidden.', $forbiddenClass))
-                            ->identifier('methodCall.forbidden')
-                            ->build();
-                    } elseif (\in_array($node->name->toLowerString(), $forbiddenMethods, true)) {
-                        $errors[] = RuleErrorBuilder::message(\sprintf('The method "%s::%s" is forbidden to call.', $varClassReflection->getName(), $node->name->toString()))
-                            ->identifier('methodCall.forbidden')
-                            ->build();
-                    }
+            if (\in_array($forbiddenClass, $varType->getObjectClassNames(), true)) {
+                if ('all' === $forbiddenMethods) {
+                    $errors[] = RuleErrorBuilder::message(\sprintf('Any method call from "%s" is forbidden.', $forbiddenClass))
+                        ->identifier('methodCall.forbidden')
+                        ->build();
+                } elseif (\in_array($node->name->toLowerString(), $forbiddenMethods, true)) {
+                    $errors[] = RuleErrorBuilder::message(\sprintf('The method "%s::%s" is forbidden to call.', $varType->getObjectClassNames()[0], $node->name->toString()))
+                        ->identifier('methodCall.forbidden')
+                        ->build();
                 }
             }
         }

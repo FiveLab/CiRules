@@ -23,7 +23,7 @@ class ManyWhitespacesSniffTest extends SniffTestCase
         return ManyWhitespacesSniff::class;
     }
 
-    public function provideDataSet(): array
+    public static function provideDataSet(): array
     {
         return [
             [

@@ -17,6 +17,7 @@ use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
+use PHPStan\Type\Type;
 
 /**
  * @implements Rule<Node>
@@ -64,14 +65,20 @@ abstract class AbstractNoNamedArgumentUsedRule implements Rule
         $errors = [];
 
         foreach ($this->forbiddenMethods as $forbiddenClass => $forbiddenMethods) {
-            $className = $this->getClassName($node, $scope);
+            $nodeType = $this->resolveNodeType($node, $scope);
 
-            if (null !== $className && \is_a($className, $forbiddenClass, true)) {
+            if ($nodeType && \in_array($forbiddenClass, $nodeType->getObjectClassNames(), true)) {
                 $methodName = $this->getMethodName($node);
 
                 if ('all' === $forbiddenMethods || \in_array(\strtolower($methodName), $forbiddenMethods, true)) {
                     if ($this->findNullableName($node)) {
-                        $errors[] = RuleErrorBuilder::message(\sprintf('The method "%s::%s" is forbidden to call without named arguments.', $className, $methodName))
+                        $message = \sprintf(
+                            'The method "%s::%s" is forbidden to call without named arguments.',
+                            $nodeType->getObjectClassNames()[0],
+                            $methodName
+                        );
+
+                        $errors[] = RuleErrorBuilder::message($message)
                             ->identifier('methodCall.withoutNamedArguments.forbidden')
                             ->build();
                     }
@@ -83,14 +90,14 @@ abstract class AbstractNoNamedArgumentUsedRule implements Rule
     }
 
     /**
-     * Get class name
+     * Resolve node type in specific scope
      *
      * @param Node  $node
      * @param Scope $scope
      *
-     * @return null|string
+     * @return Type|null
      */
-    abstract protected function getClassName(Node $node, Scope $scope): ?string;
+    abstract protected function resolveNodeType(Node $node, Scope $scope): ?Type;
 
     /**
      * Get method name

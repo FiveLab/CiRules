@@ -23,7 +23,7 @@ class WhiteSpaceAroundParentCallSniffTest extends SniffTestCase
         return WhiteSpaceAroundParentCallSniff::class;
     }
 
-    public function provideDataSet(): array
+    public static function provideDataSet(): array
     {
         return [
             'success' => [

@@ -23,7 +23,7 @@ class WhiteSpaceBeforeChainCallSniffTest extends SniffTestCase
         return WhiteSpaceBeforeChainCallSniff::class;
     }
 
-    public function provideDataSet(): array
+    public static function provideDataSet(): array
     {
         return [
             'success' => [

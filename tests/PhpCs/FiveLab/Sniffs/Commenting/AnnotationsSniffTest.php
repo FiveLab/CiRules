@@ -23,7 +23,7 @@ class AnnotationsSniffTest extends SniffTestCase
         return AnnotationsSniff::class;
     }
 
-    public function provideDataSet(): array
+    public static function provideDataSet(): array
     {
         return [
             'success' => [

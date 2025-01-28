@@ -23,7 +23,7 @@ class WhiteSpaceAfterOpenerSniffTest extends SniffTestCase
         return WhiteSpaceAfterOpenerSniff::class;
     }
 
-    public function provideDataSet(): array
+    public static function provideDataSet(): array
     {
         return [
             'success' => [

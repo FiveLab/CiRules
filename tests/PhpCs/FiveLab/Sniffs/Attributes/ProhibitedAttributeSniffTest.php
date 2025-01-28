@@ -11,21 +11,17 @@
 
 declare(strict_types = 1);
 
-namespace FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\Commenting;
+namespace FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\Attributes;
 
 use FiveLab\Component\CiRules\PhpCs\FiveLab\Sniffs\Attributes\ProhibitedAttributeSniff;
 use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\SniffTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 
 class ProhibitedAttributeSniffTest extends SniffTestCase
 {
-    /**
-     * @test
-     *
-     * @param string       $file
-     * @param array<array> ...$expectedErrors
-     *
-     * @dataProvider provideDataSet
-     */
+    #[Test]
+    #[DataProvider('provideDataSet')]
     public function shouldSuccessProcessFile(string $file, array ...$expectedErrors): void
     {
         $this->ruleset->sniffs[$this->getSniffClass()]->attributes = 'ProhibitedAttribute';
@@ -38,7 +34,7 @@ class ProhibitedAttributeSniffTest extends SniffTestCase
         return ProhibitedAttributeSniff::class;
     }
 
-    public function provideDataSet(): array
+    public static function provideDataSet(): array
     {
         return [
             'success' => [

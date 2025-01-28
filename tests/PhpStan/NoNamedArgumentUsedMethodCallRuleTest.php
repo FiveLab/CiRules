@@ -16,6 +16,8 @@ namespace FiveLab\Component\CiRules\Tests\PhpStan;
 use FiveLab\Component\CiRules\PhpStan\NoNamedArgumentUsedMethodCallRule;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 
 class NoNamedArgumentUsedMethodCallRuleTest extends RuleTestCase
 {
@@ -26,14 +28,8 @@ class NoNamedArgumentUsedMethodCallRuleTest extends RuleTestCase
         return $this->rule;
     }
 
-    /**
-     * @test
-     *
-     * @param array $methods
-     * @param array $errors
-     *
-     * @dataProvider provideDataForTesting
-     */
+    #[Test]
+    #[DataProvider('provideDataForTesting')]
     public function shouldSuccessProcess(array $methods, array $errors): void
     {
         $this->rule = new NoNamedArgumentUsedMethodCallRule(...$methods);
@@ -41,7 +37,7 @@ class NoNamedArgumentUsedMethodCallRuleTest extends RuleTestCase
         $this->analyse([__DIR__.'/Resources/no-named-argument-used-method-call.php'], [...$errors]);
     }
 
-    public function provideDataForTesting(): array
+    public static function provideDataForTesting(): array
     {
         return [
             [
