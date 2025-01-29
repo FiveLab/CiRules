@@ -21,9 +21,6 @@ use PHPStan\Testing\RuleTestCase;
 
 class ForbiddenNodeTypeRuleTest extends RuleTestCase
 {
-    /**
-     * @var ForbiddenNodeTypeRule
-     */
     private ForbiddenNodeTypeRule $rule;
 
     protected function getRule(): Rule

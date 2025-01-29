@@ -15,12 +15,11 @@ namespace FiveLab\Component\CiRules\Tests\PhpStan;
 
 use FiveLab\Component\CiRules\PhpStan\ForbiddenSuppressErrorRule;
 use PHPStan\Testing\RuleTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 
 class ForbiddenSuppressErrorRuleTest extends RuleTestCase
 {
-    /**
-     * @var ForbiddenSuppressErrorRule
-     */
     private ForbiddenSuppressErrorRule $rule;
 
     protected function getRule(): ForbiddenSuppressErrorRule
@@ -28,14 +27,8 @@ class ForbiddenSuppressErrorRuleTest extends RuleTestCase
         return $this->rule;
     }
 
-    /**
-     * @test
-     *
-     * @param array $allowed
-     * @param array $errors
-     *
-     * @dataProvider provideDataForTesting
-     */
+    #[Test]
+    #[DataProvider('provideDataForTesting')]
     public function shouldSuccessProcess(array $allowed, array $errors): void
     {
         $this->rule = new ForbiddenSuppressErrorRule(...$allowed);
@@ -43,12 +36,7 @@ class ForbiddenSuppressErrorRuleTest extends RuleTestCase
         $this->analyse([__DIR__.'/Resources/forbidden-suppress-error.php'], [...$errors]);
     }
 
-    /**
-     * Provide data for testing
-     *
-     * @return array
-     */
-    public function provideDataForTesting(): array
+    public static function provideDataForTesting(): array
     {
         return [
             [

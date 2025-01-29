@@ -16,12 +16,11 @@ namespace FiveLab\Component\CiRules\Tests\PhpStan;
 use FiveLab\Component\CiRules\PhpStan\NoNamedArgumentUsedConstructorRule;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 
 class NoNamedArgumentUsedConstructorRuleTest extends RuleTestCase
 {
-    /**
-     * @var NoNamedArgumentUsedConstructorRule
-     */
     private NoNamedArgumentUsedConstructorRule $rule;
 
     protected function getRule(): Rule
@@ -29,14 +28,8 @@ class NoNamedArgumentUsedConstructorRuleTest extends RuleTestCase
         return $this->rule;
     }
 
-    /**
-     * @test
-     *
-     * @param array $methods
-     * @param array $errors
-     *
-     * @dataProvider provideDataForTesting
-     */
+    #[Test]
+    #[DataProvider('provideDataForTesting')]
     public function shouldSuccessProcess(array $methods, array $errors): void
     {
         $this->rule = new NoNamedArgumentUsedConstructorRule(...$methods);
@@ -44,12 +37,7 @@ class NoNamedArgumentUsedConstructorRuleTest extends RuleTestCase
         $this->analyse([__DIR__.'/Resources/no-named-argument-used-new.php'], [...$errors]);
     }
 
-    /**
-     * Provide data for testing
-     *
-     * @return array
-     */
-    public function provideDataForTesting(): array
+    public static function provideDataForTesting(): array
     {
         return [
             [

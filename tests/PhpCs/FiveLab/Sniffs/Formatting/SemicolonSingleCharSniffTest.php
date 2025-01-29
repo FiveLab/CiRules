@@ -23,7 +23,7 @@ class SemicolonSingleCharSniffTest extends SniffTestCase
         return SemicolonSingleCharSniff::class;
     }
 
-    public function provideDataSet(): array
+    public static function provideDataSet(): array
     {
         return [
             'success' => [

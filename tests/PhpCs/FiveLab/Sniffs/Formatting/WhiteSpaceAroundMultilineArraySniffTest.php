@@ -23,7 +23,7 @@ class WhiteSpaceAroundMultilineArraySniffTest extends SniffTestCase
         return WhiteSpaceAroundMultilineArraySniff::class;
     }
 
-    public function provideDataSet(): array
+    public static function provideDataSet(): array
     {
         return [
             'success' => [

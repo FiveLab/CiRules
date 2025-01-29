@@ -17,18 +17,13 @@ use PHP_CodeSniffer\Config;
 use PHP_CodeSniffer\Files\LocalFile;
 use PHP_CodeSniffer\Ruleset;
 use PHP_CodeSniffer\Util\Common;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 abstract class SniffTestCase extends TestCase
 {
-    /**
-     * @var Config $config
-     */
     protected Config $config;
-
-    /**
-     * @var Ruleset
-     */
     protected Ruleset $ruleset;
 
     protected function setUp(): void
@@ -51,14 +46,8 @@ abstract class SniffTestCase extends TestCase
         $this->ruleset->populateTokenListeners();
     }
 
-    /**
-     * @test
-     *
-     * @param string       $file
-     * @param array<array> ...$expectedErrors
-     *
-     * @dataProvider provideDataSet
-     */
+    #[Test]
+    #[DataProvider('provideDataSet')]
     public function shouldSuccessProcessFile(string $file, array ...$expectedErrors): void
     {
         if ($this->isShouldIncludeFile()) {
@@ -102,12 +91,6 @@ abstract class SniffTestCase extends TestCase
         return $normalizedErrors;
     }
 
-    /**
-     * Assert errors
-     *
-     * @param array $expectedErrors
-     * @param array $actualErrors
-     */
     private function assertErrors(array $expectedErrors, array $actualErrors): void
     {
         self::assertCount(\count($expectedErrors), $actualErrors, 'Count errors are not equals.');
@@ -132,11 +115,6 @@ abstract class SniffTestCase extends TestCase
         self::assertEquals($expectedErrors, $actualErrors);
     }
 
-    /**
-     * Is should include file?
-     *
-     * @return bool
-     */
     protected function isShouldIncludeFile(): bool
     {
         return false;
@@ -145,14 +123,9 @@ abstract class SniffTestCase extends TestCase
     /**
      * Get sniff file
      *
-     * @return string|class-string
+     * @return class-string
      */
     abstract protected function getSniffClass(): string;
 
-    /**
-     * Provide data set for testing
-     *
-     * @return array
-     */
-    abstract public function provideDataSet(): array;
+    abstract public static function provideDataSet(): array;
 }

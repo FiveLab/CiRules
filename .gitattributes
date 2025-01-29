@@ -1,6 +1,7 @@
 # Git
 /.gitattributes export-ignore
 /.gitignore export-ignore
+/.github export-ignore
 
 # Tests
 /phpunit.xml.dist export-ignore
@@ -8,3 +9,6 @@
 
 # Docker
 /Dockerfile export-ignore
+
+# Other
+/phpstan.neon export-ignore

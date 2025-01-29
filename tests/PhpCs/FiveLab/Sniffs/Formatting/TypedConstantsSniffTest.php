@@ -40,7 +40,7 @@ class TypedConstantsSniffTest extends SniffTestCase
         parent::shouldSuccessProcessFile($file, ...$expectedErrors);
     }
 
-    public function provideDataSet(): array
+    public static function provideDataSet(): array
     {
         return [
             'success' => [

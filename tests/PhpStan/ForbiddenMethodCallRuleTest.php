@@ -16,12 +16,11 @@ namespace FiveLab\Component\CiRules\Tests\PhpStan;
 use FiveLab\Component\CiRules\PhpStan\ForbiddenMethodCallRule;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 
 class ForbiddenMethodCallRuleTest extends RuleTestCase
 {
-    /**
-     * @var ForbiddenMethodCallRule
-     */
     private ForbiddenMethodCallRule $rule;
 
     protected function getRule(): Rule
@@ -29,14 +28,8 @@ class ForbiddenMethodCallRuleTest extends RuleTestCase
         return $this->rule;
     }
 
-    /**
-     * @test
-     *
-     * @param array $methods
-     * @param array $errors
-     *
-     * @dataProvider provideDataForTesting
-     */
+    #[Test]
+    #[DataProvider('provideDataForTesting')]
     public function shouldSuccessProcess(array $methods, array $errors): void
     {
         $this->rule = new ForbiddenMethodCallRule(...$methods);
@@ -44,12 +37,7 @@ class ForbiddenMethodCallRuleTest extends RuleTestCase
         $this->analyse([__DIR__.'/Resources/forbidden-methods.php'], [...$errors]);
     }
 
-    /**
-     * Provide data for testing
-     *
-     * @return array
-     */
-    public function provideDataForTesting(): array
+    public static function provideDataForTesting(): array
     {
         return [
             [

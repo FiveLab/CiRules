@@ -23,7 +23,7 @@ class MultiLineSniffTest extends SniffTestCase
         return MultiLineSniff::class;
     }
 
-    public function provideDataSet(): array
+    public static function provideDataSet(): array
     {
         return [
             'success' => [

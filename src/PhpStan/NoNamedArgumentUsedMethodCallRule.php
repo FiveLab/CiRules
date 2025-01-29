@@ -13,14 +13,10 @@ declare(strict_types = 1);
 
 namespace FiveLab\Component\CiRules\PhpStan;
 
-use FiveLab\Component\CiRules\PhpStan\AbstractNoNamedArgumentUsedRule;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
-use PHPStan\Type\ObjectType;
+use PHPStan\Type\Type;
 
-/**
- * No named for method call
- */
 class NoNamedArgumentUsedMethodCallRule extends AbstractNoNamedArgumentUsedRule
 {
     public function getNodeType(): string
@@ -33,19 +29,9 @@ class NoNamedArgumentUsedMethodCallRule extends AbstractNoNamedArgumentUsedRule
      *
      * @param Node\Expr\MethodCall $node
      */
-    protected function getClassName(Node $node, Scope $scope): ?string
+    protected function resolveNodeType(Node $node, Scope $scope): ?Type
     {
-        $varType = $scope->getType($node->var);
-
-        if ($varType instanceof ObjectType) {
-            $varClassReflection = $varType->getClassReflection();
-
-            if ($varClassReflection) {
-                return $varClassReflection->getName();
-            }
-        }
-
-        return null;
+        return $scope->getType($node->var);
     }
 
     /**

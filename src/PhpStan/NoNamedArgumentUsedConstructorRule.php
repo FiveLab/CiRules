@@ -13,20 +13,12 @@ declare(strict_types = 1);
 
 namespace FiveLab\Component\CiRules\PhpStan;
 
-use FiveLab\Component\CiRules\PhpStan\AbstractNoNamedArgumentUsedRule;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
+use PHPStan\Type\Type;
 
-/**
- * No named for new class
- */
 class NoNamedArgumentUsedConstructorRule extends AbstractNoNamedArgumentUsedRule
 {
-    /**
-     * Constructor.
-     *
-     * @param string ...$classes
-     */
     public function __construct(string ...$classes)
     {
         $methods = \array_map(static function (string $className): string {
@@ -46,10 +38,10 @@ class NoNamedArgumentUsedConstructorRule extends AbstractNoNamedArgumentUsedRule
      *
      * @param Node\Expr\New_ $node
      */
-    protected function getClassName(Node $node, Scope $scope): ?string
+    protected function resolveNodeType(Node $node, Scope $scope): ?Type
     {
         if ($node->class instanceof Node\Name) {
-            return $node->class->toString();
+            return $scope->getType($node);
         }
 
         return null;

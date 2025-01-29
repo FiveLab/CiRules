@@ -23,7 +23,7 @@ class UnusedImportsSniffTest extends SniffTestCase
         return UnusedImportsSniff::class;
     }
 
-    public function provideDataSet(): array
+    public static function provideDataSet(): array
     {
         return [
             'success: var namespace' => [

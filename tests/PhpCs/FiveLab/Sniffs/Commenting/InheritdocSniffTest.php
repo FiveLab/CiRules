@@ -28,7 +28,7 @@ class InheritdocSniffTest extends SniffTestCase
         return true;
     }
 
-    public function provideDataSet(): array
+    public static function provideDataSet(): array
     {
         return [
             'success' => [
