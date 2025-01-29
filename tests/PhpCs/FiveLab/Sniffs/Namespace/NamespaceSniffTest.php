@@ -23,7 +23,7 @@ class NamespaceSniffTest extends SniffTestCase
         return NamespaceSniff::class;
     }
 
-    public function provideDataSet(): array
+    public static function provideDataSet(): array
     {
         return [
             'wrong' => [

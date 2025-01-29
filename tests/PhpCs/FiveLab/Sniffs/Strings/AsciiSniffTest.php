@@ -23,7 +23,7 @@ class AsciiSniffTest extends SniffTestCase
         return AsciiSniff::class;
     }
 
-    public function provideDataSet(): array
+    public static function provideDataSet(): array
     {
         return [
             'wrong' => [
@@ -65,7 +65,7 @@ class AsciiSniffTest extends SniffTestCase
                     'source'  => 'FiveLab.Strings.Ascii.Prohibited',
                 ],
                 [
-                    'message' => 'Use not ASCII printable symbols is forbidden: "208, 208, 208, 208, 208, 208, 209, 208, 209, 208, 208, 10"',
+                    'message' => 'Use not ASCII printable symbols is forbidden: "208, 208, 208, 208, 208, 208, 209, 208, 209, 208, 208"',
                     'source'  => 'FiveLab.Strings.Ascii.Prohibited',
                 ],
                 [

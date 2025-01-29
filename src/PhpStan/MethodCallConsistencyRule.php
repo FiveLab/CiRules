@@ -18,6 +18,7 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ExtendedMethodReflection;
 use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 
 readonly class MethodCallConsistencyRule implements Rule
 {
@@ -60,11 +61,15 @@ readonly class MethodCallConsistencyRule implements Rule
         $methodReflection = $this->getMethodReflection($node, $className, $scope);
 
         if (!$methodReflection?->isStatic()) {
-            return [\sprintf(
-                'Method "%s::%s" is not static but called statically.',
-                $className,
-                $methodReflection->getName()
-            ), ];
+            return [
+                RuleErrorBuilder::message(\sprintf(
+                    'Method "%s::%s" is not static but called statically.',
+                    $className,
+                    $methodReflection->getName()
+                ))
+                    ->identifier('methodCallConsistency.error')
+                    ->build(),
+            ];
         }
 
         return [];
@@ -81,11 +86,15 @@ readonly class MethodCallConsistencyRule implements Rule
         $methodReflection = $this->getMethodReflection($node, $className, $scope);
 
         if ($methodReflection?->isStatic()) {
-            return [\sprintf(
-                'Method "%s->%s" is static but called dynamically.',
-                $className,
-                $methodReflection->getName()
-            ), ];
+            return [
+                RuleErrorBuilder::message(\sprintf(
+                    'Method "%s->%s" is static but called dynamically.',
+                    $className,
+                    $methodReflection->getName()
+                ))
+                    ->identifier('methodCallConsistency.error')
+                    ->build(),
+            ];
         }
 
         return [];
