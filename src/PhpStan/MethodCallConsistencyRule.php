@@ -67,7 +67,7 @@ readonly class MethodCallConsistencyRule implements Rule
                     $className,
                     $methodReflection->getName()
                 ))
-                    ->identifier('methodCallConsistency.error')
+                    ->identifier('methodCall.consistency')
                     ->build(),
             ];
         }
@@ -92,7 +92,7 @@ readonly class MethodCallConsistencyRule implements Rule
                     $className,
                     $methodReflection->getName()
                 ))
-                    ->identifier('methodCallConsistency.error')
+                    ->identifier('methodCall.consistency')
                     ->build(),
             ];
         }
