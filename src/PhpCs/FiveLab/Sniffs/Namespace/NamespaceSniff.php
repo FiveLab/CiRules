@@ -24,7 +24,7 @@ class NamespaceSniff implements Sniff
         return [T_NAMESPACE];
     }
 
-    public function process(File $phpcsFile, $stackPtr): void
+    public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
         $endToken = $phpcsFile->findNext(T_SEMICOLON, $stackPtr);
@@ -43,10 +43,10 @@ class NamespaceSniff implements Sniff
 
         if (\trim($declaredNamespace) !== $expectedNamespace) {
             $phpcsFile->addError(
-                'Namespace mismatch in file "%s". Expected namespace "%s", found "%s".',
+                'Expected namespace "%s", found "%s".',
                 $stackPtr,
                 ErrorCodes::NAMESPACE_WRONG,
-                [$phpcsFile->path, $expectedNamespace, $declaredNamespace]
+                [$expectedNamespace, $declaredNamespace]
             );
         }
     }
@@ -76,6 +76,14 @@ class NamespaceSniff implements Sniff
         return null;
     }
 
+    /**
+     * Load composer.json
+     *
+     * @param string $composerJsonPath
+     *
+     * @return array<mixed>
+     * @throws \JsonException
+     */
     private function loadComposerJson(string $composerJsonPath): array
     {
         if (!\file_exists($composerJsonPath)) {

@@ -17,9 +17,14 @@ use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ExtendedMethodReflection;
 use PHPStan\Reflection\ReflectionProvider;
+use PHPStan\Rules\IdentifierRuleError;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
+use PHPStan\ShouldNotHappenException;
 
+/**
+ * @implements Rule<Node>
+ */
 readonly class MethodCallConsistencyRule implements Rule
 {
     public function __construct(private ReflectionProvider $reflectionProvider)
@@ -31,11 +36,6 @@ readonly class MethodCallConsistencyRule implements Rule
         return Node\Expr::class;
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @param Node\Expr\MethodCall|Node\Expr\StaticCall $node
-     */
     public function processNode(Node $node, Scope $scope): array
     {
         if ($node instanceof Node\Expr\StaticCall) {
@@ -49,9 +49,17 @@ readonly class MethodCallConsistencyRule implements Rule
         return [];
     }
 
+    /**
+     * Check static method call
+     *
+     * @param Node\Expr\StaticCall $node
+     * @param Scope                $scope
+     *
+     * @return list<IdentifierRuleError>
+     * @throws ShouldNotHappenException
+     */
     private function checkStaticCall(Node\Expr\StaticCall $node, Scope $scope): array
     {
-
         $className = $this->resolveClassNameForStaticCall($node, $scope);
 
         if (!$className) {
@@ -65,7 +73,7 @@ readonly class MethodCallConsistencyRule implements Rule
                 RuleErrorBuilder::message(\sprintf(
                     'Method "%s::%s" is not static but called statically.',
                     $className,
-                    $methodReflection->getName()
+                    $methodReflection?->getName()
                 ))
                     ->identifier('methodCall.consistency')
                     ->build(),
@@ -75,6 +83,15 @@ readonly class MethodCallConsistencyRule implements Rule
         return [];
     }
 
+    /**
+     * Check instance method call
+     *
+     * @param Node\Expr\MethodCall $node
+     * @param Scope                $scope
+     *
+     * @return list<IdentifierRuleError>
+     * @throws ShouldNotHappenException
+     */
     private function checkInstanceCall(Node\Expr\MethodCall $node, Scope $scope): array
     {
         $className = $this->resolveClassNameForInstanceCall($node, $scope);

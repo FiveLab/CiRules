@@ -29,7 +29,7 @@ class NamespaceSniffTest extends SniffTestCase
             'wrong' => [
                 __DIR__.'/Resources/TestService.php',
                 [
-                    'message' => 'Namespace mismatch in file "/code/tests/PhpCs/FiveLab/Sniffs/Namespace/Resources/TestService.php". Expected namespace "FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\Namespace\Resources", found " FiveLab\Component\CiRules\Tests".',
+                    'message' => 'Expected namespace "FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\Namespace\Resources", found " FiveLab\Component\CiRules\Tests".',
                     'source'  => 'FiveLab.Namespace.Namespace.NamespaceWrong',
                 ],
             ],

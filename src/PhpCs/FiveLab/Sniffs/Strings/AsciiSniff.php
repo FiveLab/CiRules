@@ -34,7 +34,7 @@ class AsciiSniff implements Sniff
         ];
     }
 
-    public function process(File $phpcsFile, $stackPtr): void
+    public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
         $content = $tokens[$stackPtr]['content'];
@@ -42,6 +42,7 @@ class AsciiSniff implements Sniff
 
         foreach (\mb_str_split($content) as $char) {
             $ascii = \ord($char);
+
             if (10 !== $ascii && (32 > $ascii || 127 < $ascii)) {
                 $forbiddenSymbols[] = $ascii;
             }
