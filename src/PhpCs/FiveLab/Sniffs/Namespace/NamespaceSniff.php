@@ -34,11 +34,13 @@ class NamespaceSniff implements Sniff
         }
 
         $declaredNamespace = '';
+
         for ($i = $stackPtr + 1; $i < $endToken; $i++) {
             $declaredNamespace .= $tokens[$i]['content'];
         }
 
         $expectedNamespace = $this->getExpectedNamespace($phpcsFile);
+
         if (\trim($declaredNamespace) !== $expectedNamespace) {
             $phpcsFile->addError(
                 'Namespace mismatch in file "%s". Expected namespace "%s", found "%s".',
@@ -97,6 +99,7 @@ class NamespaceSniff implements Sniff
 
         while ($currentDir !== \dirname($currentDir)) {
             $composerJsonPath = $currentDir.'/composer.json';
+
             if (\file_exists($composerJsonPath)) {
                 return $composerJsonPath;
             }

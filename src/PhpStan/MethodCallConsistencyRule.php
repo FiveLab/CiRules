@@ -161,7 +161,7 @@ readonly class MethodCallConsistencyRule implements Rule
         if ($node->var instanceof Node\Expr\Variable) {
             $variableName = $node->var->name;
 
-            if (is_string($variableName)) {
+            if (\is_string($variableName)) {
                 $type = $scope->getType(new Node\Expr\Variable($variableName));
 
                 if (\method_exists($type, 'getClassName') && $type->isObject()->yes()) {

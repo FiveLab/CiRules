@@ -40,8 +40,8 @@ class AsciiSniff implements Sniff
         $content = $tokens[$stackPtr]['content'];
         $forbiddenSymbols = [];
 
-        foreach (mb_str_split($content) as $char) {
-            $ascii = ord($char);
+        foreach (\mb_str_split($content) as $char) {
+            $ascii = \ord($char);
             if (10 !== $ascii && (32 > $ascii || 127 < $ascii)) {
                 $forbiddenSymbols[] = $ascii;
             }
