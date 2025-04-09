@@ -40,7 +40,6 @@ readonly class MethodCallConsistencyRule implements Rule
     public function processNode(Node $node, Scope $scope): array
     {
         if ($node instanceof Node\Expr\StaticCall) {
-
             // parent::method()
             if ($node->class instanceof Node\Name && 'parent' === $node->class->toString()) {
                 return $this->checkNativeMethodCall($node, $scope);
@@ -136,11 +135,13 @@ readonly class MethodCallConsistencyRule implements Rule
     private function checkNativeMethodCall(Node\Expr\StaticCall $node, Scope $scope): array
     {
         $methodName = $node->name instanceof Node\Identifier ? $node->name->toString() : null;
+
         if (null === $methodName) {
             return [];
         }
 
         $classReflection = $scope->getClassReflection();
+
         if (null === $classReflection) {
             return [];
         }
