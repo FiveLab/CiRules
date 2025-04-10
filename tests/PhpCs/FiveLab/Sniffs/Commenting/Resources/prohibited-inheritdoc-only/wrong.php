@@ -8,4 +8,16 @@ class WrongSome
     public function foo()
     {
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function bar()
+    {
+    }
+
+    /** {@inheritDoc} */
+    public function foobar()
+    {
+    }
 }

@@ -54,6 +54,16 @@ class CommentSniffTest extends SniffTestCase
                     'message' => 'Previously must be a comment and after annotations.',
                     'source'  => 'FiveLab.Commenting.Comment.WrongFormat',
                 ],
+                [
+                    'message' => 'A method or function cannot have a single line comment.',
+                    'source'  => 'FiveLab.Commenting.Comment.WrongFormat',
+                    'line'    => 39,
+                ],
+                [
+                    'message' => 'A method or function cannot have a single line comment.',
+                    'source'  => 'FiveLab.Commenting.Comment.WrongFormat',
+                    'line'    => 44,
+                ],
             ],
         ];
     }

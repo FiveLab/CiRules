@@ -35,9 +35,9 @@ class ProhibitedInheritdocOnlySniff implements Sniff
         $closeTokenPtr = $phpcsFile->findNext([T_DOC_COMMENT_CLOSE_TAG], $stackPtr);
 
         $contentsBetweenPtrs = PhpCsUtils::getContentsBetweenPtrs($phpcsFile, $stackPtr, $closeTokenPtr + 1);
-        $contentsBetweenPtrs = \str_replace([PHP_EOL, ' '], '', $contentsBetweenPtrs);
+        $contentsBetweenPtrs = \str_replace([PHP_EOL, ' ', '*'], '', $contentsBetweenPtrs);
 
-        if ('/***{@inheritdoc}*/' === $contentsBetweenPtrs) {
+        if ('/{@inheritdoc}/' === \strtolower($contentsBetweenPtrs)) {
             $phpcsFile->addError(
                 'Prohibited {@inheritdoc} only comment.',
                 $stackPtr,
