@@ -126,7 +126,7 @@ class WhiteSpaceBeforeChainCallSniff implements Sniff
      * @param File $phpcsFile
      * @param int  $line
      *
-     * @return array
+     * @return array<mixed>
      */
     private function getNonEmptyTokensOnLine(File $phpcsFile, int $line): array
     {
