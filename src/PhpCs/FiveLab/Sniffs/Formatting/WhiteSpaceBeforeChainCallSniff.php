@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 /*
  * This file is part of the FiveLab CiRules package
  *
@@ -11,6 +9,8 @@ declare(strict_types = 1);
  * file that was distributed with this source code
  */
 
+declare(strict_types = 1);
+
 namespace FiveLab\Component\CiRules\PhpCs\FiveLab\Sniffs\Formatting;
 
 use FiveLab\Component\CiRules\PhpCs\FiveLab\ErrorCodes;
@@ -19,9 +19,6 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Util\Tokens;
 
-/**
- * Sniff for check whitespaces count before chain call.
- */
 class WhiteSpaceBeforeChainCallSniff implements Sniff
 {
     const GAP = 4;
@@ -124,19 +121,19 @@ class WhiteSpaceBeforeChainCallSniff implements Sniff
     }
 
     /**
-     * Get non empty tokens on line
+     * Get non-empty tokens on line
      *
      * @param File $phpcsFile
      * @param int  $line
      *
-     * @return array<mixed>
+     * @return array
      */
     private function getNonEmptyTokensOnLine(File $phpcsFile, int $line): array
     {
         $tokens = PhpCsUtils::getTokensOnLine($phpcsFile, $line);
 
         $tokens = \array_filter($tokens, static function (array $token): bool {
-            return !\in_array($token['code'], Tokens::$emptyTokens);
+            return !\in_array($token['code'], Tokens::$emptyTokens, true);
         });
 
         return \array_values($tokens);
