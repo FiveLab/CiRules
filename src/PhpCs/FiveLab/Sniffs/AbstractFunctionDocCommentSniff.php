@@ -16,9 +16,6 @@ namespace FiveLab\Component\CiRules\PhpCs\FiveLab\Sniffs;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
-/**
- * Abstract sniff for check doc comments.
- */
 abstract class AbstractFunctionDocCommentSniff implements Sniff
 {
     public function register(): array
