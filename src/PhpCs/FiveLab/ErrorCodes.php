@@ -31,4 +31,5 @@ final class ErrorCodes
     public const LINE_BEFORE_NOT_ALLOWED = 'LineBeforeNotAllowed';
     public const MISSED_CONSTANT_TYPE    = 'MissedConstantType';
     public const NAMESPACE_WRONG         = 'NamespaceWrong';
+    public const ARRAYS_DOC_VECTOR       = 'ArraysDocVector';
 }
