@@ -22,9 +22,9 @@ use PHP_CodeSniffer\Files\File;
  */
 class MagicMethodSniff extends AbstractFunctionDocCommentSniff
 {
-    protected function processLines(File $phpcsFile, int $startLineNumber, array $lines, string $functionName): void
+    protected function processLines(File $phpcsFile, int $startLineNumber, array $lines, string $functionName, int $countCommentLines): void
     {
-        if (0 !== \strpos($functionName, '__')) {
+        if (!\str_starts_with($functionName, '__')) {
             // Not a magic method.
             return;
         }

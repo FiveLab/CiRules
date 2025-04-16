@@ -22,7 +22,7 @@ use PHP_CodeSniffer\Files\File;
  */
 class AnnotationsSniff extends AbstractFunctionDocCommentSniff
 {
-    protected function processLines(File $phpcsFile, int $startLineNumber, array $lines, string $functionName): void
+    protected function processLines(File $phpcsFile, int $startLineNumber, array $lines, string $functionName, int $countCommentLines): void
     {
         foreach ($lines as $lineNumber => $line) {
             if ($line && '@' === $line[0]) {
@@ -37,14 +37,6 @@ class AnnotationsSniff extends AbstractFunctionDocCommentSniff
         }
     }
 
-    /**
-     * Process annotation
-     *
-     * @param File   $phpcsFile
-     * @param int    $lineNumber
-     * @param string $annotation
-     * @param string $value
-     */
     private function processAnnotation(File $phpcsFile, int $lineNumber, string $annotation, string $value): void
     {
         if ('return' === $annotation && 'void' === $value) {

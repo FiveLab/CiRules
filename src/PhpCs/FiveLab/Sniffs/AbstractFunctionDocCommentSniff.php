@@ -73,6 +73,7 @@ abstract class AbstractFunctionDocCommentSniff implements Sniff
 
         $commentLines = \explode($phpcsFile->eolChar, $commentContent); // @phpstan-ignore-line
         $commentLines = \array_map('\trim', $commentLines);
+        $countCommentLines = \count($commentLines);
 
         if ($commentLines[0] === '/**') {
             $startCommentLine++;
@@ -92,7 +93,7 @@ abstract class AbstractFunctionDocCommentSniff implements Sniff
             return $line;
         }, $commentLines);
 
-        $this->processLines($phpcsFile, $startCommentLine, $commentLines, $functionNameToken['content']);
+        $this->processLines($phpcsFile, $startCommentLine, $commentLines, $functionNameToken['content'], $countCommentLines);
     }
 
     /**
@@ -102,6 +103,7 @@ abstract class AbstractFunctionDocCommentSniff implements Sniff
      * @param int           $startLineNumber
      * @param array<string> $lines
      * @param string        $functionName
+     * @param int           $countCommentLines
      */
-    abstract protected function processLines(File $phpcsFile, int $startLineNumber, array $lines, string $functionName): void;
+    abstract protected function processLines(File $phpcsFile, int $startLineNumber, array $lines, string $functionName, int $countCommentLines): void;
 }
