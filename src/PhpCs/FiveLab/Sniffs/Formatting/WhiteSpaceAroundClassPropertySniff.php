@@ -52,7 +52,7 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
             $tokensOnLine = $this->getTokensOnLineNoWhiteSpaces($phpcsFile, $currentToken['line'] - 2);
 
             $tokensOnLine = \array_filter($tokensOnLine, static function (array $token): bool {
-                return \in_array($token['code'], [T_CONST, T_USE]);
+                return \in_array($token['code'], [T_CONST, T_USE], true);
             });
 
             if ($this->previousIsMultiLineVariable($phpcsFile, $stackPtr)) {

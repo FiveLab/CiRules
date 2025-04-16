@@ -17,9 +17,6 @@ use FiveLab\Component\CiRules\PhpCs\FiveLab\ErrorCodes;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
-/**
- * Check the readonly.
- */
 class ReadonlySniff implements Sniff
 {
     const SCOPES = [
@@ -43,10 +40,10 @@ class ReadonlySniff implements Sniff
             return;
         }
 
-        $prev  = $phpcsFile->getTokens()[$stackPtr-2];
-        $next = $phpcsFile->getTokens()[$stackPtr+2];
+        $prev = $phpcsFile->getTokens()[$stackPtr - 2];
+        $next = $phpcsFile->getTokens()[$stackPtr + 2];
 
-        if (!\in_array($prev['code'], self::SCOPES) && \in_array($next['code'], self::SCOPES)) {
+        if (!\in_array($prev['code'], self::SCOPES, true) && \in_array($next['code'], self::SCOPES, true)) {
             $phpcsFile->addError(
                 'Scope should be declared before readonly keyword.',
                 $stackPtr,

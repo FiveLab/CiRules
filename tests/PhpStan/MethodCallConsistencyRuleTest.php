@@ -18,6 +18,7 @@ use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\PHPStanTestCase;
 use PHPStan\Testing\RuleTestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class MethodCallConsistencyRuleTest extends RuleTestCase
 {
@@ -28,9 +29,7 @@ class MethodCallConsistencyRuleTest extends RuleTestCase
         return new MethodCallConsistencyRule($reflectionProvider);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldSuccessProcessForIsset(): void
     {
         $this->analyse(

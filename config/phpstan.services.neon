@@ -28,3 +28,7 @@ services:
         class: \FiveLab\Component\CiRules\PhpStan\MethodCallConsistencyRule
         arguments: [ @reflectionProvider ]
         tags: [ phpstan.rules.rule ]
+
+    -
+        class: \FiveLab\Component\CiRules\PhpStan\FunctionStrictModeRule
+        tags: [ phpstan.rules.rule ]
