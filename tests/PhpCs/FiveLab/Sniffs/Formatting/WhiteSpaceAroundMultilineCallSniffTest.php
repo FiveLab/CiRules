@@ -33,6 +33,10 @@ class WhiteSpaceAroundMultilineCallSniffTest extends SniffTestCase
             'wrong' => [
                 __DIR__.'/Resources/white-space-around-multiline-call/wrong.php',
                 [
+                    'message' => 'Must be one blank line before multiline call.',
+                    'source'  => 'FiveLab.Formatting.WhiteSpaceAroundMultilineCall.MissedLineBefore',
+                ],
+                [
                     'message' => 'Must be one blank line after multiline call.',
                     'source'  => 'FiveLab.Formatting.WhiteSpaceAroundMultilineCall.MissedLineAfter',
                 ],

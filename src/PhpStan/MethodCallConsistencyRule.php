@@ -16,6 +16,7 @@ namespace FiveLab\Component\CiRules\PhpStan;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ExtendedMethodReflection;
+use PHPStan\Reflection\MissingMethodFromReflectionException;
 use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Rules\IdentifierRuleError;
 use PHPStan\Rules\Rule;
@@ -39,6 +40,11 @@ readonly class MethodCallConsistencyRule implements Rule
     public function processNode(Node $node, Scope $scope): array
     {
         if ($node instanceof Node\Expr\StaticCall) {
+            // parent::method()
+            if ($node->class instanceof Node\Name && 'parent' === $node->class->toString()) {
+                return $this->checkNativeMethodCall($node, $scope);
+            }
+
             return $this->checkStaticCall($node, $scope);
         }
 
@@ -117,12 +123,48 @@ readonly class MethodCallConsistencyRule implements Rule
         return [];
     }
 
-    private function resolveClassNameForStaticCall(Node\Expr\StaticCall $node, Scope $scope): ?string
+    /**
+     * Check parent method call
+     *
+     * @param Node\Expr\StaticCall $node
+     * @param Scope                $scope
+     *
+     * @return list<IdentifierRuleError>
+     * @throws ShouldNotHappenException|MissingMethodFromReflectionException
+     */
+    private function checkNativeMethodCall(Node\Expr\StaticCall $node, Scope $scope): array
     {
-        if ($node->class instanceof Node\Name && 'parent' === $node->class->toString()) {
-            return null;
+        $methodName = $node->name instanceof Node\Identifier ? $node->name->toString() : null;
+
+        if (null === $methodName) {
+            return [];
         }
 
+        $classReflection = $scope->getClassReflection();
+
+        if (null === $classReflection) {
+            return [];
+        }
+
+        $method = $classReflection->getNativeMethod($methodName);
+
+        if ($method->getDeclaringClass()->getName() !== $classReflection->getName()) {
+            return [
+                RuleErrorBuilder::message(\sprintf(
+                    'Class "%s" has no native method "%s" but called statically from parent.',
+                    $classReflection->getName(),
+                    $methodName
+                ))
+                    ->identifier('methodCall.consistency')
+                    ->build(),
+            ];
+        }
+
+        return [];
+    }
+
+    private function resolveClassNameForStaticCall(Node\Expr\StaticCall $node, Scope $scope): ?string
+    {
         // self::method()
         if ($node->class instanceof Node\Name && 'self' === $node->class->toString()) {
             return $scope->getClassReflection()?->getName();

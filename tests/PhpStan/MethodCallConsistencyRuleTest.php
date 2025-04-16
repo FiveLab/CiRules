@@ -18,6 +18,7 @@ use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\PHPStanTestCase;
 use PHPStan\Testing\RuleTestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class MethodCallConsistencyRuleTest extends RuleTestCase
 {
@@ -28,9 +29,7 @@ class MethodCallConsistencyRuleTest extends RuleTestCase
         return new MethodCallConsistencyRule($reflectionProvider);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldSuccessProcessForIsset(): void
     {
         $this->analyse(
@@ -43,6 +42,7 @@ class MethodCallConsistencyRuleTest extends RuleTestCase
                 ['Method "FiveLab\Component\CiRules\Tests\PhpStan\Resources\MethodCallConsistency\ClassForProperty::instanceMethod1" is not static but called statically.', 36],
                 ['Method "FiveLab\Component\CiRules\Tests\PhpStan\Resources\MethodCallConsistency\ClassForProperty->staticMethod1" is static but called dynamically.', 37],
                 ['Method "FiveLab\Component\CiRules\Tests\PhpStan\Resources\MethodCallConsistency\ClassForProperty::instanceMethod1" is not static but called statically.', 40],
+                ['Class "FiveLab\Component\CiRules\Tests\PhpStan\Resources\MethodCallConsistency\ChildClass" has no native method "instanceMethod2" but called statically from parent.', 53],
             ],
         );
     }

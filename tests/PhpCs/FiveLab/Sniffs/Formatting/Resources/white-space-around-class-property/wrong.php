@@ -33,3 +33,17 @@ class Some
     {
     }
 }
+
+class Some
+{
+    /**
+     * Some comment
+     */
+    private const string A = 'A';
+    private const string G = 'G';
+
+    private const int bar = 8;
+    public function __construct()
+    {
+    }
+}
