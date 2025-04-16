@@ -42,15 +42,15 @@ class AnnotationsSniffTest extends SniffTestCase
                 ],
                 [
                     'message' => 'Please use vector type annotation for arrays.',
-                    'source'  => 'FiveLab.Commenting.Annotations.Prohibited',
+                    'source'  => 'FiveLab.Commenting.Annotations.ArraysDocVector',
                 ],
                 [
                     'message' => 'Please use vector type annotation for arrays.',
-                    'source'  => 'FiveLab.Commenting.Annotations.Prohibited',
+                    'source'  => 'FiveLab.Commenting.Annotations.ArraysDocVector',
                 ],
                 [
                     'message' => 'Please use vector type annotation for arrays.',
-                    'source'  => 'FiveLab.Commenting.Annotations.Prohibited',
+                    'source'  => 'FiveLab.Commenting.Annotations.ArraysDocVector',
                 ],
             ],
         ];

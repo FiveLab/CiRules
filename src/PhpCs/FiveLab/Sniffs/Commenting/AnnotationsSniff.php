@@ -70,7 +70,7 @@ class AnnotationsSniff extends AbstractFunctionDocCommentSniff
             $phpcsFile->addErrorOnLine(
                 'Please use vector type annotation for arrays.',
                 $lineNumber,
-                ErrorCodes::PROHIBITED
+                ErrorCodes::ARRAYS_DOC_VECTOR
             );
         }
     }
