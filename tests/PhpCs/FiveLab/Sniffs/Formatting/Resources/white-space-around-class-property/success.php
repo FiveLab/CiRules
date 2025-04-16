@@ -151,3 +151,15 @@ class Some
     {
     }
 }
+
+class Some
+{
+    private array $foo = [
+        'some' => 'value',
+        'bar' => 'value',
+    ];
+
+    public function foo(): void
+    {
+    }
+}
