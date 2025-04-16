@@ -71,7 +71,7 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
             return;
         }
 
-        if (\in_array($currentToken['code'], \array_keys(self::BEFORE_TOKENS), true)) {
+        if (\array_key_exists($currentToken['code'], self::BEFORE_TOKENS)) {
             $this->previousTokenWhiteSpaceNeeded = true;
 
             $this->processToken((int) $currentTokenStackPtr, $phpcsFile, $stackPtr);
@@ -162,7 +162,7 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
             return true;
         }
 
-        $modifierStackPtr = $phpcsFile->findPrevious([T_PUBLIC, T_PROTECTED, T_PRIVATE], $stackPtr);
+        $modifierStackPtr = $phpcsFile->findPrevious([T_PUBLIC, T_PROTECTED, T_PRIVATE, T_CONST], $stackPtr);
 
         if ($token['line'] !== $tokens[$modifierStackPtr]['line']) {
             return true;

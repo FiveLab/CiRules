@@ -75,9 +75,19 @@ class Some
     public const string A = 'A';
     public const string B = 'B';
 
-    private const string C = [
+    private const array C = [
         self::A,
         self::B,
+    ];
+
+    private const array D = [
+        'a' => self::A,
+        'b' => self::B,
+    ];
+
+    private const array E = [
+        self::A => self::B,
+        self::B => self::C,
     ];
 
     private string $foo;
@@ -126,6 +136,18 @@ class Some
     ];
 
     public function __construct()
+    {
+    }
+}
+
+class Some
+{
+    private const array C = [
+        self::A,
+        self::B,
+    ];
+
+    public function foo(): void
     {
     }
 }
