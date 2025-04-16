@@ -59,7 +59,7 @@ class WhiteSpaceAroundMultilineCallSniff extends AbstractFunctionCallSniff
         $tokens = $phpcsFile->getTokens();
         $prevTokenPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, $stackPtr - 1, null, true);
 
-        $possiblePrevTokens = [T_OBJECT_OPERATOR, T_DOUBLE_COLON, T_COMMA];
+        $possiblePrevTokens = [T_DOUBLE_COLON, T_COMMA];
 
         if (false !== $prevTokenPtr && \in_array($tokens[$prevTokenPtr]['code'], $possiblePrevTokens, true)) {
             // Chain call.
