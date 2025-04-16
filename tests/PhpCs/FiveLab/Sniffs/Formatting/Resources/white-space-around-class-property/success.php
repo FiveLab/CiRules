@@ -75,6 +75,11 @@ class Some
     public const string A = 'A';
     public const string B = 'B';
 
+    private const string C = [
+        self::A,
+        self::B,
+    ];
+
     private string $foo;
 }
 
