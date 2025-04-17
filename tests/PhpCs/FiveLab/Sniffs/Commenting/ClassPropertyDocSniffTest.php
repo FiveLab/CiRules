@@ -40,6 +40,10 @@ class ClassPropertyDocSniffTest extends SniffTestCase
                     'message' => 'The annotation @var can\'t be on one line for class property. Please use multiline.',
                     'source'  => 'FiveLab.Commenting.ClassPropertyDoc.WrongFormat',
                 ],
+                [
+                    'message' => 'Please use vector type annotation for arrays.',
+                    'source'  => 'FiveLab.Commenting.ClassPropertyDoc.ArraysDocVector',
+                ],
             ],
         ];
     }

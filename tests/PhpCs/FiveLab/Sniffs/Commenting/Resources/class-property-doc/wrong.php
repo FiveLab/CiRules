@@ -7,4 +7,9 @@ class MyClass
 
     /** @var string */
     private string $bar;
+
+    /**
+     * @var Some[]
+     */
+    private array $baz;
 }
