@@ -25,7 +25,7 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
 {
     private const BEFORE_TOKENS = [
         T_ATTRIBUTE_END         => T_ATTRIBUTE,
-        T_DOC_COMMENT_CLOSE_TAG => T_DOC_COMMENT_OPEN_TAG,
+        T_DOC_COMMENT_CLOSE_TAG => T_DOC_COMMENT_OPEN_TAG
     ];
 
     private bool $previousTokenWhiteSpaceNeeded = false;
@@ -71,7 +71,7 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
             return;
         }
 
-        if (\in_array($currentToken['code'], \array_keys(self::BEFORE_TOKENS), true)) {
+        if (\array_key_exists($currentToken['code'], self::BEFORE_TOKENS)) {
             $this->previousTokenWhiteSpaceNeeded = true;
 
             $this->processToken((int) $currentTokenStackPtr, $phpcsFile, $stackPtr);
@@ -143,14 +143,6 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
         return [(int) $currentTokenStackPtr, $currentToken];
     }
 
-    /**
-     * Should abort
-     *
-     * @param File $phpcsFile
-     * @param int  $stackPtr
-     *
-     * @return bool
-     */
     private function shouldAbort(File $phpcsFile, int $stackPtr): bool
     {
         $tokens = $phpcsFile->getTokens();
@@ -162,7 +154,7 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
             return true;
         }
 
-        $modifierStackPtr = $phpcsFile->findPrevious([T_PUBLIC, T_PROTECTED, T_PRIVATE], $stackPtr);
+        $modifierStackPtr = $phpcsFile->findPrevious([T_PUBLIC, T_PROTECTED, T_PRIVATE, T_CONST], $stackPtr);
 
         if ($token['line'] !== $tokens[$modifierStackPtr]['line']) {
             return true;
@@ -261,12 +253,6 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
         }
     }
 
-    /**
-     * Process function
-     *
-     * @param File $phpcsFile
-     * @param int  $stackPtr
-     */
     private function processFunction(File $phpcsFile, int $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
@@ -284,22 +270,20 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
 
             $tokensOnLine = $this->getTokensOnLineNoWhiteSpaces($phpcsFile, $token['line'] + 1);
 
-            if ('' === \trim($contentsBetween) && \count($tokensOnLine)) {
-                $phpcsFile->addError(
-                    'Must be one blank line after class property or const.',
-                    $stackPtr,
-                    ErrorCodes::MISSED_LINE_AFTER
-                );
+            if (\count($tokensOnLine)) {
+                foreach ($tokensOnLine as $token) {
+                    if ($token['code'] === T_FUNCTION && '' === \trim($contentsBetween)) {
+                        $phpcsFile->addError(
+                            'Must be one blank line after class property or const.',
+                            $stackPtr,
+                            ErrorCodes::MISSED_LINE_AFTER
+                        );
+                    }
+                }
             }
         }
     }
 
-    /**
-     * Process after
-     *
-     * @param File $phpcsFile
-     * @param int  $stackPtr
-     */
     private function processAfter(File $phpcsFile, int $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
