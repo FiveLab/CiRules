@@ -41,20 +41,12 @@ class WhiteSpaceAroundClassPropertySniffTest extends SniffTestCase
                     'source'  => 'FiveLab.Formatting.WhiteSpaceAroundClassProperty.LineBeforeNotAllowed',
                 ],
                 [
-                    'message' => 'Line before class property is not allowed.',
-                    'source' => 'FiveLab.Formatting.WhiteSpaceAroundClassProperty.LineBeforeNotAllowed',
+                    'message' => 'Must be one blank line after class property or const.',
+                    'source'  => 'FiveLab.Formatting.WhiteSpaceAroundClassProperty.MissedLineAfter',
                 ],
                 [
-                    'message' => 'Must be one blank line after class property or const.',
-                    'source' => 'FiveLab.Formatting.WhiteSpaceAroundClassProperty.MissedLineAfter',
-                ],
-                [
-                    'message' => 'Must be one blank line after class property or const.',
-                    'source' => 'FiveLab.Formatting.WhiteSpaceAroundClassProperty.MissedLineAfter',
-                ],
-                [
-                    'message' => 'Must be one blank line after class property or const.',
-                    'source' => 'FiveLab.Formatting.WhiteSpaceAroundClassProperty.MissedLineAfter',
+                    'message' => 'Must be one blank line before class property.',
+                    'source'  => 'FiveLab.Formatting.WhiteSpaceAroundClassProperty.MissedLineBefore',
                 ],
             ],
         ];

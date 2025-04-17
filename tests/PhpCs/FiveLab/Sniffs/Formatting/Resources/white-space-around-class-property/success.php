@@ -163,3 +163,36 @@ class Some
     {
     }
 }
+
+class Some
+{
+    /**
+     * @var string
+     */
+    private string $foo;
+    private string $foo2;
+
+    /**
+     * @var mixed
+     */
+    private mixed $bar;
+
+    public function foo(): void
+    {
+    }
+}
+
+class Some
+{
+    private const string C = 'C';
+
+    /**
+     * Some Comment
+     */
+    private const string D = 'C';
+    private const string A = 'A';
+
+    public function foo(): void
+    {
+    }
+}

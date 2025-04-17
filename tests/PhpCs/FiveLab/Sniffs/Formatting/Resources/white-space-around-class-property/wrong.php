@@ -18,16 +18,6 @@ class Some
 
 class Some
 {
-
-    /**
-     * @var string|int
-     */
-    private mixed $bar;
-    private mixed $foo;
-}
-
-class Some
-{
     private mixed $bar;
     public function __construct()
     {
@@ -36,13 +26,12 @@ class Some
 
 class Some
 {
+    private mixed $bar1;
     /**
-     * Some comment
+     * @var mixed
      */
-    private const string A = 'A';
-    private const string G = 'G';
+    private mixed $bar;
 
-    private const int bar = 8;
     public function __construct()
     {
     }
