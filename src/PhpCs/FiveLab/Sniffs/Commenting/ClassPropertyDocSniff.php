@@ -64,7 +64,7 @@ class ClassPropertyDocSniff implements Sniff
                 }
 
                 if (\str_contains($line, '[]')) {
-                    $phpcsFile->addErrorOnLine(
+                    $phpcsFile->addError(
                         'Please use vector type annotation for arrays.',
                         $stackPtr,
                         ErrorCodes::ARRAYS_DOC_VECTOR
