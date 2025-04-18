@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the FiveLab CiRules package
  *
  * (c) FiveLab
