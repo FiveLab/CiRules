@@ -1,5 +1,15 @@
 <?php
 
+enum SomeEnum: string {
+    case Foo = 'FOO';
+    case Bar = 'BAR';
+
+    public function foo() : bool
+    {
+        return true;
+    }
+}
+
 // success
 $res = \in_array('a', ['a'], true);
 $res = \in_array(1, [1], true);
@@ -22,6 +32,8 @@ $res = \in_array('a', ['a'], $strict);
 
 $res = \in_array(rand(0, 1) ? 1 : '1', [1, 2, 3]);
 
+$res = \in_array('a', [SomeEnum::Foo, SomeEnum::Bar]);
+
 // ignore
 $strict = rand(0, 1) === 1;
 $res = \in_array('x', ['x'], $strict);
@@ -32,3 +44,14 @@ $res = \in_array(...$args);
 // fail-safe
 $fn = 'in_array';
 $res = $fn('a', ['a']);
+
+// error
+class Some23 {
+
+    public SomeEnum $foo;
+
+    function baz() : void
+    {
+        $res = \in_array($this->foo, [SomeEnum::Foo, SomeEnum::Bar]);
+    }
+}

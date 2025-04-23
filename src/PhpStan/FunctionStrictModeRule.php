@@ -100,7 +100,7 @@ readonly class FunctionStrictModeRule implements Rule
 
     private function isSafeToCompareNonStrict(Type $argType): bool
     {
-        if ($argType->isObject()->yes()) {
+        if ($argType->isObject()->yes() && $argType->isEnum()->no()) {
             return false;
         }
 
