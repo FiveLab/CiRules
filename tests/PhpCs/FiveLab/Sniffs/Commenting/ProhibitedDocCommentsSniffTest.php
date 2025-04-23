@@ -37,19 +37,19 @@ class ProhibitedDocCommentsSniffTest extends SniffTestCase
                     'source'  => 'FiveLab.Commenting.ProhibitedDocComments.PhpDocNotAllowed',
                 ],
                 [
-                    'message' => 'PHPDoc comment can contains only @var in function body.',
+                    'message' => 'PHPDoc comment can contains only @var here.',
                     'source'  => 'FiveLab.Commenting.ProhibitedDocComments.PhpDocNotAllowed',
                 ],
                 [
-                    'message' => 'PHPDoc comment can contains only @var in function body.',
+                    'message' => 'PHPDoc comment can contains only @var here.',
                     'source'  => 'FiveLab.Commenting.ProhibitedDocComments.PhpDocNotAllowed',
                 ],
                 [
-                    'message' => 'PHPDoc comment tag @return is not allowed in function body.',
+                    'message' => 'PHPDoc comment tag @return is not allowed here.',
                     'source'  => 'FiveLab.Commenting.ProhibitedDocComments.PhpDocNotAllowed',
                 ],
                 [
-                    'message' => 'PHPDoc comment can contains only @var in function body.',
+                    'message' => 'PHPDoc comment can contains only @var here.',
                     'source'  => 'FiveLab.Commenting.ProhibitedDocComments.PhpDocNotAllowed',
                 ],
                 [

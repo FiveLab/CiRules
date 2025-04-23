@@ -47,7 +47,7 @@ class ProhibitedDocCommentsSniff implements Sniff
 
             if (false === $commentTokenPtr) {
                 $phpcsFile->addError(
-                    'PHPDoc comment can contains only @var in function body.',
+                    'PHPDoc comment can contains only @var here.',
                     $stackPtr,
                     ErrorCodes::PHPDOC_NOT_ALLOWED
                 );
@@ -92,7 +92,7 @@ class ProhibitedDocCommentsSniff implements Sniff
 
         if ($commentTokenPtr && $tokens[$commentTokenPtr]['content'] !== '@var') {
             $phpcsFile->addError(
-                \sprintf('PHPDoc comment tag %s is not allowed in function body.', $tokens[$commentTokenPtr]['content']),
+                \sprintf('PHPDoc comment tag %s is not allowed here.', $tokens[$commentTokenPtr]['content']),
                 $commentTokenPtr,
                 ErrorCodes::PHPDOC_NOT_ALLOWED
             );
