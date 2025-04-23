@@ -43,3 +43,8 @@ trait Some4 {}
  * Interface
  */
 interface Some5 {}
+
+/**
+ * Enum
+ */
+enum Some6 {}

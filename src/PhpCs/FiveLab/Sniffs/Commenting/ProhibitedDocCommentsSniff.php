@@ -33,7 +33,7 @@ class ProhibitedDocCommentsSniff implements Sniff
 
         $possiblyDeclaration = $phpcsFile->findNext([
             T_CLASS, T_INTERFACE, T_TRAIT, T_FUNCTION,
-            T_ABSTRACT, T_FINAL,
+            T_ABSTRACT, T_FINAL, T_ENUM
         ], $commentToken['comment_closer'] + 1, local: true);
 
         if ($possiblyDeclaration) {
@@ -67,9 +67,6 @@ class ProhibitedDocCommentsSniff implements Sniff
             $stackPtr,
             ErrorCodes::PHPDOC_NOT_ALLOWED
         );
-
-        return;
-
     }
 
     /**
