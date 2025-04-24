@@ -67,7 +67,7 @@ readonly class FunctionStrictModeRule implements Rule
             ];
         }
 
-        if ($isThreeArgs) {
+        if ($isThreeArgs && $node->args[2] instanceof Node\Arg) {
             $modeType = $scope->getType($node->args[2]->value);
 
             if ($isNeedleScalarType && $modeType->isFalse()->yes()) {
