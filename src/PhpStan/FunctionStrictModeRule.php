@@ -15,7 +15,6 @@ namespace FiveLab\Component\CiRules\PhpStan;
 
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
-use PHPStan\Rules\IdentifierRuleError;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\Type;
@@ -48,14 +47,30 @@ readonly class FunctionStrictModeRule implements Rule
             return [];
         }
 
-        if (3 === \count($node->args)) {
-            if (!$node->args[2] instanceof Node\Arg) {
-                return [];
-            }
+        if (!$node->args[0] instanceof Node\Arg || !$node->args[1] instanceof Node\Arg) {
+            return [];
+        }
 
+        $isThreeArgs = 3 === \count($node->args);
+        $needleType = $scope->getType($node->args[0]->value);
+        $isNeedleScalarType = $this->isSafeToCompareNonStrict($needleType);
+
+        if ($isThreeArgs && !$node->args[2] instanceof Node\Arg) {
+            return [];
+        }
+
+        if (!$isThreeArgs && $isNeedleScalarType) {
+            return [
+                RuleErrorBuilder::message('The function in_array must be used in strict mode.')
+                    ->identifier('functionCall.strictMode')
+                    ->build(),
+            ];
+        }
+
+        if ($isThreeArgs) {
             $modeType = $scope->getType($node->args[2]->value);
 
-            if ($modeType->isFalse()->yes()) {
+            if ($isNeedleScalarType && $modeType->isFalse()->yes()) {
                 return [
                     RuleErrorBuilder::message('The function in_array must be used in strict mode.')
                         ->identifier('functionCall.strictMode')
@@ -63,44 +78,21 @@ readonly class FunctionStrictModeRule implements Rule
                 ];
             }
 
-            return [];
+            if (!$isNeedleScalarType && $modeType->isTrue()->yes()) {
+                return [
+                    RuleErrorBuilder::message('You don\'t need to use strict mode when comparison objects.')
+                        ->identifier('functionCall.strictMode')
+                        ->build(),
+                ];
+            }
         }
 
-        return $this->analyzeArgs($node, $scope);
-    }
-
-    /**
-     * Analyze function arguments types
-     *
-     * @param Node\Expr\FuncCall $node
-     * @param Scope              $scope
-     *
-     * @return list<IdentifierRuleError>
-     */
-    private function analyzeArgs(Node\Expr\FuncCall $node, Scope $scope): array
-    {
-        if (!$node->args[0] instanceof Node\Arg || !$node->args[1] instanceof Node\Arg) {
-            return [];
-        }
-
-        $needleType = $scope->getType($node->args[0]->value);
-        $isNeedleScalarType = $this->isSafeToCompareNonStrict($needleType);
-
-        if (!$isNeedleScalarType) {
-            return [];
-        }
-
-        return [
-            RuleErrorBuilder::message('The function in_array must be used in strict mode.')
-                ->identifier('functionCall.strictMode')
-                ->build(),
-        ];
-
+        return [];
     }
 
     private function isSafeToCompareNonStrict(Type $argType): bool
     {
-        if ($argType->isObject()->yes() && $argType->isEnum()->no()) {
+        if ($argType->isObject()->yes()) {
             return false;
         }
 

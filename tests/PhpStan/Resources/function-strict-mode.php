@@ -33,6 +33,7 @@ $res = \in_array('a', ['a'], $strict);
 $res = \in_array(rand(0, 1) ? 1 : '1', [1, 2, 3]);
 
 $res = \in_array('a', [SomeEnum::Foo, SomeEnum::Bar]);
+$res = \in_array([new stdClass()], [new stdClass(), new stdClass()], true);
 
 // ignore
 $strict = rand(0, 1) === 1;
@@ -52,6 +53,6 @@ class Some23 {
 
     function baz() : void
     {
-        $res = \in_array($this->foo, [SomeEnum::Foo, SomeEnum::Bar]);
+        $res = \in_array($this->foo, [SomeEnum::Foo, SomeEnum::Bar], true);
     }
 }

@@ -37,7 +37,8 @@ class FunctionStrictModeRuleTest extends RuleTestCase
                 ['The function in_array must be used in strict mode.', 31],
                 ['The function in_array must be used in strict mode.', 33],
                 ['The function in_array must be used in strict mode.', 35],
-                ['The function in_array must be used in strict mode.', 55],
+                ['You don\'t need to use strict mode when comparison objects.', 36],
+                ['You don\'t need to use strict mode when comparison objects.', 56],
             ],
         );
     }
