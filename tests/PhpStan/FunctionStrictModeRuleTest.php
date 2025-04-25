@@ -31,11 +31,14 @@ class FunctionStrictModeRuleTest extends RuleTestCase
         $this->analyse(
             [__DIR__.'/Resources/function-strict-mode.php'],
             [
-                ['The function in_array must be used in strict mode.', 16],
-                ['The function in_array must be used in strict mode.', 17],
-                ['The function in_array must be used in strict mode.', 18],
-                ['The function in_array must be used in strict mode.', 21],
-                ['The function in_array must be used in strict mode.', 23],
+                ['The function in_array must be used in strict mode.', 26],
+                ['The function in_array must be used in strict mode.', 27],
+                ['The function in_array must be used in strict mode.', 28],
+                ['The function in_array must be used in strict mode.', 31],
+                ['The function in_array must be used in strict mode.', 33],
+                ['The function in_array must be used in strict mode.', 35],
+                ['You don\'t need to use strict mode when comparison objects.', 36],
+                ['You don\'t need to use strict mode when comparison objects.', 56],
             ],
         );
     }
