@@ -44,6 +44,10 @@ class StringSniffTest extends SniffTestCase
                     'message' => 'Use double quotes is forbidden.',
                     'source'  => 'FiveLab.Strings.String.DoubleQuotes',
                 ],
+                [
+                    'message' => 'Use double quotes is forbidden.',
+                    'source'  => 'FiveLab.Strings.String.DoubleQuotes',
+                ],
             ],
         ];
     }
