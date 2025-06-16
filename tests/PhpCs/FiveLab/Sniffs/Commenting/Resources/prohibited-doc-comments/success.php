@@ -9,6 +9,10 @@ class Some {
      * @var string
      */
     private string $foo;
+
+    /**
+     * @see some456
+     */
     public const FOO = 'foo';
     const BAR = 'bar';
 

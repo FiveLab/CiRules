@@ -23,12 +23,6 @@ class Some {
         };
 
         /**
-         * @var int $bar
-         * @return string
-         */
-        $bar = 1;
-
-        /**
          * Some comment
          */
         if ($foo2 === 'bar') {}

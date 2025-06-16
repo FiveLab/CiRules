@@ -62,6 +62,7 @@ readonly class MethodCallConsistencyRule implements Rule
      * @param Scope                $scope
      *
      * @return list<IdentifierRuleError>
+     *
      * @throws ShouldNotHappenException
      */
     private function checkStaticCall(Node\Expr\StaticCall $node, Scope $scope): array
@@ -96,6 +97,7 @@ readonly class MethodCallConsistencyRule implements Rule
      * @param Scope                $scope
      *
      * @return list<IdentifierRuleError>
+     *
      * @throws ShouldNotHappenException
      */
     private function checkInstanceCall(Node\Expr\MethodCall $node, Scope $scope): array
@@ -130,6 +132,7 @@ readonly class MethodCallConsistencyRule implements Rule
      * @param Scope                $scope
      *
      * @return list<IdentifierRuleError>
+     *
      * @throws ShouldNotHappenException|MissingMethodFromReflectionException
      */
     private function checkNativeMethodCall(Node\Expr\StaticCall $node, Scope $scope): array

@@ -82,6 +82,7 @@ class NamespaceSniff implements Sniff
      * @param string $composerJsonPath
      *
      * @return array<mixed>
+     *
      * @throws \JsonException
      */
     private function loadComposerJson(string $composerJsonPath): array

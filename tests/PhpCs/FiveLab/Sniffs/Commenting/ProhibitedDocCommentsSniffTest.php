@@ -33,27 +33,23 @@ class ProhibitedDocCommentsSniffTest extends SniffTestCase
             'wrong' => [
                 __DIR__.'/Resources/prohibited-doc-comments/wrong.php',
                 [
-                    'message' => 'PHPDoc comment is not allowed here.',
+                    'message' => 'PHPDoc must contain at least one meta tag like @param, @return, etc.',
                     'source'  => 'FiveLab.Commenting.ProhibitedDocComments.PhpDocNotAllowed',
                 ],
                 [
-                    'message' => 'PHPDoc comment can contains only @var here.',
+                    'message' => 'PHPDoc must contain at least one meta tag like @param, @return, etc.',
                     'source'  => 'FiveLab.Commenting.ProhibitedDocComments.PhpDocNotAllowed',
                 ],
                 [
-                    'message' => 'PHPDoc comment can contains only @var here.',
+                    'message' => 'PHPDoc must contain at least one meta tag like @param, @return, etc.',
                     'source'  => 'FiveLab.Commenting.ProhibitedDocComments.PhpDocNotAllowed',
                 ],
                 [
-                    'message' => 'PHPDoc comment tag @return is not allowed here.',
+                    'message' => 'PHPDoc must contain at least one meta tag like @param, @return, etc.',
                     'source'  => 'FiveLab.Commenting.ProhibitedDocComments.PhpDocNotAllowed',
                 ],
                 [
-                    'message' => 'PHPDoc comment can contains only @var here.',
-                    'source'  => 'FiveLab.Commenting.ProhibitedDocComments.PhpDocNotAllowed',
-                ],
-                [
-                    'message' => 'PHPDoc comment is not allowed here.',
+                    'message' => 'PHPDoc must contain at least one meta tag like @param, @return, etc.',
                     'source'  => 'FiveLab.Commenting.ProhibitedDocComments.PhpDocNotAllowed',
                 ],
             ],
