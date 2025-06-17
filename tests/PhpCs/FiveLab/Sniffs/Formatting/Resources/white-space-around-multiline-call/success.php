@@ -1,5 +1,7 @@
 <?php
 
+$res = 23;
+
 $object
     ->child()
         ->method(\sprintf(
@@ -64,4 +66,12 @@ switch (true) {
 ])]
 function withAttributes()
 {
+    $object = new \StdClass();
+
+    return $object
+        ->some([
+            'bla' => 'bla',
+            'foo' => 'foo',
+        ])
+        ->some2();
 }

@@ -48,12 +48,6 @@ class WhiteSpaceAroundMultilineCallSniff extends AbstractFunctionCallSniff
         }
     }
 
-    /**
-     * Check before multiline call
-     *
-     * @param File $phpcsFile
-     * @param int  $stackPtr
-     */
     private function checkBeforeCall(File $phpcsFile, int $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
@@ -89,6 +83,7 @@ class WhiteSpaceAroundMultilineCallSniff extends AbstractFunctionCallSniff
                 T_OPEN_SHORT_ARRAY,
                 T_COLON,
                 T_ATTRIBUTE_END,
+                T_RETURN
             ];
 
             if ($diffLines < 2 && !\in_array($prevToken['code'], $possiblePrevTokens, true)) {
