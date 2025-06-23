@@ -2,6 +2,15 @@
 
 declare(strict_types = 1);
 
+/*
+ * This file is part of the FiveLab CiRules package
+ *
+ * (c) FiveLab
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code
+ */
+
 namespace FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\Formatting;
 
 use FiveLab\Component\CiRules\PhpCs\FiveLab\Sniffs\Formatting\MissedSpacesSniff;
