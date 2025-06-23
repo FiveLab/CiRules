@@ -48,12 +48,6 @@ class WhiteSpaceAroundMultilineCallSniff extends AbstractFunctionCallSniff
         }
     }
 
-    /**
-     * Check before multiline call
-     *
-     * @param File $phpcsFile
-     * @param int  $stackPtr
-     */
     private function checkBeforeCall(File $phpcsFile, int $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
@@ -101,12 +95,6 @@ class WhiteSpaceAroundMultilineCallSniff extends AbstractFunctionCallSniff
         }
     }
 
-    /**
-     * Check after multiline call
-     *
-     * @param File $phpcsFile
-     * @param int  $closeParenthesisPtr
-     */
     private function checkAfterCall(File $phpcsFile, int $closeParenthesisPtr): void
     {
         $tokens = $phpcsFile->getTokens();
@@ -128,7 +116,7 @@ class WhiteSpaceAroundMultilineCallSniff extends AbstractFunctionCallSniff
 
             $possibleNextTokens = [T_CLOSE_CURLY_BRACKET, T_BREAK];
 
-            if (!\in_array($nextToken['code'], $possibleNextTokens, true) && $diffLines < 2) {
+            if ($diffLines < 2 && !\in_array($nextToken['code'], $possibleNextTokens, true)) {
                 $phpcsFile->addError(
                     'Must be one blank line after multiline call.',
                     $nextTokenPtr,

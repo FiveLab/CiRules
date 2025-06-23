@@ -33,4 +33,5 @@ final class ErrorCodes
     public const NAMESPACE_WRONG         = 'NamespaceWrong';
     public const ARRAYS_DOC_VECTOR       = 'ArraysDocVector';
     public const PHPDOC_NOT_ALLOWED      = 'PhpDocNotAllowed';
+    public const MISSED_SPACE            = 'MissedSpace';
 }
