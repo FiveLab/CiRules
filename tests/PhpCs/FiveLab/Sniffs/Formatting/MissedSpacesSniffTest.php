@@ -17,9 +17,9 @@ class MissedSpacesSniffTest extends SniffTestCase
     public static function provideDataSet(): array
     {
         return [
-//            'success' => [
-//                __DIR__.'/Resources/missed-spaces/success.php',
-//            ],
+            'success' => [
+                __DIR__.'/Resources/missed-spaces/success.php',
+            ],
 
             'missed' => [
                 __DIR__.'/Resources/missed-spaces/wrong.php',
