@@ -35,3 +35,13 @@ function someSome($a)
 function wrong()
 {
 }
+
+/** bla */
+function bla()
+{
+}
+
+/** */
+function blabla()
+{
+}

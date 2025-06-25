@@ -17,12 +17,9 @@ use FiveLab\Component\CiRules\PhpCs\FiveLab\ErrorCodes;
 use FiveLab\Component\CiRules\PhpCs\FiveLab\Sniffs\AbstractFunctionDocCommentSniff;
 use PHP_CodeSniffer\Files\File;
 
-/**
- * Check annotations in comments.
- */
 class AnnotationsSniff extends AbstractFunctionDocCommentSniff
 {
-    protected function processLines(File $phpcsFile, int $startLineNumber, array $lines, string $functionName): void
+    protected function processLines(File $phpcsFile, int $startLineNumber, array $lines, string $functionName, int $countCommentLines): void
     {
         foreach ($lines as $lineNumber => $line) {
             if ($line && '@' === $line[0]) {
@@ -37,14 +34,6 @@ class AnnotationsSniff extends AbstractFunctionDocCommentSniff
         }
     }
 
-    /**
-     * Process annotation
-     *
-     * @param File   $phpcsFile
-     * @param int    $lineNumber
-     * @param string $annotation
-     * @param string $value
-     */
     private function processAnnotation(File $phpcsFile, int $lineNumber, string $annotation, string $value): void
     {
         if ('return' === $annotation && 'void' === $value) {
@@ -67,6 +56,14 @@ class AnnotationsSniff extends AbstractFunctionDocCommentSniff
                     ErrorCodes::PROHIBITED
                 );
             }
+        }
+
+        if (\str_contains($value, '[]')) {
+            $phpcsFile->addErrorOnLine(
+                'Please use vector type annotation for arrays.',
+                $lineNumber,
+                ErrorCodes::ARRAYS_DOC_VECTOR
+            );
         }
     }
 }

@@ -22,3 +22,14 @@ function bar(int $a, string $b): int
 {
     return 1;
 }
+
+/**
+ * @param array<string> $a
+ * @param array<SomeObject> $b
+ * @param array<int, string> $c
+ *
+ * @return array<string|SomeObject>
+ */
+function baz(array $a, array $b, array $c): array
+{
+}

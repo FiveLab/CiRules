@@ -13,6 +13,11 @@ class MyClass
     private string $bar;
 
     /**
+     * @var array<Some>
+     */
+    private array $baz;
+
+    /**
      * Construct
      *
      * @param int    $foo

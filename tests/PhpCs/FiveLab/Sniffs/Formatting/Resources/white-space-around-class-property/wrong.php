@@ -18,17 +18,20 @@ class Some
 
 class Some
 {
-
-    /**
-     * @var string|int
-     */
     private mixed $bar;
-    private mixed $foo;
+    public function __construct()
+    {
+    }
 }
 
 class Some
 {
+    private mixed $bar1;
+    /**
+     * @var mixed
+     */
     private mixed $bar;
+
     public function __construct()
     {
     }

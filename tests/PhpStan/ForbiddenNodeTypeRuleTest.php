@@ -18,6 +18,7 @@ use PhpParser\Node\Expr\Empty_;
 use PhpParser\Node\Expr\Isset_;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ForbiddenNodeTypeRuleTest extends RuleTestCase
 {
@@ -28,9 +29,7 @@ class ForbiddenNodeTypeRuleTest extends RuleTestCase
         return $this->rule;
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldSuccessProcessForIsset(): void
     {
         $this->rule = new ForbiddenNodeTypeRule(Isset_::class, 'Language construct isset() should not be used.');
@@ -43,9 +42,7 @@ class ForbiddenNodeTypeRuleTest extends RuleTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldSuccessProcessForEmpty(): void
     {
         $this->rule = new ForbiddenNodeTypeRule(Empty_::class, 'Language construct empty() should not be used.');
@@ -58,9 +55,7 @@ class ForbiddenNodeTypeRuleTest extends RuleTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldThrowErrorForInvalidNodeType(): void
     {
         $this->expectException(\InvalidArgumentException::class);

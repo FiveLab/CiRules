@@ -2,6 +2,7 @@
 
 function some(\DOMDocument $dom): void
 {
+    $cow = 33;
     $dom->loadXML(
         '<root/>'
     );

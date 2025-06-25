@@ -36,6 +36,14 @@ class ProhibitedInheritdocOnlySniffTest extends SniffTestCase
                     'message' => 'Prohibited {@inheritdoc} only comment.',
                     'source'  => 'FiveLab.Commenting.ProhibitedInheritdocOnly.Prohibited',
                 ],
+                [
+                    'message' => 'Prohibited {@inheritdoc} only comment.',
+                    'source'  => 'FiveLab.Commenting.ProhibitedInheritdocOnly.Prohibited',
+                ],
+                [
+                    'message' => 'Prohibited {@inheritdoc} only comment.',
+                    'source'  => 'FiveLab.Commenting.ProhibitedInheritdocOnly.Prohibited',
+                ],
             ],
         ];
     }

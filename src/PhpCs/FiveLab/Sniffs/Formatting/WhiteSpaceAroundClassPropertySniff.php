@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 /*
  * This file is part of the FiveLab CiRules package
  *
@@ -10,6 +8,8 @@ declare(strict_types = 1);
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code
  */
+
+declare(strict_types = 1);
 
 namespace FiveLab\Component\CiRules\PhpCs\FiveLab\Sniffs\Formatting;
 
@@ -23,8 +23,8 @@ use PHP_CodeSniffer\Sniffs\Sniff;
  */
 class WhiteSpaceAroundClassPropertySniff implements Sniff
 {
-    const BEFORE_TOKENS = [
-        T_ATTRIBUTE_END => T_ATTRIBUTE,
+    private const BEFORE_TOKENS = [
+        T_ATTRIBUTE_END         => T_ATTRIBUTE,
         T_DOC_COMMENT_CLOSE_TAG => T_DOC_COMMENT_OPEN_TAG,
     ];
 
@@ -35,6 +35,7 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
         return [
             T_VARIABLE,
             T_CLASS,
+            T_CONST,
         ];
     }
 
@@ -48,11 +49,11 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
 
         $tokensOnLine = $this->getTokensOnLineNoWhiteSpaces($phpcsFile, $currentToken['line'] - 1);
 
-        if (!\count($tokensOnLine) && $stackPtr === $currentTokenStackPtr) {
+        if ($stackPtr === $currentTokenStackPtr && !\count($tokensOnLine)) {
             $tokensOnLine = $this->getTokensOnLineNoWhiteSpaces($phpcsFile, $currentToken['line'] - 2);
 
             $tokensOnLine = \array_filter($tokensOnLine, static function (array $token): bool {
-                return \in_array($token['code'], [T_CONST, T_USE]);
+                return \in_array($token['code'], [T_CONST, T_USE], true);
             });
 
             if ($this->previousIsMultiLineVariable($phpcsFile, $stackPtr)) {
@@ -70,7 +71,7 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
             return;
         }
 
-        if (\in_array($currentToken['code'], \array_keys(self::BEFORE_TOKENS), true)) {
+        if (\array_key_exists($currentToken['code'], self::BEFORE_TOKENS)) {
             $this->previousTokenWhiteSpaceNeeded = true;
 
             $this->processToken((int) $currentTokenStackPtr, $phpcsFile, $stackPtr);
@@ -81,14 +82,6 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
         }
     }
 
-    /**
-     * Is multi line variable
-     *
-     * @param File $phpcsFile
-     * @param int  $stackPtr
-     *
-     * @return bool
-     */
     private function previousIsMultiLineVariable(File $phpcsFile, int $stackPtr): bool
     {
         $tokens = $phpcsFile->getTokens();
@@ -97,7 +90,7 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
         $tokensOnLine = $this->getTokensOnLineNoWhiteSpaces($phpcsFile, $token['line'] - 2);
         $semicolonToken = $tokensOnLine[\count($tokensOnLine) - 1];
 
-        $previousTokenStackPtr = $phpcsFile->findPrevious([T_VARIABLE], $stackPtr - 1);
+        $previousTokenStackPtr = $phpcsFile->findPrevious([T_VARIABLE, T_CONST], $stackPtr - 1);
         $previousToken = $tokens[$previousTokenStackPtr];
 
         return T_SEMICOLON === $semicolonToken['code'] && $semicolonToken['line'] !== $previousToken['line'];
@@ -109,15 +102,12 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
      * @param File $phpcsFile
      * @param int  $stackPtr
      *
-     * @return array
+     * @return array<mixed>
      */
-    private function findToken(File $phpcsFile, int $stackPtr): array // @phpstan-ignore-line
+    private function findToken(File $phpcsFile, int $stackPtr): array
     {
         $tokens = $phpcsFile->getTokens();
-        $token = $tokens[$stackPtr];
-
         $currentTokenStackPtr = $stackPtr;
-        $currentToken = $token;
 
         while (true) {
             $previousTokenStackPtr = $phpcsFile->findPrevious(\array_keys(self::BEFORE_TOKENS), (int) $currentTokenStackPtr - 1);
@@ -145,14 +135,6 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
         return [(int) $currentTokenStackPtr, $currentToken];
     }
 
-    /**
-     * Should abort
-     *
-     * @param File $phpcsFile
-     * @param int  $stackPtr
-     *
-     * @return bool
-     */
     private function shouldAbort(File $phpcsFile, int $stackPtr): bool
     {
         $tokens = $phpcsFile->getTokens();
@@ -164,7 +146,7 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
             return true;
         }
 
-        $modifierStackPtr = $phpcsFile->findPrevious([T_PUBLIC, T_PROTECTED, T_PRIVATE], $stackPtr);
+        $modifierStackPtr = $phpcsFile->findPrevious([T_PUBLIC, T_PROTECTED, T_PRIVATE, T_CONST], $stackPtr);
 
         if ($token['line'] !== $tokens[$modifierStackPtr]['line']) {
             return true;
@@ -204,13 +186,6 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
         return \array_values($tokensOnLine);
     }
 
-    /**
-     * Process after
-     *
-     * @param int  $beforeToken
-     * @param File $phpcsFile
-     * @param int  $stackPtr
-     */
     private function processToken(int $beforeToken, File $phpcsFile, int $stackPtr): void
     {
         if (0 === $beforeToken) {
@@ -225,13 +200,6 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
         $this->processAfter($phpcsFile, $stackPtr);
     }
 
-    /**
-     * Process before
-     *
-     * @param File $phpcsFile
-     * @param int  $stackPtr
-     * @param int  $startOfStatement
-     */
     private function processBefore(File $phpcsFile, int $stackPtr, int $startOfStatement): void
     {
         $tokens = $phpcsFile->getTokens();
@@ -263,12 +231,6 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
         }
     }
 
-    /**
-     * Process function
-     *
-     * @param File $phpcsFile
-     * @param int  $stackPtr
-     */
     private function processFunction(File $phpcsFile, int $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
@@ -286,24 +248,20 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
 
             $tokensOnLine = $this->getTokensOnLineNoWhiteSpaces($phpcsFile, $token['line'] + 1);
 
-            if ('' === \trim($contentsBetween) && \count($tokensOnLine)) {
-                $phpcsFile->addError(
-                    'Must be one blank line after class property.',
-                    $stackPtr,
-                    ErrorCodes::MISSED_LINE_AFTER
-                );
-
-                return;
+            if (\count($tokensOnLine)) {
+                foreach ($tokensOnLine as $token) {
+                    if ($token['code'] === T_FUNCTION && '' === \trim($contentsBetween)) {
+                        $phpcsFile->addError(
+                            'Must be one blank line after class property or const.',
+                            $stackPtr,
+                            ErrorCodes::MISSED_LINE_AFTER
+                        );
+                    }
+                }
             }
         }
     }
 
-    /**
-     * Process after
-     *
-     * @param File $phpcsFile
-     * @param int  $stackPtr
-     */
     private function processAfter(File $phpcsFile, int $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
@@ -332,16 +290,6 @@ class WhiteSpaceAroundClassPropertySniff implements Sniff
                     );
                 }
             }
-
-            return;
-        }
-
-        if (T_CLOSE_CURLY_BRACKET !== $tokensOnLine[\count($tokensOnLine) - 1]['code']) {
-            $phpcsFile->addError(
-                'Must be one blank line after class property.',
-                $stackPtr,
-                ErrorCodes::MISSED_LINE_AFTER
-            );
         }
     }
 }

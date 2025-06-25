@@ -40,6 +40,18 @@ class AnnotationsSniffTest extends SniffTestCase
                     'message' => 'Please import error class in "use" block and use short class name in @throws annotation.',
                     'source'  => 'FiveLab.Commenting.Annotations.Prohibited',
                 ],
+                [
+                    'message' => 'Please use vector type annotation for arrays.',
+                    'source'  => 'FiveLab.Commenting.Annotations.ArraysDocVector',
+                ],
+                [
+                    'message' => 'Please use vector type annotation for arrays.',
+                    'source'  => 'FiveLab.Commenting.Annotations.ArraysDocVector',
+                ],
+                [
+                    'message' => 'Please use vector type annotation for arrays.',
+                    'source'  => 'FiveLab.Commenting.Annotations.ArraysDocVector',
+                ],
             ],
         ];
     }

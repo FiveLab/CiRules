@@ -22,8 +22,16 @@ use PHP_CodeSniffer\Files\File;
  */
 class CommentSniff extends AbstractFunctionDocCommentSniff
 {
-    protected function processLines(File $phpcsFile, int $startLineNumber, array $lines, string $functionName): void
+    protected function processLines(File $phpcsFile, int $startLineNumber, array $lines, string $functionName, int $countCommentLines): void
     {
+        if (1 === $countCommentLines) {
+            $phpcsFile->addErrorOnLine(
+                'A method or function cannot have a single line comment.',
+                $startLineNumber,
+                ErrorCodes::WRONG_FORMAT
+            );
+        }
+
         $startCommentLine = null;
         $startAnnotationLine = null;
 
@@ -35,12 +43,12 @@ class CommentSniff extends AbstractFunctionDocCommentSniff
                 $existInheritdoc = true;
             }
 
-            if ($line && 0 !== \strpos($line, '@')) {
+            if ($line && !\str_starts_with($line, '@')) {
                 $endCommentLine = (int) $lineIndex;
                 $startCommentLine = (int) ($startCommentLine ?? $lineIndex);
             }
 
-            if (0 === \strpos($line, '@')) {
+            if (\str_starts_with($line, '@')) {
                 $startAnnotationLine = (int) ($startAnnotationLine ?? $lineIndex);
             }
         }

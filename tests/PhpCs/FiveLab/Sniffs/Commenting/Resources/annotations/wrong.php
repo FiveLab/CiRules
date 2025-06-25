@@ -20,3 +20,13 @@ function bar(): int
 {
     return 1;
 }
+
+/**
+ * @param SomeObject[] $a
+ * @param string[] $b
+ *
+ * @return int[]
+ */
+function baz(array $a, array $b, array $c): array
+{
+}

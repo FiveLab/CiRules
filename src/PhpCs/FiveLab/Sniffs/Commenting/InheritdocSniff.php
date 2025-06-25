@@ -23,7 +23,7 @@ use PHP_CodeSniffer\Files\File;
  */
 class InheritdocSniff extends AbstractFunctionDocCommentSniff
 {
-    protected function processLines(File $phpcsFile, int $startLineNumber, array $lines, string $functionName): void
+    protected function processLines(File $phpcsFile, int $startLineNumber, array $lines, string $functionName, int $countCommentLines): void
     {
         $commentBeforeInheritdoc = null;
         $commentAfterInheritdoc = null;
@@ -66,13 +66,6 @@ class InheritdocSniff extends AbstractFunctionDocCommentSniff
         }
     }
 
-    /**
-     * Check what method exist parent declaration.
-     *
-     * @param File   $phpcsFile
-     * @param int    $line
-     * @param string $methodName
-     */
     private function assertExistDocInParents(File $phpcsFile, int $line, string $methodName): void
     {
         $declaredName = PhpCsUtils::getDeclaredClassName($phpcsFile);
