@@ -6,6 +6,7 @@ parameters:
 
     bootstrapFiles:
         - vendor/squizlabs/php_codesniffer/autoload.php
+        - vendor/squizlabs/php_codesniffer/src/Util/Tokens.php
 
     paths:
         - src
