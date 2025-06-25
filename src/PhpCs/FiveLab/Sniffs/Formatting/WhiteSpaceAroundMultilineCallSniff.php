@@ -83,6 +83,7 @@ class WhiteSpaceAroundMultilineCallSniff extends AbstractFunctionCallSniff
                 T_OPEN_SHORT_ARRAY,
                 T_COLON,
                 T_ATTRIBUTE_END,
+                T_RETURN
             ];
 
             if ($diffLines < 2 && !\in_array($prevToken['code'], $possiblePrevTokens, true)) {
