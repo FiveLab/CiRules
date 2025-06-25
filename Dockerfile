@@ -1,6 +1,6 @@
 FROM php:8.2-cli
 
-MAINTAINER Vitalii Zhuk <v.zhuk@fivelab.org>
+LABEL org.opencontainers.image.authors="Vitalii Zhuk <v.zhuk@fivelab.org>"
 
 ARG XDEBUG_REMOTE_HOST='host.docker.internal'
 ARG XDEBUG_REMOTE_PORT=9000
