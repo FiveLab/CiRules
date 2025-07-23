@@ -34,4 +34,5 @@ final class ErrorCodes
     public const ARRAYS_DOC_VECTOR       = 'ArraysDocVector';
     public const PHPDOC_NOT_ALLOWED      = 'PhpDocNotAllowed';
     public const MISSED_SPACE            = 'MissedSpace';
+    public const MANY_SPACES             = 'ManySpaces';
 }

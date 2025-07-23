@@ -38,7 +38,7 @@ class ForbiddenNodeTypeRule implements Rule
      */
     public function __construct(string $nodeType, string $message = null)
     {
-        if (!\is_a($nodeType, Node::class, true)) { // @phpstan-ignore phpstanApi.runtimeReflection, function.alreadyNarrowedType
+        if (!\is_a($nodeType, Node::class, true)) { // @phpstan-ignore phpstanApi.runtimeReflection
             throw new \InvalidArgumentException(\sprintf(
                 'The node type class must implement "%s" interface but "%s" got given.',
                 Node::class,
