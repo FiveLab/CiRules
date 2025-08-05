@@ -29,6 +29,7 @@ function bar(int $a, string $b): int
  * @param array<int, string> $c
  *
  * @return array<string|SomeObject>
+ * @return array{"foo": int, "bar": string}
  */
 function baz(array $a, array $b, array $c): array
 {

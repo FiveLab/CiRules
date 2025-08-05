@@ -41,16 +41,29 @@ class AnnotationsSniffTest extends SniffTestCase
                     'source'  => 'FiveLab.Commenting.Annotations.Prohibited',
                 ],
                 [
-                    'message' => 'Please use vector type annotation for arrays.',
+                    'message' => 'Please use generic types or DTOs instead of short array or shape-like annotations.',
                     'source'  => 'FiveLab.Commenting.Annotations.ArraysDocVector',
+                    'line'    => 25,
                 ],
                 [
-                    'message' => 'Please use vector type annotation for arrays.',
+                    'message' => 'Please use generic types or DTOs instead of short array or shape-like annotations.',
                     'source'  => 'FiveLab.Commenting.Annotations.ArraysDocVector',
+                    'line'    => 26,
                 ],
                 [
-                    'message' => 'Please use vector type annotation for arrays.',
+                    'message' => 'Please use generic types or DTOs instead of short array or shape-like annotations.',
                     'source'  => 'FiveLab.Commenting.Annotations.ArraysDocVector',
+                    'line'    => 28,
+                ],
+                [
+                    'message' => 'Please use generic types or DTOs instead of short array or shape-like annotations.',
+                    'source'  => 'FiveLab.Commenting.Annotations.ArraysDocVector',
+                    'line'    => 35,
+                ],
+                [
+                    'message' => 'Please use generic types or DTOs instead of short array or shape-like annotations.',
+                    'source'  => 'FiveLab.Commenting.Annotations.ArraysDocVector',
+                    'line'    => 36,
                 ],
             ],
         ];
