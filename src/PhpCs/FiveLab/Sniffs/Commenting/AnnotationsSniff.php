@@ -58,9 +58,9 @@ class AnnotationsSniff extends AbstractFunctionDocCommentSniff
             }
         }
 
-        if (\str_contains($value, '[]')) {
+        if (\preg_match('/\b[a-zA-Z_\\\\]+\[\]/', $value) || \preg_match('/\b(?!array\b)[a-zA-Z_\\\\]+\s*[\{\[]/', $value) || \preg_match('/\barray\s*\{\s*(?:\d+\s*[:=]|[^"\']+\s*(?:,|\}))/', $value)) {
             $phpcsFile->addErrorOnLine(
-                'Please use vector type annotation for arrays.',
+                'Please use generic types or DTOs instead of short array or shape-like annotations.',
                 $lineNumber,
                 ErrorCodes::ARRAYS_DOC_VECTOR
             );
