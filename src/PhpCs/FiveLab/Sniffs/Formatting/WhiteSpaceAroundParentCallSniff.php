@@ -49,7 +49,7 @@ class WhiteSpaceAroundParentCallSniff implements Sniff
 
         $semicolonPtr = $phpcsFile->findNext([T_SEMICOLON], $stackPtr + 1);
 
-        $nextTokenPtr = $phpcsFile->findNext(Tokens::$emptyTokens, $semicolonPtr + 1, null, true);
+        $nextTokenPtr = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $semicolonPtr + 1, null, true);
 
         if ($tokens[$nextTokenPtr]['code'] === T_CLOSE_CURLY_BRACKET) {
             // End statement. Normal.
@@ -79,7 +79,7 @@ class WhiteSpaceAroundParentCallSniff implements Sniff
         $token = $tokens[$stackPtr];
 
         $firstTokenOnLine = PhpCsUtils::findFirstTokenOnLine($phpcsFile, $token['line']);
-        $prevTokenPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, (int) $firstTokenOnLine, null, true);
+        $prevTokenPtr = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, (int) $firstTokenOnLine, null, true);
 
         if ($tokens[$prevTokenPtr]['code'] === T_OPEN_CURLY_BRACKET) {
             // Start statement. Normal.

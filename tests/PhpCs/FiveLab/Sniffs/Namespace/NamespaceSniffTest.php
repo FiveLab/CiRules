@@ -14,9 +14,9 @@ declare(strict_types = 1);
 namespace FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\Namespace;
 
 use FiveLab\Component\CiRules\PhpCs\FiveLab\Sniffs\Namespace\NamespaceSniff;
-use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\SniffTestCase;
+use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\AbstractSniffTestCase;
 
-class NamespaceSniffTest extends SniffTestCase
+class NamespaceSniffTest extends AbstractSniffTestCase
 {
     protected function getSniffClass(): string
     {

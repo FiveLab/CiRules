@@ -14,9 +14,9 @@ declare(strict_types = 1);
 namespace FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\Functions;
 
 use FiveLab\Component\CiRules\PhpCs\FiveLab\Sniffs\Functions\GlobalFunctionsSniff;
-use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\SniffTestCase;
+use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\AbstractSniffTestCase;
 
-class GlobalFunctionsSniffTest extends SniffTestCase
+class GlobalFunctionsSniffTest extends AbstractSniffTestCase
 {
     protected function getSniffClass(): string
     {

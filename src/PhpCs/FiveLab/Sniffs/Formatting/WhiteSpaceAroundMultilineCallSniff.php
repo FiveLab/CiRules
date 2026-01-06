@@ -51,7 +51,7 @@ class WhiteSpaceAroundMultilineCallSniff extends AbstractFunctionCallSniff
     private function checkBeforeCall(File $phpcsFile, int $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
-        $prevTokenPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, $stackPtr - 1, null, true);
+        $prevTokenPtr = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, $stackPtr - 1, null, true);
 
         $possiblePrevTokens = [T_DOUBLE_COLON, T_COMMA];
 
@@ -62,14 +62,14 @@ class WhiteSpaceAroundMultilineCallSniff extends AbstractFunctionCallSniff
 
         // Find any token on prev line.
         $firstTokenPtrOnLine = PhpCsUtils::findFirstTokenOnLine($phpcsFile, $tokens[$stackPtr]['line']);
-        $prevTokenPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, $firstTokenPtrOnLine - 1, null, true);
+        $prevTokenPtr = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, $firstTokenPtrOnLine - 1, null, true);
 
         if (false !== $prevTokenPtr) {
             $prevToken = $tokens[$prevTokenPtr];
 
             if ($prevToken['code'] === T_VARIABLE) {
                 // Call method on next line (multiline chain call).
-                $prevTokenPtr = (int) $phpcsFile->findPrevious(Tokens::$emptyTokens, $prevTokenPtr - 1, null, true);
+                $prevTokenPtr = (int) $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, $prevTokenPtr - 1, null, true);
                 $prevToken = $tokens[$prevTokenPtr];
             }
 

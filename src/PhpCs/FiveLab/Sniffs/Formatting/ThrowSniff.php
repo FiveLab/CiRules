@@ -34,7 +34,7 @@ class ThrowSniff implements Sniff
     public function process(File $phpcsFile, mixed $stackPtr): void
     {
         // Check blank lines before
-        $prevTokenPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, $stackPtr - 1, null, true);
+        $prevTokenPtr = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, $stackPtr - 1, null, true);
 
         $prevToken = $phpcsFile->getTokens()[$prevTokenPtr];
         $diffLinesBefore = PhpCsUtils::getDiffLines($phpcsFile, (int) $prevTokenPtr, $stackPtr);
@@ -67,7 +67,7 @@ class ThrowSniff implements Sniff
         }
 
         $endOfMessagePtr = $phpcsFile->findNext([T_COMMA, T_SEMICOLON], $openParenthesisPtr);
-        $sprintfTokenPtr = $phpcsFile->findNext([], $openParenthesisPtr, (int) $endOfMessagePtr, true, 'sprintf', true);
+        $sprintfTokenPtr = $phpcsFile->findNext([], $openParenthesisPtr, (int) $endOfMessagePtr, true, '\sprintf', true);
 
         if ($sprintfTokenPtr) {
             $tokens = $phpcsFile->getTokens();

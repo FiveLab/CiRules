@@ -133,7 +133,7 @@ class WhiteSpaceBeforeChainCallSniff implements Sniff
         $tokens = PhpCsUtils::getTokensOnLine($phpcsFile, $line);
 
         $tokens = \array_filter($tokens, static function (array $token): bool {
-            return !\in_array($token['code'], Tokens::$emptyTokens, true);
+            return !\in_array($token['code'], Tokens::EMPTY_TOKENS, true);
         });
 
         return \array_values($tokens);

@@ -21,7 +21,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-abstract class SniffTestCase extends TestCase
+abstract class AbstractSniffTestCase extends TestCase
 {
     protected Config $config;
     protected Ruleset $ruleset;

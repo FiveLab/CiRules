@@ -14,9 +14,9 @@ declare(strict_types = 1);
 namespace FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\Whitespace;
 
 use FiveLab\Component\CiRules\PhpCs\FiveLab\Sniffs\Whitespace\ManyWhitespacesSniff;
-use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\SniffTestCase;
+use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\AbstractSniffTestCase;
 
-class ManyWhitespacesSniffTest extends SniffTestCase
+class ManyWhitespacesSniffTest extends AbstractSniffTestCase
 {
     protected function getSniffClass(): string
     {

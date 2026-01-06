@@ -14,11 +14,11 @@ declare(strict_types = 1);
 namespace FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\Attributes;
 
 use FiveLab\Component\CiRules\PhpCs\FiveLab\Sniffs\Attributes\ProhibitedAttributeSniff;
-use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\SniffTestCase;
+use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\AbstractSniffTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 
-class ProhibitedAttributeSniffTest extends SniffTestCase
+class ProhibitedAttributeSniffTest extends AbstractSniffTestCase
 {
     #[Test]
     #[DataProvider('provideDataSet')]

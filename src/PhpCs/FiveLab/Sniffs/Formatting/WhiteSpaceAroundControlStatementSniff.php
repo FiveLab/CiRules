@@ -69,13 +69,13 @@ class WhiteSpaceAroundControlStatementSniff implements Sniff
         }
 
         // Check blank lines before statement
-        $prevTokenPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, $stackPtr - 1, null, true);
+        $prevTokenPtr = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, $stackPtr - 1, null, true);
         $prevToken = $phpcsFile->getTokens()[$prevTokenPtr];
 
         if (($prevToken['code'] === T_EQUAL || $prevToken['code'] === T_RETURN || $prevToken['code'] === T_DOUBLE_ARROW) && $stackToken['code'] === T_MATCH) {
             // Use "match" construction.
             $firstTokenPtr = PhpCsUtils::findFirstTokenOnLine($phpcsFile, $stackToken['line']);
-            $prevTokenPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, $firstTokenPtr - 1, null, true);
+            $prevTokenPtr = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, $firstTokenPtr - 1, null, true);
             $prevToken = $phpcsFile->getTokens()[$prevTokenPtr];
         }
 
@@ -92,14 +92,14 @@ class WhiteSpaceAroundControlStatementSniff implements Sniff
 
         // Check blank lines after
         $scopeCloserPtr = $stackToken['scope_closer'];
-        $nextTokenPtr = $phpcsFile->findNext(Tokens::$emptyTokens, $scopeCloserPtr + 1, null, true);
+        $nextTokenPtr = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $scopeCloserPtr + 1, null, true);
 
         if ($nextTokenPtr) {
             $nextToken = $phpcsFile->getTokens()[$nextTokenPtr];
 
             if ($nextToken['code'] === T_SEMICOLON && $stackToken['code'] === T_MATCH) {
                 // Use "match" construction.
-                $nextTokenPtr = $phpcsFile->findNext(Tokens::$emptyTokens, $nextTokenPtr + 1, null, true);
+                $nextTokenPtr = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $nextTokenPtr + 1, null, true);
                 $nextToken = $nextTokenPtr ? $phpcsFile->getTokens()[$nextTokenPtr] : null;
             }
 

@@ -37,7 +37,7 @@ class SemicolonSingleCharSniff implements Sniff
             return (string) $token['code'];
         }, PhpCsUtils::getTokensOnLine($phpcsFile, $phpcsFile->getTokens()[$stackPtr]['line']));
 
-        $diff = \array_diff($tokens, Tokens::$emptyTokens);
+        $diff = \array_diff($tokens, Tokens::EMPTY_TOKENS);
 
         if (1 === \count($diff)) {
             $phpcsFile->addError(

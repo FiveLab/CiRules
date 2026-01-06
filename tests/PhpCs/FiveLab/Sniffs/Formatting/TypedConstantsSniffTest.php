@@ -14,23 +14,19 @@ declare(strict_types = 1);
 namespace FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\Formatting;
 
 use FiveLab\Component\CiRules\PhpCs\FiveLab\Sniffs\Formatting\TypedConstantsSniff;
-use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\SniffTestCase;
+use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\AbstractSniffTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 
-class TypedConstantsSniffTest extends SniffTestCase
+class TypedConstantsSniffTest extends AbstractSniffTestCase
 {
     protected function getSniffClass(): string
     {
         return TypedConstantsSniff::class;
     }
 
-    /**
-     * @test
-     *
-     * @param string       $file
-     * @param array<array> ...$expectedErrors
-     *
-     * @dataProvider provideDataSet
-     */
+    #[Test]
+    #[DataProvider('provideDataSet')]
     public function shouldSuccessProcessFile(string $file, array ...$expectedErrors): void
     {
         if (PHP_VERSION_ID < 80300) {

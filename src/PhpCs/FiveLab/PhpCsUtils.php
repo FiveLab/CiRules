@@ -61,7 +61,7 @@ final class PhpCsUtils
 
             if ($token['code'] === T_WHITESPACE && $token['content'] === $file->eolChar) {
                 $diffLines++;
-            } elseif (\in_array($token['code'], Tokens::$commentTokens, true)) {
+            } elseif (\in_array($token['code'], Tokens::COMMENT_TOKENS, true)) {
                 if ($token['code'] === T_DOC_COMMENT_OPEN_TAG) {
                     $i = $file->findNext([T_DOC_COMMENT_CLOSE_TAG], $i + 1);
                 } elseif ($token['code'] === T_COMMENT) {
@@ -69,7 +69,7 @@ final class PhpCsUtils
                     $existCodeOnLine = false;
 
                     foreach ($tokensOnLine as $tokenOnLine) {
-                        if (!\in_array($tokenOnLine['code'], Tokens::$emptyTokens, true)) {
+                        if (!\in_array($tokenOnLine['code'], Tokens::EMPTY_TOKENS, true)) {
                             $existCodeOnLine = true;
                         }
                     }
@@ -146,7 +146,7 @@ final class PhpCsUtils
         if ($nsStart) {
             $nsEnd = $file->findNext([T_NS_SEPARATOR, T_STRING, T_WHITESPACE], $nsStart + 1, null, true);
 
-            $namespace = \trim(self::getContentsBetweenPtrs($file, $nsStart + 1, (int) $nsEnd));
+            $namespace = \trim(self::getContentsBetweenPtrs($file, $nsStart + 1, (int) $nsEnd + 1));
         }
 
         $declaredPtr = $file->findNext([T_CLASS, T_INTERFACE, T_TRAIT], 0);
