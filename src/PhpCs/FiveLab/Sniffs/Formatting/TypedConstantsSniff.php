@@ -31,10 +31,6 @@ class TypedConstantsSniff implements Sniff
 
     public function process(File $phpcsFile, mixed $stackPtr): void
     {
-        if (PHP_VERSION_ID < 80300) {
-            return;
-        }
-
         $tokens = $phpcsFile->getTokens();
 
         if (T_STRING === $tokens[$stackPtr + 2]['code'] && T_STRING === $tokens[$stackPtr + 4]['code']) {

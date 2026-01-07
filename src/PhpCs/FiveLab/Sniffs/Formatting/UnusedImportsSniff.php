@@ -50,7 +50,7 @@ class UnusedImportsSniff implements Sniff
             return;
         }
 
-        $currentStackPtr = $phpcsFile->findNext(T_SEMICOLON, $stackPtr);
+        $currentStackPtr = (int) $phpcsFile->findNext(T_SEMICOLON, $stackPtr);
 
         $import = $tokens[$currentStackPtr - 1]['content'];
 
@@ -59,7 +59,7 @@ class UnusedImportsSniff implements Sniff
 
         $importStackPtr = $stackPtr;
 
-        while ($currentStackPtr = $phpcsFile->findNext(T_USE, ++$currentStackPtr)) {
+        while ($currentStackPtr = (int) $phpcsFile->findNext(T_USE, ++$currentStackPtr)) {
             if (1 === $tokens[$currentStackPtr]['column'] && 0 === $tokens[$currentStackPtr]['level']) {
                 $importStackPtr = $currentStackPtr;
             }
@@ -82,7 +82,7 @@ class UnusedImportsSniff implements Sniff
                     return;
                 }
 
-                $pos++;
+                $pos = (int) $pos + 1;
             }
         }
 

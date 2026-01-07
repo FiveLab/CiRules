@@ -36,7 +36,7 @@ class ForbiddenNodeTypeRule implements Rule
      * @param class-string<Node> $nodeType
      * @param string|null        $message
      */
-    public function __construct(string $nodeType, string $message = null)
+    public function __construct(string $nodeType, ?string $message = null)
     {
         if (!\is_a($nodeType, Node::class, true)) { // @phpstan-ignore phpstanApi.runtimeReflection, function.alreadyNarrowedType
             throw new \InvalidArgumentException(\sprintf(
