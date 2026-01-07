@@ -22,7 +22,7 @@
     },
 
     "conflict": {
-        "escapestudios/symfony2-coding-standard": "<3.17.0"
+        "squizlabs/php_codesniffer": "<4"
     },
 
     "require-dev": {
