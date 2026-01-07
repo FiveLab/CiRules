@@ -63,7 +63,7 @@ final class PhpCsUtils
                 $diffLines++;
             } elseif (\in_array($token['code'], Tokens::COMMENT_TOKENS, true)) {
                 if ($token['code'] === T_DOC_COMMENT_OPEN_TAG) {
-                    $i = $file->findNext([T_DOC_COMMENT_CLOSE_TAG], $i + 1);
+                    $i = (int) $file->findNext([T_DOC_COMMENT_CLOSE_TAG], $i + 1);
                 } elseif ($token['code'] === T_COMMENT) {
                     $tokensOnLine = self::getTokensOnLine($file, $token['line']);
                     $existCodeOnLine = false;
