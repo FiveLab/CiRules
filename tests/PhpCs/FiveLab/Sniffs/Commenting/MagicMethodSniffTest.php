@@ -14,9 +14,9 @@ declare(strict_types = 1);
 namespace FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\Commenting;
 
 use FiveLab\Component\CiRules\PhpCs\FiveLab\Sniffs\Commenting\MagicMethodSniff;
-use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\SniffTestCase;
+use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\AbstractSniffTestCase;
 
-class MagicMethodSniffTest extends SniffTestCase
+class MagicMethodSniffTest extends AbstractSniffTestCase
 {
     protected function getSniffClass(): string
     {

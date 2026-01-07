@@ -14,9 +14,9 @@ declare(strict_types = 1);
 namespace FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\Commenting;
 
 use FiveLab\Component\CiRules\PhpCs\FiveLab\Sniffs\Commenting\CommentSniff;
-use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\SniffTestCase;
+use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\AbstractSniffTestCase;
 
-class CommentSniffTest extends SniffTestCase
+class CommentSniffTest extends AbstractSniffTestCase
 {
     protected function getSniffClass(): string
     {

@@ -46,7 +46,7 @@ class MultiLineSniff implements Sniff
                 return (string) $token['code'];
             }, PhpCsUtils::getTokensOnLine($phpcsFile, $stmt['line']));
 
-            $diff = \array_values(\array_diff($lineTokens, Tokens::$emptyTokens));
+            $diff = \array_values(\array_diff($lineTokens, Tokens::EMPTY_TOKENS));
 
             $then = \array_search(T_INLINE_THEN, $diff);
             $else = \array_search(T_INLINE_ELSE, $diff);

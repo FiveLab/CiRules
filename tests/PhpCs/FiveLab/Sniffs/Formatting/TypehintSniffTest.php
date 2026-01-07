@@ -14,9 +14,9 @@ declare(strict_types = 1);
 namespace FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\Formatting;
 
 use FiveLab\Component\CiRules\PhpCs\FiveLab\Sniffs\Formatting\TypehintSniff;
-use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\SniffTestCase;
+use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\AbstractSniffTestCase;
 
-class TypehintSniffTest extends SniffTestCase
+class TypehintSniffTest extends AbstractSniffTestCase
 {
     protected function getSniffClass(): string
     {

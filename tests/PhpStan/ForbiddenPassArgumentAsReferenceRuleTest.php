@@ -17,6 +17,7 @@ use FiveLab\Component\CiRules\PhpStan\ForbiddenPassArgumentAsReferenceRule;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Function_;
 use PHPStan\Testing\RuleTestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ForbiddenPassArgumentAsReferenceRuleTest extends RuleTestCase
 {
@@ -27,9 +28,7 @@ class ForbiddenPassArgumentAsReferenceRuleTest extends RuleTestCase
         return $this->rule;
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldSuccessProcessForFunction(): void
     {
         $this->rule = new ForbiddenPassArgumentAsReferenceRule(Function_::class);
@@ -42,9 +41,7 @@ class ForbiddenPassArgumentAsReferenceRuleTest extends RuleTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldSuccessProcessForMethod(): void
     {
         $this->rule = new ForbiddenPassArgumentAsReferenceRule(ClassMethod::class);

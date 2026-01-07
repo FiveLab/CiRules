@@ -14,9 +14,9 @@ declare(strict_types = 1);
 namespace FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\Strings;
 
 use FiveLab\Component\CiRules\PhpCs\FiveLab\Sniffs\Strings\AsciiSniff;
-use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\SniffTestCase;
+use FiveLab\Component\CiRules\Tests\PhpCs\FiveLab\Sniffs\AbstractSniffTestCase;
 
-class AsciiSniffTest extends SniffTestCase
+class AsciiSniffTest extends AbstractSniffTestCase
 {
     protected function getSniffClass(): string
     {

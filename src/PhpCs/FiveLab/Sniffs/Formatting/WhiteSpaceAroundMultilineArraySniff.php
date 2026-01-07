@@ -35,7 +35,7 @@ class WhiteSpaceAroundMultilineArraySniff implements Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        $semicolonPtr = $phpcsFile->findNext(Tokens::$emptyTokens, $stackPtr + 1, null, true);
+        $semicolonPtr = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $stackPtr + 1, null, true);
 
         if (!$semicolonPtr || $tokens[$semicolonPtr]['code'] !== T_SEMICOLON) {
             // Not close root array. Skip.
@@ -55,7 +55,7 @@ class WhiteSpaceAroundMultilineArraySniff implements Sniff
         // Check before.
         $firstTokenOnOpenerLinePtr = PhpCsUtils::findFirstTokenOnLine($phpcsFile, $tokens[$openerTokenPtr]['line']);
 
-        $prevTokenPtr = $phpcsFile->findPrevious(Tokens::$emptyTokens, $firstTokenOnOpenerLinePtr - 1, null, true);
+        $prevTokenPtr = $phpcsFile->findPrevious(Tokens::EMPTY_TOKENS, $firstTokenOnOpenerLinePtr - 1, null, true);
         $prevToken = $tokens[$prevTokenPtr];
 
         $diffLinesBefore = PhpCsUtils::getDiffLines($phpcsFile, (int) $prevTokenPtr, (int) $firstTokenOnOpenerLinePtr);
@@ -70,7 +70,7 @@ class WhiteSpaceAroundMultilineArraySniff implements Sniff
         }
 
         // Check after
-        $nextTokenPtr = $phpcsFile->findNext(Tokens::$emptyTokens, $semicolonPtr + 1, null, true);
+        $nextTokenPtr = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $semicolonPtr + 1, null, true);
 
         if ($nextTokenPtr) {
             $nextToken = $tokens[$nextTokenPtr];

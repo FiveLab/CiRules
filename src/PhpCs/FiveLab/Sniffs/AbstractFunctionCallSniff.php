@@ -24,14 +24,14 @@ abstract class AbstractFunctionCallSniff implements Sniff
 {
     public function register(): array
     {
-        return Tokens::$functionNameTokens;
+        return Tokens::FUNCTION_NAME_TOKENS;
     }
 
     final public function process(File $phpcsFile, mixed $stackPtr): void
     {
         $tokens = $phpcsFile->getTokens();
 
-        $ignoreTokens = Tokens::$emptyTokens;
+        $ignoreTokens = Tokens::EMPTY_TOKENS;
         $ignoreTokens[] = T_BITWISE_AND;
 
         $specialKeywordPtr = $phpcsFile->findPrevious($ignoreTokens, $stackPtr - 1, null, true);
@@ -42,7 +42,7 @@ abstract class AbstractFunctionCallSniff implements Sniff
             return;
         }
 
-        $openParenthesisPtr = $phpcsFile->findNext(Tokens::$emptyTokens, $stackPtr + 1, null, true);
+        $openParenthesisPtr = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $stackPtr + 1, null, true);
 
         if (!$openParenthesisPtr || $tokens[$openParenthesisPtr]['code'] !== T_OPEN_PARENTHESIS) {
             return;

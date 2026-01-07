@@ -54,6 +54,9 @@ class UnusedImportsSniff implements Sniff
 
         $import = $tokens[$currentStackPtr - 1]['content'];
 
+        $parts = \explode('\\', $import);
+        $import = \end($parts);
+
         $importStackPtr = $stackPtr;
 
         while ($currentStackPtr = $phpcsFile->findNext(T_USE, ++$currentStackPtr)) {
