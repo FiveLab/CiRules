@@ -33,6 +33,7 @@ class UnusedImportsSniff implements Sniff
         T_DOC_COMMENT_STRING,
         T_DOC_COMMENT_TAG,
         T_STRING,
+        T_NAME_QUALIFIED
     ];
 
     public function register(): array

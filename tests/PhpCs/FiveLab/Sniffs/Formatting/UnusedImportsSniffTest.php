@@ -26,6 +26,10 @@ class UnusedImportsSniffTest extends AbstractSniffTestCase
     public static function provideDataSet(): array
     {
         return [
+            'success: name qualified' => [
+                __DIR__.'/Resources/unused-imports/success-name-qualified.php',
+            ],
+
             'success: var namespace' => [
                 __DIR__.'/Resources/unused-imports/success-var-namespace.php',
             ],
