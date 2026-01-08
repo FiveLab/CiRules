@@ -7,7 +7,7 @@ class MyDom extends \DOMDocument
     /**
      * {@inheritDoc}
      */
-    public function loadXML($source, $options = null)
+    public function loadXML(string $source, int $options = 0): bool
     {
     }
 
@@ -15,7 +15,7 @@ class MyDom extends \DOMDocument
      * Load HTML
      * {@inheritdoc}
      */
-    public function loadHTML($source, $options = 0)
+    public function loadHTML(string $source, int $options = 0): bool
     {
     }
 
@@ -23,7 +23,7 @@ class MyDom extends \DOMDocument
      * {@inheritdoc}
      * Load some
      */
-    public function load($filename, $options = null)
+    public function load(string $filename, int $options = 0): bool
     {
     }
 

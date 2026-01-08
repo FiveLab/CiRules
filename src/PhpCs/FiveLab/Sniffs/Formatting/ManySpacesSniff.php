@@ -66,7 +66,7 @@ class ManySpacesSniff implements Sniff
             return;
         }
 
-        if (T_CONST === $tokens[$stackPtr - 3]['code'] || T_CONST === $tokens[$stackPtr - 5]['code']) {
+        if (T_CONST === $tokens[$stackPtr - 3]['code'] || T_CONST === ($tokens[$stackPtr - 5]['code'] ?? null)) {
             return;
         }
 

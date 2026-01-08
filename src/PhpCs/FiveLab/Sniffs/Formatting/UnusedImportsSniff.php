@@ -22,17 +22,18 @@ use PHP_CodeSniffer\Sniffs\Sniff;
  */
 class UnusedImportsSniff implements Sniff
 {
-    const CHARS_AROUND_USAGE = [
+    const array CHARS_AROUND_USAGE = [
         '', ' ', '|', '&', '\\',
         '[', ']',
         '<', '>', ',',
         '@', '(', ')',
     ];
 
-    const TOKENS_SEARCH_IN = [
+    const array TOKENS_SEARCH_IN = [
         T_DOC_COMMENT_STRING,
         T_DOC_COMMENT_TAG,
         T_STRING,
+        T_NAME_QUALIFIED,
     ];
 
     public function register(): array

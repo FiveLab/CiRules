@@ -62,6 +62,10 @@ class UnusedImportsSniffTest extends AbstractSniffTestCase
                 __DIR__.'/Resources/unused-imports/success-combined.php',
             ],
 
+            'success: with alias' => [
+                __DIR__.'/Resources/unused-imports/success-with-alias.php',
+            ],
+
             'unused' => [
                 __DIR__.'/Resources/unused-imports/unused.php',
                 [

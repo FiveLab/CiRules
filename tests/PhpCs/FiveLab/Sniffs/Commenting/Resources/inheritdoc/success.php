@@ -33,7 +33,7 @@ class MyDom extends \DOMDocument implements MyInterface
     /**
      * {@inheritdoc}
      */
-    public function loadXML($source, $options = null)
+    public function loadXML(string $source, int $options = 0): bool
     {
     }
 
