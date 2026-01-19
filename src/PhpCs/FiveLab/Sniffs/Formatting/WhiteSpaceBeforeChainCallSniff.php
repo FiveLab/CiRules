@@ -113,6 +113,14 @@ class WhiteSpaceBeforeChainCallSniff implements Sniff
         return $whitespaces;
     }
 
+    /**
+     * Get non-empty tokens on line
+     *
+     * @param File $phpcsFile
+     * @param int  $line
+     *
+     * @return array<mixed>
+     */
     private function getNonEmptyTokensOnLine(File $phpcsFile, int $line): array
     {
         $tokens = PhpCsUtils::getTokensOnLine($phpcsFile, $line);
