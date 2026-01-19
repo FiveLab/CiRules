@@ -44,6 +44,14 @@ class WhiteSpaceAroundControlStatementSniffTest extends AbstractSniffTestCase
                     'message' => 'Must be one blank line after close "foreach" statement.',
                     'source'  => 'FiveLab.Formatting.WhiteSpaceAroundControlStatement.MissedLineAfter',
                 ],
+                [
+                    'message' => 'Must be one blank line before "break" statement.',
+                    'source'  => 'FiveLab.Formatting.WhiteSpaceAroundControlStatement.MissedLineBefore',
+                ],
+                [
+                    'message' => 'Must be one blank line before "continue" statement.',
+                    'source'  => 'FiveLab.Formatting.WhiteSpaceAroundControlStatement.MissedLineBefore',
+                ],
             ],
         ];
     }

@@ -15,3 +15,13 @@ foreach ($array as $key => $item) {
     $a .= $key;
 }
 $bar = 'foo';
+
+if ($a) {
+    $a = 'bar';
+    break;
+}
+
+foreach ($array as $key => $item) {
+    $a .= $key;
+    continue;
+}

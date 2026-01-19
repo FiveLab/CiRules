@@ -104,6 +104,7 @@ class InheritdocSniff extends AbstractFunctionDocCommentSniff
 
                 if ($implementRef->hasMethod($methodName)) {
                     $exist = true;
+
                     break;
                 }
 
@@ -116,6 +117,7 @@ class InheritdocSniff extends AbstractFunctionDocCommentSniff
                     if (\preg_match('/^\*\s*@method (\S+) ([^\\\(]+)\s*\(/', \trim($docCommentLine), $parts)) {
                         if ($methodName === $parts[2]) {
                             $exist = true;
+
                             break;
                         }
                     }
@@ -124,6 +126,7 @@ class InheritdocSniff extends AbstractFunctionDocCommentSniff
                     if (\preg_match('/^\*\s*@method ([^\\\(]+)\s*\(/', \trim($docCommentLine), $parts)) {
                         if ($methodName === $parts[1]) {
                             $exist = true;
+
                             break;
                         }
                     }
