@@ -100,4 +100,18 @@ switch (true) {
         if (false) {
             $bar = 'bar';
         }
+
+        break;
+}
+
+if ($condition) {
+    $bar = 'bar';
+
+    break;
+}
+
+for ($i = 0; $i < 10; $i++) {
+    $someArray[] = $i;
+
+    continue;
 }

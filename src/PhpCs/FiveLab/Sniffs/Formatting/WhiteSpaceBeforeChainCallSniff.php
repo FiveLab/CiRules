@@ -21,7 +21,7 @@ use PHP_CodeSniffer\Util\Tokens;
 
 class WhiteSpaceBeforeChainCallSniff implements Sniff
 {
-    const GAP = 4;
+    const int GAP = 4;
 
     public function register(): array
     {
@@ -96,14 +96,6 @@ class WhiteSpaceBeforeChainCallSniff implements Sniff
         );
     }
 
-    /**
-     * Calculate whitespaces before first token on line
-     *
-     * @param File $phpcsFile
-     * @param int  $line
-     *
-     * @return int
-     */
     private function calculateWhitespacesBeforeFirstTokenOnLine(File $phpcsFile, int $line): int
     {
         $whitespaces = 0;
@@ -111,6 +103,7 @@ class WhiteSpaceBeforeChainCallSniff implements Sniff
         foreach (PhpCsUtils::getTokensOnLine($phpcsFile, $line) as $token) {
             if (T_WHITESPACE === $token['code']) {
                 $whitespaces += $token['length'];
+
                 continue;
             }
 

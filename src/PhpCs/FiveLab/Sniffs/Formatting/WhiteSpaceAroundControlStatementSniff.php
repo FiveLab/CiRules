@@ -36,12 +36,14 @@ class WhiteSpaceAroundControlStatementSniff implements Sniff
      * @var array<array<string|int>>
      */
     private static array $ignoredTokens = [
-        T_IF     => [T_ELSE, T_ELSEIF, T_COLON],
-        T_ELSE   => [T_IF, T_CLOSE_CURLY_BRACKET],
-        T_ELSEIF => [T_ELSEIF, T_CLOSE_CURLY_BRACKET, T_ELSE],
-        T_DO     => [T_WHILE],
-        T_WHILE  => [T_DO],
-        T_MATCH  => [T_OPEN_SHORT_ARRAY, T_CLOSE_SHORT_ARRAY, T_COMMA],
+        T_IF       => [T_ELSE, T_ELSEIF, T_COLON],
+        T_ELSE     => [T_IF, T_CLOSE_CURLY_BRACKET],
+        T_ELSEIF   => [T_ELSEIF, T_CLOSE_CURLY_BRACKET, T_ELSE],
+        T_DO       => [T_WHILE],
+        T_WHILE    => [T_DO],
+        T_MATCH    => [T_OPEN_SHORT_ARRAY, T_CLOSE_SHORT_ARRAY, T_COMMA],
+        T_BREAK    => [T_CLOSE_CURLY_BRACKET],
+        T_CONTINUE => [T_CLOSE_CURLY_BRACKET],
     ];
 
     public function register(): array
@@ -56,6 +58,8 @@ class WhiteSpaceAroundControlStatementSniff implements Sniff
             T_DO,
             T_SWITCH,
             T_MATCH,
+            T_BREAK,
+            T_CONTINUE,
         ];
     }
 
@@ -63,7 +67,7 @@ class WhiteSpaceAroundControlStatementSniff implements Sniff
     {
         $stackToken = $phpcsFile->getTokens()[$stackPtr];
 
-        if (!\array_key_exists('scope_closer', $stackToken)) {
+        if (!\array_key_exists('scope_closer', $stackToken) && !\in_array($stackToken['code'], [T_BREAK, T_CONTINUE], true)) {
             // Active token hasn't close scope. Maybe use "else if" (or similar) construction where scope undefined.
             return;
         }
@@ -91,16 +95,22 @@ class WhiteSpaceAroundControlStatementSniff implements Sniff
         }
 
         // Check blank lines after
-        $scopeCloserPtr = $stackToken['scope_closer'];
-        $nextTokenPtr = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $scopeCloserPtr + 1, null, true);
+        if (\array_key_exists('scope_closer', $stackToken)) {
+            $scopeCloserPtr = $stackToken['scope_closer'];
+            $nextTokenPtr = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $scopeCloserPtr + 1, null, true);
+        } else {
+            $scopeCloserPtr = $stackPtr;
+            $nextTokenPtr = $stackPtr + 1;
+        }
 
         if ($nextTokenPtr) {
             $nextToken = $phpcsFile->getTokens()[$nextTokenPtr];
 
-            if ($nextToken['code'] === T_SEMICOLON && $stackToken['code'] === T_MATCH) {
-                // Use "match" construction.
-                $nextTokenPtr = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $nextTokenPtr + 1, null, true);
-                $nextToken = $nextTokenPtr ? $phpcsFile->getTokens()[$nextTokenPtr] : null;
+            if ($nextToken['code'] === T_SEMICOLON) {
+                if (\in_array($stackToken['code'], [T_MATCH, T_BREAK, T_CONTINUE], true)) {
+                    $nextTokenPtr = $phpcsFile->findNext(Tokens::EMPTY_TOKENS, $nextTokenPtr + 1, null, true);
+                    $nextToken = $nextTokenPtr ? $phpcsFile->getTokens()[$nextTokenPtr] : null;
+                }
             }
 
             if ($nextToken) {

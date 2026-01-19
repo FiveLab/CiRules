@@ -46,6 +46,7 @@ class ProhibitedDocCommentsSniff implements Sniff
         for ($i = $stackPtr + 1; $i < $closePtr; $i++) {
             if ($tokens[$i]['code'] === T_DOC_COMMENT_TAG) {
                 $hasMetaTag = true;
+
                 break;
             }
         }
