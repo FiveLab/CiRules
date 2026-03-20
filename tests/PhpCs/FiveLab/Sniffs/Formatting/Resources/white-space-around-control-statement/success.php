@@ -115,3 +115,9 @@ for ($i = 0; $i < 10; $i++) {
 
     continue;
 }
+
+for ($i = 0; $i < 10; $i++) {
+    $someArray[] = $i;
+
+    continue 2;
+}

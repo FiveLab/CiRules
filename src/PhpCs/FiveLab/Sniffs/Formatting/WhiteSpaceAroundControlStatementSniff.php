@@ -43,7 +43,7 @@ class WhiteSpaceAroundControlStatementSniff implements Sniff
         T_WHILE    => [T_DO],
         T_MATCH    => [T_OPEN_SHORT_ARRAY, T_CLOSE_SHORT_ARRAY, T_COMMA],
         T_BREAK    => [T_CLOSE_CURLY_BRACKET],
-        T_CONTINUE => [T_CLOSE_CURLY_BRACKET],
+        T_CONTINUE => [T_CLOSE_CURLY_BRACKET, T_WHITESPACE, T_LNUMBER],
     ];
 
     public function register(): array

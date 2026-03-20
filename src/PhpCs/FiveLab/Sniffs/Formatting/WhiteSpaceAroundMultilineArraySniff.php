@@ -61,7 +61,7 @@ class WhiteSpaceAroundMultilineArraySniff implements Sniff
         $diffLinesBefore = PhpCsUtils::getDiffLines($phpcsFile, (int) $prevTokenPtr, (int) $firstTokenOnOpenerLinePtr);
         $possiblePrevTokens = [T_COLON, T_OPEN_CURLY_BRACKET];
 
-        if (!\in_array($prevToken['code'], $possiblePrevTokens, true) && $diffLinesBefore < 2) {
+        if ($diffLinesBefore < 2 && !\in_array($prevToken['code'], $possiblePrevTokens, true)) {
             $phpcsFile->addError(
                 'Must be one blank line before multiline array creation.',
                 $openerTokenPtr,
@@ -77,7 +77,7 @@ class WhiteSpaceAroundMultilineArraySniff implements Sniff
             $diffLinesAfter = PhpCsUtils::getDiffLines($phpcsFile, $semicolonPtr, $nextTokenPtr);
             $possibleNextTokens = [T_CLOSE_CURLY_BRACKET, T_BREAK];
 
-            if (!\in_array($nextToken['code'], $possibleNextTokens, true) && $diffLinesAfter < 2) {
+            if ($diffLinesAfter < 2 && !\in_array($nextToken['code'], $possibleNextTokens, true)) {
                 $phpcsFile->addError(
                     'Must be one blank line after multiline array creation.',
                     $semicolonPtr,
