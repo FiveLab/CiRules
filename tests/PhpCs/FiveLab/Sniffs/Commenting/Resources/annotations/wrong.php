@@ -30,3 +30,11 @@ function bar(): int
 function baz(array $a, array $b, array $c): array
 {
 }
+
+/**
+ * @param SomeObject{} $a
+ * @param string{1: int} $b
+ */
+function bar(array $a, array $b, array $c): array
+{
+}
